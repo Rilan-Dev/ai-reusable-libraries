@@ -1,0 +1,418 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "Rilan-Dev/Doable",
+    "ref": "develop",
+    "commit": "a6036d1fd6dca83c08ee5affa141e5c85e45f5af"
+  },
+  "copyRoot": "ai-platform-core",
+  "rule": "Each capability is implemented by the complete referenced source/dependency/UI closure; manifests are navigation and acceptance contracts, not substitutes for source.",
+  "capabilities": {
+    "multi-provider": {
+      "manifest": "capabilities/multi-provider/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/ai/",
+        "doable-source/packages/shared/src/ai/",
+        "doable-source/packages/doable-ai/",
+        "doable-source/services/api/src/routes/provider-bridge.ts",
+        "doable-source/services/api/src/routes/provider-catalog.ts",
+        "doable-source/services/api/src/routes/auth/platform-ai-bootstrap.ts"
+      ],
+      "dependencies": [
+        "dependency-closure/services/api/src/db/",
+        "dependency-closure/services/api/src/middleware/",
+        "dependency-closure/packages/db/",
+        "doable-source/packages/docore/",
+        "doable-source/packages/dovault/"
+      ],
+      "ui": [
+        "ui-reference/apps/web/src/modules/ai-settings/",
+        "ui-reference/apps/web/src/app/(dashboard)/ai-settings/",
+        "ui-reference/apps/web/src/modules/ai-settings/"
+      ]
+    },
+    "agents": {
+      "manifest": "capabilities/agents/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/ai/",
+        "doable-source/services/api/src/context/",
+        "doable-source/services/api/src/mcp/",
+        "doable-source/services/api/src/integrations/"
+      ],
+      "ui": [
+        "ui-reference/apps/web/src/modules/editor/chat/",
+        "ui-reference/apps/web/src/modules/skills/"
+      ]
+    },
+    "tools": {
+      "manifest": "capabilities/tools/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/ai/tools/",
+        "doable-source/services/api/src/ai/",
+        "doable-source/services/api/src/mcp/tool-bridge.ts",
+        "doable-source/services/api/src/integrations/tool-bridge.ts"
+      ],
+      "ui": [
+        "ui-reference/apps/web/src/modules/editor/chat/tool-call-card.tsx",
+        "ui-reference/apps/web/src/modules/editor/chat/chat-message.tsx",
+        "ui-reference/apps/web/src/modules/editor/chat/user-input-card.tsx"
+      ]
+    },
+    "integrations": {
+      "manifest": "capabilities/integrations/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/integrations/",
+        "doable-source/services/api/src/routes/integrations.ts",
+        "doable-source/services/api/src/routes/integrations-admin.ts",
+        "doable-source/services/api/src/routes/integrations-catalog.ts",
+        "doable-source/services/api/src/routes/integrations-connections.ts",
+        "doable-source/services/api/src/routes/integrations-oauth.ts"
+      ],
+      "ui": [
+        "ui-reference/apps/web/src/modules/integrations/"
+      ]
+    },
+    "mcp": {
+      "manifest": "capabilities/mcp/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/mcp/",
+        "doable-source/services/api/src/routes/mcp-apps-data.ts"
+      ],
+      "ui": [
+        "ui-reference/apps/web/src/modules/settings/"
+      ]
+    },
+    "skills": {
+      "manifest": "capabilities/skills/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/ai/",
+        "doable-source/services/api/src/routes/skills.ts",
+        "doable-source/services/api/src/context/"
+      ],
+      "ui": [
+        "ui-reference/apps/web/src/modules/skills/"
+      ]
+    },
+    "chat": {
+      "manifest": "capabilities/chat/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/routes/chat/",
+        "doable-source/services/api/src/ai/",
+        "doable-source/packages/doable-ai/",
+        "doable-source/packages/doable-sdk/"
+      ],
+      "ui": [
+        "ui-reference/apps/web/src/modules/editor/chat/",
+        "ui-reference/apps/web/src/app/(dashboard)/dashboard/dashboard-chat-input.tsx"
+      ]
+    },
+    "context-memory": {
+      "manifest": "capabilities/context-memory/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/context/",
+        "doable-source/services/api/src/routes/context.ts"
+      ],
+      "hostBoundary": [
+        "RAG/vector store",
+        "tenant/user context persistence"
+      ]
+    },
+    "workspace-sandbox": {
+      "manifest": "capabilities/workspace-sandbox/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/sandbox/"
+      ],
+      "dependencies": [
+        "dependency-closure/services/api/src/projects/",
+        "dependency-closure/services/api/src/runtime/",
+        "dependency-closure/services/api/src/frameworks/",
+        "dependency-closure/services/api/src/git/",
+        "dependency-closure/services/api/src/db/",
+        "dependency-closure/packages/db/",
+        "doable-source/packages/docore/",
+        "doable-source/packages/dovault/"
+      ]
+    },
+    "ui": {
+      "manifest": "capabilities/ui/MANIFEST.md",
+      "reference": [
+        "ui-reference/apps/web/src/modules/ai-settings/",
+        "ui-reference/apps/web/src/modules/integrations/",
+        "ui-reference/apps/web/src/modules/skills/",
+        "ui-reference/apps/web/src/modules/settings/",
+        "ui-reference/apps/web/src/app/(dashboard)/workspace-settings/",
+        "ui-reference/apps/web/src/app/(dashboard)/ai-settings/",
+        "ui-reference/apps/web/src/modules/editor/chat/"
+      ]
+    },
+    "marketplace": {
+      "manifest": "capabilities/marketplace/MANIFEST.md",
+      "runtime": [
+        "doable-source/packages/marketplace-bundle/"
+      ],
+      "dependencies": [
+        "doable-source/packages/shared/"
+      ],
+      "uiReference": [],
+      "hostBoundaries": [
+        "marketplace persistence",
+        "publisher/tenant identity",
+        "credential provisioning",
+        "listing/moderation",
+        "object storage/CDN",
+        "marketplace UI/theme"
+      ]
+    },
+    "notebooklm": {
+      "manifest": "capabilities/notebooklm/MANIFEST.md",
+      "runtime": [
+        "doable-source/mcp-servers/notebooklm/server/"
+      ],
+      "dependencies": [
+        "doable-source/packages/shared/"
+      ],
+      "uiReference": [
+        "doable-source/mcp-servers/notebooklm/server/src/mcp-app.html",
+        "doable-source/mcp-servers/notebooklm/server/src/mcp-app.ts"
+      ],
+      "hostBoundaries": [
+        "Google authentication/cookies",
+        "Chromium/Playwright",
+        "persistent user data",
+        "public URL/tunnel",
+        "MCP host registration"
+      ]
+    },
+    "realtime-collaboration": {
+      "manifest": "capabilities/realtime-collaboration/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/ws/src/"
+      ],
+      "uiReference": [
+        "doable-source/apps/web/src/modules/collaboration/"
+      ],
+      "hostBoundaries": [
+        "identity",
+        "authorization",
+        "room persistence",
+        "WebSocket auth/origin",
+        "database",
+        "deployment topology"
+      ]
+    },
+    "document-builders": {
+      "manifest": "capabilities/document-builders/MANIFEST.md",
+      "runtime": [
+        "doable-source/mcp-servers/pdf-builder/",
+        "doable-source/mcp-servers/presentation-builder/",
+        "doable-source/mcp-servers/spreadsheet-builder/",
+        "doable-source/mcp-servers/markdown-builder/",
+        "doable-source/mcp-servers/_shared/ui.mjs"
+      ],
+      "dependencies": [],
+      "uiReference": [
+        "doable-source/mcp-servers/_shared/ui.mjs"
+      ],
+      "hostBoundaries": [
+        "MCP server launch",
+        "project/output storage",
+        "Chromium/PDF runtime",
+        "artifact download",
+        "MCP App host UI/theme",
+        "sandbox policy"
+      ]
+    },
+    "mcp-tool-servers": {
+      "manifest": "capabilities/mcp-tool-servers/MANIFEST.md",
+      "runtime": [
+        "doable-source/mcp-servers/_shared/",
+        "doable-source/mcp-servers/image-generator/",
+        "doable-source/mcp-servers/markdown-builder/",
+        "doable-source/mcp-servers/notebooklm/",
+        "doable-source/mcp-servers/pdf-builder/",
+        "doable-source/mcp-servers/presentation-builder/",
+        "doable-source/mcp-servers/spreadsheet-builder/"
+      ],
+      "dependencies": [],
+      "uiReference": [
+        "doable-source/mcp-servers/_shared/"
+      ],
+      "hostBoundaries": [
+        "provider credentials",
+        "Google authentication",
+        "browser runtime",
+        "artifact storage",
+        "MCP registration",
+        "process execution",
+        "public URLs"
+      ]
+    },
+    "visual-ai-editing": {
+      "manifest": "capabilities/visual-ai-editing/MANIFEST.md",
+      "runtime": [
+        "doable-source/apps/web/src/modules/editor/visual-edit/",
+        "doable-source/apps/web/src/modules/editor/runtime-render/",
+        "doable-source/apps/web/src/modules/editor/context-files/",
+        "doable-source/apps/web/src/modules/editor/build/"
+      ],
+      "dependencies": [
+        "dependency-closure/services/api/src/projects/",
+        "dependency-closure/services/api/src/runtime/",
+        "dependency-closure/services/api/src/frameworks/"
+      ],
+      "uiReference": [
+        "doable-source/apps/web/src/modules/editor/visual-edit/",
+        "doable-source/apps/web/src/modules/editor/runtime-render/"
+      ],
+      "hostBoundaries": [
+        "project/files API",
+        "preview runtime",
+        "editor state/routing",
+        "theme"
+      ]
+    },
+    "platform-extensions": {
+      "manifest": "capabilities/platform-extensions/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/analytics/",
+        "doable-source/services/api/src/tracing/",
+        "doable-source/services/api/src/version-control/",
+        "doable-source/services/api/src/github/",
+        "doable-source/services/api/src/deploy/",
+        "doable-source/services/api/src/auth/",
+        "doable-source/services/api/src/routes/"
+      ],
+      "uiReference": [
+        "doable-source/apps/web/src/modules/billing/",
+        "doable-source/apps/web/src/modules/dashboard/",
+        "doable-source/apps/web/src/modules/editor/",
+        "doable-source/apps/web/src/modules/marketplace/"
+      ],
+      "hostBoundaries": [
+        "identity",
+        "database",
+        "billing provider",
+        "email provider",
+        "deployment provider",
+        "domains",
+        "secrets",
+        "infrastructure"
+      ]
+    },
+    "visual-editing": {
+      "manifest": "capabilities/visual-editing/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/visual-edit-bridge-inline.ts",
+        "doable-source/apps/web/src/modules/editor/"
+      ],
+      "uiReference": [
+        "doable-source/apps/web/src/modules/editor/"
+      ],
+      "hostBoundaries": [
+        "project filesystem",
+        "preview runtime",
+        "identity",
+        "persistence",
+        "deployment provider",
+        "theme"
+      ]
+    },
+    "ai-media-builders": {
+      "manifest": "capabilities/ai-media-builders/MANIFEST.md",
+      "runtime": [
+        "doable-source/mcp-servers/_shared/",
+        "doable-source/mcp-servers/image-generator/",
+        "doable-source/mcp-servers/markdown-builder/",
+        "doable-source/mcp-servers/pdf-builder/",
+        "doable-source/mcp-servers/presentation-builder/",
+        "doable-source/mcp-servers/spreadsheet-builder/"
+      ],
+      "uiReference": [],
+      "hostBoundaries": [
+        "provider credentials",
+        "artifact storage",
+        "execution limits",
+        "MCP registration",
+        "UI/theme"
+      ]
+    },
+    "platform-foundation": {
+      "manifest": "capabilities/platform-foundation/MANIFEST.md",
+      "runtime": [
+        "doable-source-extensions/auth/",
+        "doable-source-extensions/identity-rbac/",
+        "doable-source-extensions/billing/",
+        "doable-source-extensions/usage/",
+        "doable-source-extensions/analytics/",
+        "doable-source-extensions/audit/",
+        "doable-source-extensions/observability/",
+        "doable-source-extensions/notifications/",
+        "doable-source-extensions/email/",
+        "doable-source-extensions/github/",
+        "doable-source-extensions/version-control/",
+        "doable-source-extensions/deployment/",
+        "doable-source-extensions/domains/",
+        "doable-source-extensions/marketplace/",
+        "doable-source-extensions/realtime-collaboration/",
+        "dependency-closure/packages/db/",
+        "dependency-closure/services/api/src/db/",
+        "dependency-closure/services/api/src/runtime/",
+        "dependency-closure/services/api/src/projects/",
+        "dependency-closure/services/api/src/templates/",
+        "dependency-closure/services/api/src/git/",
+        "dependency-closure/services/api/src/middleware/",
+        "doable-source/services/api/src/sandbox/",
+        "doable-source/packages/docore/",
+        "doable-source/packages/dovault/",
+        "doable-source/services/ws/"
+      ],
+      "uiReference": [
+        "doable-source/apps/web/src/modules/billing/",
+        "doable-source/apps/web/src/modules/marketplace/",
+        "doable-source/apps/web/src/modules/editor/",
+        "doable-source/apps/web/src/modules/collaboration/"
+      ],
+      "hostBoundaries": [
+        "identity/session",
+        "tenant/RBAC",
+        "database connection/schema reconciliation",
+        "KEK/secrets",
+        "billing provider",
+        "email provider",
+        "deployment provider",
+        "domains/DNS",
+        "WebSocket auth/origin",
+        "OS/container/network policy",
+        "Activepieces packages",
+        "object storage"
+      ]
+    },
+    "ai-security": {
+      "manifest": "capabilities/ai-security/MANIFEST.md",
+      "runtime": [
+        "doable-source/services/api/src/security/",
+        "doable-source/services/api/src/routes/security.ts"
+      ],
+      "dependencies": [
+        "dependency-closure/packages/db/src/queries/security.ts",
+        "dependency-closure/packages/db/src/types.ts",
+        "dependency-closure/packages/db/"
+      ],
+      "hostBoundaries": [
+        "project path/filesystem",
+        "Node/npm process execution",
+        "database/persistence",
+        "authentication/authorization",
+        "deployment policy"
+      ],
+      "uiReference": [
+        "ui-reference/apps/web/src/modules/settings/components/project-settings-security.tsx"
+      ]
+    }
+  },
+  "acceptance": {
+    "extraction": "node ai-platform-core/verification/verify-extraction.mjs",
+    "dependencies": "node ai-platform-core/external-dependencies/verify-external-dependencies.mjs",
+    "targetRuntime": "Must be run after copying into each host; extraction integrity does not imply runtime compatibility."
+  }
+}

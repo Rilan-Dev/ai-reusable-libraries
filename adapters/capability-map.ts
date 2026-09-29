@@ -1,0 +1,20 @@
+export type PlatformCapability = "agents"|"providers"|"tools"|"mcp"|"integrations"|"skills"|"context"|"memory"|"workspace"|"processes"|"sandbox"|"secrets"|"rag"|"chat"|"voice-realtime"|"security"|"platform-foundation";
+export interface CapabilityBinding { capability: PlatformCapability; contract: string; doableSources: string[]; uiReferencePaths: string[]; hostSpecific: boolean; }
+export const CAPABILITY_BINDINGS: readonly CapabilityBinding[] = [
+{capability:"agents",contract:"AgentRuntimeAdapter",doableSources:["services/api/src/routes/chat","services/api/src/ai"],uiReferencePaths:["apps/web/src/modules/ai-settings"],hostSpecific:false},
+{capability:"providers",contract:"ProviderRegistryAdapter/ProviderResolverAdapter",doableSources:["services/api/src/ai/provider.ts","services/api/src/routes/provider-catalog.ts","services/api/src/routes/provider-bridge.ts"],uiReferencePaths:["apps/web/src/modules/ai-settings","apps/web/src/app/setup/steps/Step2AIProvider.tsx"],hostSpecific:true},
+{capability:"tools",contract:"ToolRegistryAdapter",doableSources:["services/api/src/ai/tools"],uiReferencePaths:["apps/web/src/modules/skills","apps/web/src/modules/ai-settings"],hostSpecific:true},
+{capability:"mcp",contract:"MCPAdapter",doableSources:["services/api/src/mcp"],uiReferencePaths:["apps/web/src/modules/settings/components/mcp-panel.tsx","apps/web/src/modules/settings/components/mcp-add-server-form.tsx"],hostSpecific:true},
+{capability:"integrations",contract:"IntegrationAdapter",doableSources:["services/api/src/integrations"],uiReferencePaths:["apps/web/src/modules/integrations"],hostSpecific:true},
+{capability:"skills",contract:"skill runtime",doableSources:["services/api/src/ai/skills","services/api/src/ai/skills-materializer.ts"],uiReferencePaths:["apps/web/src/modules/skills","apps/web/src/modules/settings/components/skills-rules-panel.tsx"],hostSpecific:true},
+{capability:"context",contract:"ContextMemoryAdapter",doableSources:["services/api/src/context"],uiReferencePaths:["apps/web/src/app/(dashboard)/workspace-settings/workspace-knowledge.tsx"],hostSpecific:true},
+{capability:"workspace",contract:"FileWorkspaceAdapter",doableSources:["services/api/src/projects","services/api/src/ai/tools"],uiReferencePaths:["apps/web/src/modules/settings/components/project-settings.tsx","apps/web/src/app/(dashboard)/dashboard/dashboard-dialogs.tsx"],hostSpecific:true},
+{capability:"processes",contract:"ProcessExecutionAdapter",doableSources:["services/api/src/runtime","services/api/src/git"],uiReferencePaths:[],hostSpecific:true},
+{capability:"sandbox",contract:"SandboxAdapter",doableSources:["services/api/src/sandbox"],uiReferencePaths:["apps/web/src/modules/settings/components/project-settings.tsx"],hostSpecific:true},
+{capability:"secrets",contract:"SecretCredentialAdapter",doableSources:["services/api/src/lib","services/api/src/integrations"],uiReferencePaths:["apps/web/src/modules/integrations","apps/web/src/modules/ai-settings"],hostSpecific:true},
+{capability:"rag",contract:"RAGAdapter",doableSources:["services/api/src/ai","services/api/src/context"],uiReferencePaths:["apps/web/src/app/(dashboard)/workspace-settings/workspace-knowledge.tsx"],hostSpecific:true},
+{capability:"chat",contract:"ChatTransportAdapter",doableSources:["services/api/src/routes/chat"],uiReferencePaths:["apps/web/src/modules/ai-settings"],hostSpecific:true},
+{capability:"voice-realtime",contract:"VoiceRealtimeAdapter",doableSources:[],uiReferencePaths:[],hostSpecific:true},
+{capability:"security",contract:"SecurityScannerAdapter",doableSources:["services/api/src/security","services/api/src/routes/security.ts"],uiReferencePaths:[],hostSpecific:true},
+{capability:"platform-foundation",contract:"PlatformFoundationAdapters",doableSources:["services/api/src/auth","services/api/src/runtime","services/api/src/sandbox","services/api/src/deploy","services/api/src/version-control","services/api/src/github","services/api/src/tracing","services/api/src/routes"],uiReferencePaths:["apps/web/src/modules/billing","apps/web/src/modules/marketplace","apps/web/src/modules/editor"],hostSpecific:true},
+];

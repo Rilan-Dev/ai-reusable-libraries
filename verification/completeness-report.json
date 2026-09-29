@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-09-29T16:29:35.518Z",
+  "source": {
+    "repository": "Rilan-Dev/Doable",
+    "ref": "develop",
+    "commit": "a6036d1fd6dca83c08ee5affa141e5c85e45f5af"
+  },
+  "extractionBranch": "ai-platform-core-extraction",
+  "currentVerification": {
+    "status": "SECURITY_EXTENSION_ADDED_LOCAL_VERIFIER_REQUIRED",
+    "note": "The immutable extraction was locally verified green before this additive AI security extension. The security scanner and route source are now pinned from the Doable baseline; rerun the local verifier before treating the updated extraction as fully verified. Target-project runtime/build/import/integration verification remains unverified.",
+    "immutableFilesExpected": 802,
+    "immutableTreesExpected": 121,
+    "immutableRootTreesExpected": 93,
+    "dependencyManifestCount": 25,
+    "capabilityCount": 21,
+    "requiredFilesExpected": 48
+  },
+  "treeFingerprints": {
+    "services/api/src/ai": "13edcc7bd9726c38ea9bd4aab0d7825b2b8387d0",
+    "services/api/src/context": "43424593729e9a6d23ce71731c7bf6991b7d6c8b",
+    "services/api/src/data-worker": "41f76545e048af489e5b1a260ecb24dbb57c6125",
+    "services/api/src/integrations": "f8373823ec6063b9ff0f911d83c761d840f97a30",
+    "services/api/src/mcp": "77fc1cff3ec48ba3bce21322befcf985003ac03c",
+    "services/api/src/sandbox": "d0028c442297801dbe57a546ea3ec4f6232adbb2",
+    "services/api/src/routes/chat": "69ab556c027e51b655ce8760315ea5547a554b38",
+    "packages/doable-ai": "4df61ac8972c156009a661ebf599fb2b91b7ddab",
+    "packages/docore": "2a33159a3b92f653ddf1514027982d454bea2fd4",
+    "packages/dovault": "15532f8f7effbe8a7eb33b57333b113d64e7606",
+    "packages/shared": "8dad7fcadfe23fb5e6d3b3d919f0501e59cfae71",
+    "packages/doable-sdk": "32683d5cd4b42353e790000123176bb3b2eb8f2a",
+    "packages/db": "1faf731b078d489040e54bfde4bb2d08086354fe",
+    "services/api/src/db": "3fe1b58f43e135dce8807438769eec032b591bb5",
+    "services/api/src/frameworks": "f106f350efd3362473eb33d18962503d50e4de9a",
+    "services/api/src/projects": "654182e0e19b8d44ed0fcb791278ef3841bb36c",
+    "services/api/src/lib": "7bb5fd5302ce66e97d25d91b8097bada80bc762a",
+    "services/api/src/middleware": "62b0a6ba803d9827f9b0acc6d1a8091febffd5f8",
+    "services/api/src/templates": "1289c0ae29d5dc893c6f2db5c80b893f177b1e52",
+    "services/api/src/git": "830aa877f377e78e9e1df3703ec4ebe8d2158846",
+    "services/api/src/runtime": "ae8aa7c249b90eaf6dd66ec82d5d47021d2aeb79",
+    "packages/marketplace-bundle": "7383f3b96be79584041d35313ad1c60105b2f2e8",
+    "mcp-servers/notebooklm/server": "bc9b4f6eb7bb71fe144ce4afe984b302112ed8cb",
+    "services/ws": "819d4f518e66745a03846cf54ee5d580d8880164",
+    "mcp-servers/_shared": "033542e0c4099a118c8a84db22558f9bb65af625",
+    "mcp-servers/pdf-builder": "5465b6ad78f92b037683a3e96964a714293c4956",
+    "mcp-servers/presentation-builder": "c51d5e561faf0b86f15f849c86c24848b28b1e2e",
+    "mcp-servers/spreadsheet-builder": "4742c8bc17d5193ba81e3e2dc9fcdb6297b2390d",
+    "mcp-servers/markdown-builder": "f96178af8162a7e12c0f8bdf15af5da695d4e65d"
+  },
+  "copyReady": {
+    "completeCoreFolder": "ai-platform-core/",
+    "codexInstruction": "COPY_TO_ANY_PROJECT.md",
+    "featureManifests": "capabilities/*/MANIFEST.md",
+    "externalDependencyInventory": "external-dependencies/external-dependencies.json",
+    "verificationCommand": "node ai-platform-core/verification/verify-extraction.mjs",
+    "immutableProvenanceManifest": "verification/immutable-source-manifest.json",
+    "status": "SECURITY_EXTENSION_ADDED_LOCAL_VERIFIER_REQUIRED"
+  },
+  "status": "SOURCE_EXTRACTION_UPDATED; LOCAL VERIFIER REQUIRED; TARGET RUNTIME VERIFICATION REQUIRED"
+}

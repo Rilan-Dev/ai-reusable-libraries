@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "status": "security-extension-added-local-verification-required",
+  "source": {
+    "repository": "Rilan-Dev/Doable",
+    "ref": "develop",
+    "commit": "a6036d1fd6dca83c08ee5affa141e5c85e45f5af"
+  },
+  "immutable": {
+    "sourceRoots": 27,
+    "dependencyClosureRoots": 9,
+    "uiReferenceRoots": 8,
+    "capturedDirectoryTrees": 121,
+    "immutableFiles": 802,
+    "rule": "Doable source, dependency-closure source, and captured UI reference source are immutable copies. Host adapters must not modify them.",
+    "capturedRootTrees": 93,
+    "capturedTrees": 214
+  },
+  "capabilities": [
+    "multi-provider",
+    "agents",
+    "tools",
+    "integrations",
+    "mcp",
+    "skills",
+    "chat",
+    "context-memory",
+    "workspace-sandbox",
+    "ui",
+    "marketplace",
+    "notebooklm",
+    "realtime-collaboration",
+    "document-builders",
+    "mcp-tool-servers",
+    "visual-ai-editing",
+    "platform-extensions",
+    "visual-editing",
+    "ai-media-builders",
+    "platform-foundation",
+    "ai-security"
+  ],
+  "externalDependencies": {
+    "manifest": "external-dependencies/external-dependencies.json",
+    "sourcePackageManifests": [
+      "external-dependencies/source-manifests/services-api.package.json",
+      "external-dependencies/source-manifests/root.package.json",
+      "external-dependencies/source-manifests/pnpm-workspace.yaml",
+      "external-dependencies/source-manifests/tsconfig.base.json",
+      "external-dependencies/source-manifests/marketplace-bundle.package.json",
+      "external-dependencies/source-manifests/notebooklm-mcp-server.package.json",
+      "external-dependencies/source-manifests/doable-ws.package.json",
+      "external-dependencies/source-manifests/pdf-builder.package.json",
+      "external-dependencies/source-manifests/presentation-builder.package.json",
+      "external-dependencies/source-manifests/spreadsheet-builder.package.json",
+      "external-dependencies/source-manifests/markdown-builder.package.json",
+      "external-dependencies/source-manifests/image-generator.package.json"
+    ],
+    "rule": "Source-present packages are not equivalent to installed target runtime dependencies. The target project must explicitly bind runtime, execution, security, host-adapter, and optional requirements."
+  },
+  "targetVerification": {
+    "command": "node ai-platform-core/verification/verify-extraction.mjs",
+    "requiredBeforeHostAdapters": true,
+    "runtimeBuildOrIntegrationTests": "not claimed by extraction verification"
+  }
+}

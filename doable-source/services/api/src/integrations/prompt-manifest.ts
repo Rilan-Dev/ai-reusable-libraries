@@ -1,0 +1,255 @@
+/**
+ * Prompt Manifest (Phase 1E of integration↔AI chat bridge)
+ *
+ * Builds the `<connected-integrations>` block injected into the AI system
+ * prompt. Reuses `resolveVaultEnv` from the vault-bridge but DROPS the `env`
+ * map — only the metadata-only `manifest` is consumed here. The AI never sees
+ * credential values; only env var NAMES, integration ids, display names, and
+ * tool names.
+ *
+ * Hard rules from `glittery-riding-rocket.md` §E:
+ *   - Never log, return, or embed credential values.
+ *   - Block format must match the plan exactly so the model's training
+ *     priors on similar manifest formats kick in.
+ *   - Failure is non-fatal: log warn and return empty string.
+ *
+ * Phase 2B addition: when an integration has a virtual MCP preset (Supabase
+ * today), append the well-known MCP tool names to its manifest line so the
+ * AI knows `mcp_supabase_execute_sql` et al. are available. The tool list is
+ * hardcoded in the preset file (not discovered from the live server) because
+ * the manifest runs BEFORE MCP tool loading on every chat turn.
+ */
+
+import { resolveVaultEnv } from "../env/vault-bridge.js";
+import { SUPABASE_MCP_FULL_TOOL_NAMES } from "../mcp/presets/supabase.js";
+import { sql } from "../db/index.js";
+import { connectorQueries } from "@doable/db";
+import { BUILTIN_MCP_APPS } from "../mcp/builtin-connectors.js";
+import { ensureMcpCacheFresh } from "../mcp/cache-warmer.js";
+
+/**
+ * MCP tool-line extensions, keyed by integration id. Each entry returns a
+ * single preformatted suffix appended after the Activepieces tool list. The
+ * function receives the manifest entry in case we want to gate on runtime
+ * hints in the future.
+ *
+ * Note: tool names here are stable because the virtual preset passes a fixed
+ * connector `name` to the tool-bridge (see `supabase.ts:CONNECTOR_NAME`). If a
+ * future preset makes the connector name dynamic, the manifest line must be
+ * regenerated from the live tool set instead.
+ */
+const MCP_TOOL_LINES: Record<string, () => string> = {
+  supabase: () => {
+    const reads = SUPABASE_MCP_FULL_TOOL_NAMES.filter((t) => !t.write)
+      .map((t) => t.fullName)
+      .join(", ");
+    const writes = SUPABASE_MCP_FULL_TOOL_NAMES.filter((t) => t.write)
+      .map((t) => t.fullName)
+      .join(", ");
+    // Writes appear in the list but are flagged — the preset keeps them
+    // disabled unless `metadata.mcp_writes_enabled` is set on the connection.
+    return ` MCP tools: ${reads} (read-only), ${writes} (writes, opt-in).`;
+  },
+};
+
+/**
+ * Build the `<connected-integrations>` system-prompt block for a scope.
+ *
+ * Returns an empty string if no integrations are connected, or if the
+ * underlying vault-bridge call throws.
+ */
+export async function buildConnectedIntegrationsContext(
+  projectId: string,
+  workspaceId: string,
+  userId: string,
+): Promise<string> {
+  let manifest;
+  try {
+    const result = await resolveVaultEnv(workspaceId, projectId, userId);
+    manifest = result.manifest;
+  } catch (err) {
+    console.warn("[prompt-manifest] failed:", err);
+    return "";
+  }
+
+  if (!manifest || manifest.length === 0) return "";
+
+  // Cap the tool list per integration so a single chatty integration (e.g.
+  // Notion with 20+ actions) doesn't dominate the system prompt. The full
+  // tool list is still available to the AI via the Copilot SDK's tools
+  // parameter — this is just the human-readable summary block.
+  const MAX_TOOLS_LISTED = 6;
+
+  const lines = manifest.map((entry) => {
+    // Prefer the envKeyMap runtimeHint, fall back to the registry description
+    // so tool-only integrations (no envKeyMap) still get a meaningful line.
+    const hint = entry.runtimeHint ?? entry.description ?? "Connected service.";
+    const client =
+      entry.clientEnvVars.length > 0
+        ? ` Client env (in import.meta.env): ${entry.clientEnvVars.join(", ")}.`
+        : "";
+    const server =
+      entry.serverEnvVars.length > 0
+        ? ` Server env: ${entry.serverEnvVars.join(", ")}.`
+        : "";
+    let tools = "";
+    if (entry.toolPrefixes.length > 0) {
+      // Pair each chat-tool name with its literal actionName so the AI never
+      // has to derive/guess the actionName string for useIntegration() calls —
+      // it copies it verbatim from here.
+      const pairs = entry.toolPrefixes.map((toolName, i) => {
+        const actionName = entry.actionNames[i];
+        return actionName ? `${toolName} (actionName: "${actionName}")` : toolName;
+      });
+      const shown = pairs.slice(0, MAX_TOOLS_LISTED).join(", ");
+      const extra = pairs.length - MAX_TOOLS_LISTED;
+      tools = extra > 0
+        ? ` SDK tools (useIntegration, NOT doable.mcp.call): ${shown}, +${extra} more.`
+        : ` SDK tools (useIntegration, NOT doable.mcp.call): ${shown}.`;
+    }
+    // Phase 2B: append virtual MCP tool names when a preset exists for this
+    // integration. Hardcoded per-integration — the preset's tool list is
+    // stable across minor releases of the upstream MCP server.
+    const mcpLine = MCP_TOOL_LINES[entry.integrationId]?.() ?? "";
+    return `- ${entry.integrationId} (${entry.displayName}): ${hint}${client}${server}${tools}${mcpLine}`;
+  });
+
+  return [
+    "<connected-integrations>",
+    "The user has pre-connected these services. You MUST use them via the listed env vars and tools. NEVER ask the user for API keys, URLs, or tokens for these services — Doable has already provisioned them.",
+    "",
+    ...lines,
+    "",
+    "Rules:",
+    "1. Reference env vars by NAME only — they are injected at runtime.",
+    "2. NEVER hardcode URLs/keys in generated code.",
+    "3. NEVER log, print, or echo env var values.",
+    "4. If you need an integration NOT listed here, call the request_integration tool. Do NOT ask the user to paste keys.",
+    "5. SDK tools listed above are called via useIntegration(integrationId, actionName) or doable.integrations.run(integrationId, actionName) — NEVER via doable.mcp.call(). Do NOT prefix them with 'mcp_'. NEVER invent, abbreviate, or guess actionName (e.g. do NOT use 'speak', 'transcribe', 'tts', etc.) — copy it VERBATIM from the '(actionName: \"...\")' shown next to each tool above. It is NOT the same as the tool name shown before it — e.g. tool 'elevenlabs_text_to_speech' has actionName 'elevenlabs-text-to-speech' (hyphenated, includes the integration prefix, different from the tool name's underscores).",
+    "</connected-integrations>",
+  ].join("\n");
+}
+
+
+// ─── Connected MCP servers (user-added connectors) ────────────
+
+/** Builtin connector display names that must NOT be advertised as runtime
+ *  data sources for the generated app (per-app DB + builder MCP Apps). */
+const BUILTIN_CONNECTOR_NAMES = new Set(BUILTIN_MCP_APPS.map((a) => a.name));
+
+/**
+ * Build the `<connected-mcp-servers>` system-prompt block.
+ *
+ * Surfaces every ACTIVE, user-connected MCP connector for the workspace
+ * (excluding Doable's builtin per-app-DB and builder MCP Apps) together with
+ * the EXACT AI-prefixed tool names the generated app must call at runtime via
+ * `@doable/sdk`'s `doable.mcp.call()`.
+ *
+ * Why this exists: without it, a user-added MCP server (e.g. an eDiscovery
+ * server) only appears to the agent as `mcp_*` chat tools. The agent then
+ * calls those tools itself and dumps the result in chat, building no
+ * data-wired app — the "empty dashboard" failure. This block tells the agent
+ * the connector is a RUNTIME data source to wire into the app, and gives it
+ * the precise tool identifiers the runtime proxy resolves.
+ *
+ * Generic by construction: driven entirely by the live connector list +
+ * capabilities cache, so it works for ANY MCP server on ANY install. The tool
+ * name derivation mirrors the connector-proxy (`mcp_<safeName>_<safeTool>`).
+ *
+ * Non-fatal: returns "" on any error or when no external MCP servers exist.
+ */
+export async function buildConnectedMcpServersContext(
+  workspaceId: string,
+): Promise<string> {
+  // FIX (mcp-empty-cache-rootcause): probe any external MCP connector with an
+  // empty capabilities_cache RIGHT NOW, before we read the cache below. The
+  // POST /connectors auto-test is non-blocking, so a user who adds a connector
+  // and immediately generates may otherwise race past the probe and see an
+  // empty tools list — which silently degrades the prompt and makes the AI
+  // hallucinate tool names. Bounded timeouts inside the warmer prevent any
+  // single dead connector from hanging chat. Best-effort: warmer never throws.
+  await ensureMcpCacheFresh(workspaceId);
+
+  let rows;
+  try {
+    rows = await connectorQueries(sql).listConnectors(workspaceId);
+  } catch (err) {
+    console.warn("[mcp-manifest] failed:", err);
+    return "";
+  }
+
+  const external = rows.filter(
+    (r) =>
+      r.status === "active" &&
+      !(r.server_command ?? "").startsWith("builtin:") &&
+      !BUILTIN_CONNECTOR_NAMES.has(r.name),
+  );
+  if (external.length === 0) return "";
+
+  const MAX_TOOLS = 24;
+  // Cumulative budget for the real-response-shape lines across ALL connectors,
+  // so a tool-rich read-only server can't blow up the system prompt. Sized for
+  // the richer shapes (per-record key union + real enum/example values).
+  let shapeCharBudget = 16_000;
+  const lines: string[] = [];
+  for (const row of external) {
+    const safeName = row.name.replace(/[^a-zA-Z0-9]/g, "_").toLowerCase();
+    const cache = row.capabilities_cache as
+      | { tools?: { list?: Array<{ name: string; description?: string; outputShape?: string }> } }
+      | null;
+    const toolList = cache?.tools?.list ?? [];
+    lines.push(`- **${row.name}**${row.description ? ` — ${row.description}` : ""}`);
+    if (toolList.length === 0) {
+      lines.push(
+        "    (tools load on first use — call `doable.mcp.list()` at runtime to discover them)",
+      );
+      continue;
+    }
+    for (const tool of toolList.slice(0, MAX_TOOLS)) {
+      const safeTool = tool.name.replace(/[^a-zA-Z0-9]/g, "_").toLowerCase();
+      const full = `mcp_${safeName}_${safeTool}`;
+      const desc = tool.description
+        ? ` — ${tool.description.replace(/\s+/g, " ").slice(0, 140)}`
+        : "";
+      lines.push(`    - \`${full}\`${desc}`);
+      // Real response shape, observed by actually calling the tool at probe time.
+      // The generator MUST bind to these EXACT keys — this is what eliminates the
+      // "guessed key names → dashboard shows 0 despite a 200 response" failure.
+      if (tool.outputShape && shapeCharBudget > 0) {
+        const shape = tool.outputShape.replace(/\s+/g, " ").slice(0, 1800);
+        lines.push(`        ↳ REAL response shape (bind to these EXACT keys): ${shape}`);
+        shapeCharBudget -= shape.length;
+      }
+    }
+    if (toolList.length > MAX_TOOLS) {
+      lines.push(
+        `    - …and ${toolList.length - MAX_TOOLS} more (call \`doable.mcp.list()\` to enumerate all)`,
+      );
+    }
+  }
+
+  return [
+    "<connected-mcp-servers>",
+    "The user has connected the MCP server(s) below. Their tools are available TO THE GENERATED APP AT RUNTIME through the pre-linked `@doable/sdk` — they are not merely chat tools for you to call.",
+    "",
+    ...lines,
+    "",
+    "**🔌 HOW TO USE — build the data INTO the app; never just print it in chat:**",
+    "```ts",
+    "import { createDoableClient } from '@doable/sdk';",
+    "const doable = createDoableClient();",
+    "const r = await doable.mcp.call('<one of the mcp_… names above>', { /* tool args */ });",
+    "if (r.success) { /* render r.data in a table / chart / card */ } else { /* show r.error.message */ }",
+    "```",
+    "RULES — MANDATORY whenever the user asks for a dashboard, report, view, or to \"show the data\":",
+    "1. You MUST generate React components that call `doable.mcp.call(...)` at runtime and render the returned data as dashboards, tables, charts, and cards ON THE PAGE (with loading and error states).",
+    "2. DO NOT merely call the MCP tool yourself and show its response in chat. DO NOT bake the tool's output into the code as a hardcoded/static constant — the live preview AND the deployed site must fetch fresh data.",
+    "3. **🔎 BIND TO THE REAL RESPONSE SHAPE — NEVER GUESS FIELD NAMES.** Each tool above may show a `↳ REAL response shape` line — that is the ACTUAL JSON the tool returns, ALREADY captured for you. ⛔ Do NOT try to call, probe, curl, bash, or otherwise invoke the MCP tools yourself during this build — you cannot, and attempting it wastes the entire build. Just write the React code that calls `doable.mcp.call(...)` at RUNTIME and binds to the shown keys. When a shape is shown you MUST map your UI to those EXACT keys (e.g. if it shows `result.data = { openCases: array, closedCases: array }`, read `result.data.openCases` — NOT a guessed `result.data.cases`). EVERY MCP server returns a DIFFERENT shape — never assume key names from the tool's name/description and never invent friendlier names. The payload is WRAPPED: the real arrays/objects/totals are NESTED under `result.data` at the keys shown (they vary per server — `openCases`, `items`, `results`, `records`, `rows`, `holds`, etc.; per-row fields likewise vary, e.g. `statusId`/`isActive` rather than `status`). Mirror the shown keys verbatim, at every nesting level — INCLUDING nested summary/count objects: if a total is shown at `result.data.summary.totalCases` or `result.data._summary.activeHolds`, read it from THAT exact path; do NOT recompute it from, or substitute, a top-level array length. A field annotated `(values: a | b | c)` lists the ACTUAL distinct values present in the live data and `(e.g. x)` shows a real example — use those real values for status/enum mapping, filters, badges, and grouping (e.g. compute an Active count from the real `isActive`/`statusId` values shown, never from a guessed `status === \"Active\"` string), and never invent labels or enum values the data doesn't contain. ⚠️ TRUST THE SHOWN VALUES OVER THE FIELD NAME: if a field's shown value is empty/blank/`null` (e.g. `statusId: string (e.g. \"\")`), that field carries NO signal at runtime — do NOT branch on it; instead use a sibling field that DOES have real values (e.g. a boolean `isActive: boolean (e.g. true)` is authoritative for active-vs-released). Prefer the field whose example value actually answers the question, regardless of which name sounds more relevant. For any tool WITHOUT a shown shape, do NOT block the build trying to discover it — assume the wrapper `{ success, data }`, render whatever array/object `data` actually contains by reading defensively (try the obvious container keys), and `console.log(result.data)` so the real shape is visible at runtime; never hardcode a guessed name.",
+    "4. Use the EXACT `mcp_…` tool names listed above — that is how the runtime proxy resolves the connector + tool. `@doable/sdk` is pre-linked: import it directly, never add it to package.json, and never hardcode the MCP server URL or credentials.",
+    "5. This works identically in the live preview and the deployed site — the auth token / project key is injected automatically.",
+    "6. **🔐 HANDLE AUTH/ERRORS GRACEFULLY — never show raw errors to end-users.** `doable.mcp.call` returns `{ success, data, error }` and does NOT throw. Show a loading state while a call is in flight. If a result is not successful and `error.code === 'AUTH_REQUIRED'`, render a clean centered panel telling the user the data source needs to be connected, with a Sign in button that opens `error.loginUrl` (when present) in a new tab — never a raw error and never a silently-empty dashboard. For any other failure show a small inline Retry affordance. Never surface 401/404 codes, stack traces, or the phrase 'authentication error' to end-users.",
+    "7. **🧹 IGNORE the `_meta` field.** A tool result's `data` may include a large `data._meta` object (LLM-only formatting instructions). NEVER render it, NEVER map fields from it, and NEVER feed it into an AI prompt — strip it first, e.g. `const { _meta, ...clean } = r.data;` and use `clean`.",
+    "8. **🤖 IN-APP AI ASSISTANT / CHATBOT over MCP** (when the user asks for an assistant, chatbot, or to \"ask questions\"/\"chat\" about the data): `@doable/ai` has NO native tool/function-calling — you MUST hand-write a small ReAct loop. ⚠️ TWO SEPARATE pre-linked packages — DO NOT MIX THEM: the model client `ai` (and `chatSync`, `ChatMessage`) is exported ONLY by `@doable/ai`; the MCP client `createDoableClient`/`mcp` is exported ONLY by `@doable/sdk`. NEVER import `ai`/`chatSync`/`ChatMessage` from `@doable/sdk` — it has no `ai` export and the app will crash with \"does not provide an export named 'ai'\". Use TWO import lines: `import { ai } from '@doable/ai';` and `import { createDoableClient } from '@doable/sdk';`. Then `const res = await ai.chatSync(messages); const text = res.content;` — chatSync returns an OBJECT `{ content, usage }`, so ALWAYS read `.content` (a string); NEVER use the object directly and NEVER call `.match`/string ops on it. System-prompt the model to reply with ONLY JSON: `{\"tool\":\"<toolName>\",\"args\":{}}` to fetch data, or `{\"final\":\"<answer>\"}` when done. Parse `text` as JSON; on a tool request call `doable.mcp.call('mcp_<server>_'+toolName, args)`, then STRIP `data._meta` and CAP large arrays (keep ~first 40 items) before appending the result back as a `{ role: 'user', content: 'Tool result: '+JSON.stringify(clean) }` message; loop at most ~4 times. Display which MCP tool name(s) were called. Keeping each fed-back result small is REQUIRED so you never exceed the runtime input-token budget.",
+    "</connected-mcp-servers>",
+  ].join("\n");
+}

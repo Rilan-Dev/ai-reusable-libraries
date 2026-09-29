@@ -1,0 +1,61 @@
+{
+  "source": {
+    "repository": "Rilan-Dev/Doable",
+    "ref": "develop",
+    "commit": "a6036d1fd6dca83c08ee5affa141e5c85e45f5af"
+  },
+  "immutableSourceTrees": {
+    "services/api/src/ai": "13edcc7bd9726c38ea9bd4aab0d7825b2b8387d0",
+    "services/api/src/context": "43424593729e9a6d23ce71731c7bf6991b7d6c8b",
+    "services/api/src/data-worker": "41f76545e048af489e5b1a260ecb24dbb57c6125",
+    "services/api/src/integrations": "f8373823ec6063b9ff0f911d83c761d840f97a30",
+    "services/api/src/mcp": "77fc1cff3ec48ba3bce21322befcf985003ac03c",
+    "services/api/src/sandbox": "d0028c442297801dbe57a546ea3ec4f6232adbb2",
+    "services/api/src/routes/chat": "69ab556c027e51b655ce8760315ea5547a554b38",
+    "packages/doable-ai": "4df61ac8972c156009a661ebf599fb2b91b7ddab",
+    "packages/docore": "2a33159a3b92f653ddf1514027982d454bea2fd4",
+    "packages/dovault": "15532f8f7effbe8a7ebd33b57333b113d64e7606",
+    "packages/shared": "8dad7fcadfe23fb5e6d3b3d919f0501e59cfae71",
+    "packages/doable-sdk": "32683d5cd4b42353e790000123176bb3b2eb8f2a",
+    "services/ws": "819d4f518e66745a03846cf54ee5d580d8880164",
+    "packages/marketplace-bundle": "1ec662602f29aac2e7f5e60893eae89df62af376",
+    "mcp-servers/notebooklm/server": "f79499f32c0c0a2fda887bc83f948ad8bc62d9e5",
+    "services/api/src/security": "ff0b91ebf767edbac1829ae71a8fdde88a7cafa0"
+  },
+  "dependencyClosureTrees": {
+    "packages/db": "1faf731b078d489040e54bfde4bb2d08086354fe",
+    "services/api/src/db": "3fe1b58f43e135dce8807438769eec032b591bb5",
+    "services/api/src/frameworks": "f106f350efd3362473eb33d18962503d50e4de9a",
+    "services/api/src/projects": "654182e0e19b8d44ed0fcb791278ef3841bbd36c",
+    "services/api/src/lib": "7bb5fd5302ce66e97d25d91b8097bada80bc762a",
+    "services/api/src/middleware": "62b0a6ba803d9827f9b0acc6d1a8091febffd5f8",
+    "services/api/src/templates": "1289c0ae29d5dc893c6f2db5c80b893f177b1e52",
+    "services/api/src/git": "830aa877f377e78e9e1df3703ec4ebe8d2158846",
+    "services/api/src/runtime": "ae8aa7c249b90eaf6dd66ec82d5d47021d2aeb79"
+  },
+  "uiReferenceTrees": {
+    "apps/web/src/modules/ai-settings": "4a571e02559125ade83bb79718786f7c2e14e12f",
+    "apps/web/src/modules/integrations": "aa86f44ed28e2d99dcef5f080490bde5c10cc178",
+    "apps/web/src/modules/skills": "0223ba3433bd135dc4f769c4bd75874ac8ff6035",
+    "apps/web/src/modules/settings": "6fd532bc01a61fe79b49b2c2b4e90c80df1cb7db",
+    "apps/web/src/app/(dashboard)/workspace-settings": "75043d2045f565cf8909121b4c13ffd34e15e542",
+    "apps/web/src/app/(dashboard)/ai-settings": "1e879c7e3c8a04d8a903f836c3e5b4c1bc12346e",
+    "apps/web/src/modules/collaboration": "e798ede8b5a50887d605418d64da2fb91bf66eb6",
+    "apps/web/src/modules/editor/visual-edit": "0870f9143fe46ce726f086d46b9f3d19f6282af0"
+  },
+  "uiReferenceAdditionalFiles": {
+    "apps/web/src/modules/editor/chat/chat-panel.tsx": "63b19e87f852b26ea2700bb335ea3be723c2f9f8",
+    "apps/web/src/modules/editor/chat/chat-message.tsx": "4a340da9884f8f48f4a7c06a03341c44164f1fba",
+    "apps/web/src/modules/editor/chat/tool-call-card.tsx": "3307fc3d819352e6885367f4044577f29b079afe",
+    "apps/web/src/modules/editor/chat/user-input-card.tsx": "9f228307b0ffbfb3e7526a7e73cf77dc030d3731",
+    "apps/web/src/modules/editor/hooks/use-editor-store.ts": "bd9dbf50a062946cb5c5c87ae4945472862629ff",
+    "apps/web/src/app/(dashboard)/dashboard/dashboard-chat-input.tsx": "fbc9508676f7cd6b482810688892063d91771671",
+    "apps/web/src/modules/settings/components/project-settings-security.tsx": "5e952f1358820ab85396ddb26c2cb4682abc4e53"
+  },
+  "notes": [
+    "Copied Doable source is immutable.",
+    "Third-party integration pieces and separate MCP server packages are external dependencies, not silently vendored.",
+    "Realtime voice is host-specific because Doable has no equivalent native realtime voice implementation.",
+    "Realtime collaboration, Yjs/AI synchronization, and visual editor/design-comment UI are preserved as reusable AI-enabling source/reference layers."
+  ]
+}
