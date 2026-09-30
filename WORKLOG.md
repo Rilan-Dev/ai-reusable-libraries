@@ -46,7 +46,6 @@ Build a machine-readable per-capability closure/host-binding index from the exis
 - The validator intentionally does not infer source-level dependencies; manifests and extraction verification remain authoritative for implementation completeness.
 - A future phase can add structured per-capability closure metadata and deterministic host-binding records without rewriting immutable source.
 
-
 ## 2026-10-01 — Machine-readable implementation index and planner
 
 ### Goal
@@ -73,7 +72,6 @@ Turn the capability catalog into a more actionable agent interface without rewri
 - Existing Markdown manifests remain authoritative; structured sidecars are not yet generated from their full contents.
 - A future phase can add source-derived closure evidence and host-binding records, provided those records remain evidence-backed and do not replace manifest authority.
 
-
 ## 2026-10-01 — Source-closure verification and unresolved-import classification
 
 ### Goal
@@ -98,3 +96,28 @@ The earlier repair is verified by the supplied GitHub Actions run. The new class
 - Resolve and classify the actual unresolved-import population from a fresh generated report.
 - Review alias/workspace/dependency-closure candidates against source evidence.
 - Continue toward runtime/persistence/security/UI-state/host-binding closure evidence without upgrading static evidence to runtime-complete prematurely.
+
+## 2026-10-01 — CI closure-report observability
+
+### Goal
+
+Make the generated source-closure evidence inspectable after CI succeeds, so the actual unresolved-import population can be reviewed rather than relying only on runner logs.
+
+### Completed
+
+- Updated `.github/workflows/source-closure.yml` to upload `verification/reports/source-closure-report.json` using `actions/upload-artifact@v4`.
+- Updated `README.md` to document the `source-closure-report` artifact and clarify that it remains static evidence only.
+- Preserved `doable-source/**`, `dependency-closure/**` and `ui-reference/**`.
+
+### Verification state
+
+- Workflow change committed as `d17496685741826bff48dfb89a85825621bfd43f`.
+- README follow-up committed as `a403a4cf7d2f0b236a8b120e4b4959ecb4dbc773`.
+- The latest commits have not yet exposed a fresh Actions run through the GitHub connector, so this phase is not yet CI-verified.
+
+### Next graph gate
+
+1. Confirm a fresh push-triggered Actions run for the latest main commit.
+2. Inspect all closure steps and download the uploaded report artifact.
+3. Use the actual report to review unresolved-import classifications and distinguish actionable dependency gaps from expected external/framework/runtime resolution.
+4. Compare immutable trees against the extraction baseline and continue only with evidence-backed closure work.
