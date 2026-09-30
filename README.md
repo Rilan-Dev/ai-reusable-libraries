@@ -212,3 +212,11 @@ The captured Doable baseline is recorded in `EXTRACTION_MANIFEST.md` and the ver
 ## Principle
 
 **Copy source → identify capability → resolve complete closure → map host boundaries → implement → adapt UI → verify.**
+
+### Validate the agent-facing metadata
+
+Run the deterministic metadata validator from the library root:
+
+    node verification/validate-library.mjs
+
+It checks catalog entries, manifest paths, discovered manifests, dependency-graph capability references, immutable-policy roots and the required manifest-schema fields. It does not modify source files and it does not replace the deeper extraction verifier or target-project tests.
