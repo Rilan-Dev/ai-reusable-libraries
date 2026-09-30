@@ -24,6 +24,7 @@ const catalog = readJson("capabilities/CATALOG.json");
 const graph = readJson("capabilities/DEPENDENCY_GRAPH.json");
 const policy = readJson("verification/IMMUTABLE_PATHS.json");
 const schema = readJson("capabilities/CAPABILITY_MANIFEST.schema.json");
+const implementationIndex = readJson("capabilities/IMPLEMENTATION_INDEX.json");
 
 if (catalog) {
   if (!Array.isArray(catalog.capabilities)) errors.push("CATALOG.json: capabilities must be an array");
@@ -36,6 +37,24 @@ if (catalog) {
       if (c.manifest && !exists(c.manifest)) errors.push(`catalog manifest missing: ${c.id} -> ${c.manifest}`);
     }
     if (catalog.rules?.agentEntry && !exists(catalog.rules.agentEntry)) errors.push(`agent entry missing: ${catalog.rules.agentEntry}`);
+  }
+}
+
+if (implementationIndex && catalog?.capabilities) {
+  if (!Array.isArray(implementationIndex.capabilities)) errors.push("IMPLEMENTATION_INDEX.json: capabilities must be an array");
+  else {
+    const catalogIds = new Set(catalog.capabilities.map(c => c.id));
+    const indexIds = new Set();
+    for (const entry of implementationIndex.capabilities) {
+      if (!entry.id || !entry.manifest || !Array.isArray(entry.signals)) errors.push(`implementation index entry missing id/manifest/signals: ${JSON.stringify(entry)}`);
+      if (indexIds.has(entry.id)) errors.push(`duplicate implementation index capability id: ${entry.id}`);
+      indexIds.add(entry.id);
+      if (entry.id && !catalogIds.has(entry.id)) errors.push(`implementation index has unknown capability: ${entry.id}`);
+      if (entry.manifest && !exists(entry.manifest)) errors.push(`implementation index manifest missing: ${entry.id} -> ${entry.manifest}`);
+      if (entry.id && entry.manifest !== `capabilities/${entry.id}/MANIFEST.md`) errors.push(`implementation index manifest mismatch: ${entry.id} -> ${entry.manifest}`);
+    }
+    for (const id of catalogIds) if (!indexIds.has(id)) errors.push(`catalog capability missing from implementation index: ${id}`);
+    for (const id of indexIds) if (!catalogIds.has(id)) errors.push(`implementation index capability not in catalog: ${id}`);
   }
 }
 
@@ -80,9 +99,10 @@ console.log("=================================");
 console.log(`Catalog capabilities: ${catalog?.capabilities?.length ?? 0}`);
 console.log(`Discovered manifests: ${discovered.length}`);
 console.log(`Graph edges:          ${graph?.edges?.length ?? 0}`);
+console.log(`Implementation index: ${implementationIndex?.capabilities?.length ?? 0}`);
 console.log(`Errors:               ${errors.length}`);
 console.log(`Warnings:             ${warnings.length}`);
 for (const e of errors) console.log(`ERROR: ${e}`);
 for (const w of warnings) console.log(`WARN:  ${w}`);
 if (errors.length) process.exit(1);
-console.log("PASS: catalog, manifest paths, graph references and manifest schema contract are internally consistent.");
+console.log("PASS: catalog, manifest paths, graph references, implementation index and manifest schema contract are internally consistent.");
