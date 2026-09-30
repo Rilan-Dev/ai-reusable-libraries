@@ -63,7 +63,6 @@ Read:
 
 Then inspect the matching `capabilities/<id>/MANIFEST.md` before changing Project A.
 
-
 ### Resolve a capability closure
 
 After identifying a capability, use the machine-readable resolver to expand its known cross-capability closure:
@@ -221,7 +220,6 @@ Run the deterministic metadata validator from the library root:
 
 It checks catalog entries, manifest paths, discovered manifests, dependency-graph capability references, immutable-policy roots and the required manifest-schema fields. It does not modify source files and it does not replace the deeper extraction verifier or target-project tests.
 
-
 ### Machine-readable implementation index and plan
 
 `capabilities/IMPLEMENTATION_INDEX.json` maps every catalog capability to its authoritative manifest and records which implementation areas the manifest explicitly signals (runtime, persistence, security, AI, integrations, UI, host bindings and verification). It is deliberately an index rather than invented structured source metadata.
@@ -235,7 +233,6 @@ node agent-init/plan.mjs agents chat
 
 The planner expands only the curated core dependency relationships and prints a standard execution sequence. It does not claim source-level completeness; manifests and import/dependency tracing remain authoritative.
 
-
 ### Source-closure evidence and unresolved-import classification
 
 The source-closure tooling now has two deterministic layers. Run `node verification/validate-library.mjs`, then `node agent-init/trace.mjs`, then `node verification/validate-source-closure-report.mjs`.
@@ -243,3 +240,9 @@ The source-closure tooling now has two deterministic layers. Run `node verificat
 `agent-init/trace.mjs` records manifest-addressable seeds, scanned files, resolved local imports, unresolved imports, external package imports, and conservative unresolved-import classifications such as `relative-unresolved`, `path-alias-unresolved`, `workspace-package`, `external-package`, `dependency-closure-candidate`, and `generated/runtime`.
 
 This is evidence collection, not a claim of runtime completeness. The report deliberately remains below `runtime-closure-reviewed` until persistence, security, runtime services, UI/state and host bindings have been reviewed. Immutable source/reference trees are checked separately and must remain untouched.
+
+### CI evidence artifact
+
+The source-closure workflow now uploads `verification/reports/source-closure-report.json` as the `source-closure-report` GitHub Actions artifact after deterministic validation. This makes the actual unresolved-import population and classification counts inspectable from a successful CI run instead of leaving them only inside runner logs.
+
+A successful artifact still represents **static source-closure evidence only**. It must not be interpreted as proof of runtime, persistence, security, UI-state or host-binding completeness.
