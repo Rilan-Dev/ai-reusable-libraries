@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "library": {
+    "repository": "Rilan-Dev/doable-source",
+    "sourceRepository": "Rilan-Dev/Doable",
+    "sourceRef": "develop",
+    "sourceCommit": "a6036d1fd6dca83c08ee5affa141e5c85e45f5af"
+  },
+  "rules": {
+    "immutable": [
+      "doable-source/**",
+      "dependency-closure/**",
+      "ui-reference/**"
+    ],
+    "agentEntry": "AGENTS.md"
+  },
+  "capabilities": [
+    {
+      "id": "agents",
+      "description": "Agent engine, modes, orchestration and agent interaction",
+      "manifest": "capabilities/agents/MANIFEST.md"
+    },
+    {
+      "id": "ai-media-builders",
+      "description": "AI media and document-builder ecosystem",
+      "manifest": "capabilities/ai-media-builders/MANIFEST.md"
+    },
+    {
+      "id": "ai-security",
+      "description": "Security scanning for generated/modified code, dependencies and secrets",
+      "manifest": "capabilities/ai-security/MANIFEST.md"
+    },
+    {
+      "id": "chat",
+      "description": "AI chat sessions, streaming, events, attachments and recovery",
+      "manifest": "capabilities/chat/MANIFEST.md"
+    },
+    {
+      "id": "context-memory",
+      "description": "Context, memory, injection and budgeting",
+      "manifest": "capabilities/context-memory/MANIFEST.md"
+    },
+    {
+      "id": "document-builders",
+      "description": "PDF, presentation, spreadsheet and Markdown builders",
+      "manifest": "capabilities/document-builders/MANIFEST.md"
+    },
+    {
+      "id": "integrations",
+      "description": "Integration catalog, connections, OAuth, credentials, runners and AI tool bridge",
+      "manifest": "capabilities/integrations/MANIFEST.md"
+    },
+    {
+      "id": "marketplace",
+      "description": "AI asset marketplace/bundle lifecycle",
+      "manifest": "capabilities/marketplace/MANIFEST.md"
+    },
+    {
+      "id": "mcp",
+      "description": "MCP clients, transports, discovery, connector and tool bridge",
+      "manifest": "capabilities/mcp/MANIFEST.md"
+    },
+    {
+      "id": "mcp-tool-servers",
+      "description": "Reusable standalone MCP servers",
+      "manifest": "capabilities/mcp-tool-servers/MANIFEST.md"
+    },
+    {
+      "id": "multi-provider",
+      "description": "Provider registry, credentials, discovery, validation, model selection and runtime",
+      "manifest": "capabilities/multi-provider/MANIFEST.md"
+    },
+    {
+      "id": "notebooklm",
+      "description": "NotebookLM MCP integration",
+      "manifest": "capabilities/notebooklm/MANIFEST.md"
+    },
+    {
+      "id": "platform-extensions",
+      "description": "Reusable non-core platform extensions",
+      "manifest": "capabilities/platform-extensions/MANIFEST.md"
+    },
+    {
+      "id": "platform-foundation",
+      "description": "Authentication/RBAC, DB, secrets, billing, usage, audit, analytics, notifications, GitHub, deployment and collaboration foundation",
+      "manifest": "capabilities/platform-foundation/MANIFEST.md"
+    },
+    {
+      "id": "realtime-collaboration",
+      "description": "WebSocket/Yjs collaboration",
+      "manifest": "capabilities/realtime-collaboration/MANIFEST.md"
+    },
+    {
+      "id": "skills",
+      "description": "Skills, rules, scopes, progressive loading and materialization",
+      "manifest": "capabilities/skills/MANIFEST.md"
+    },
+    {
+      "id": "tools",
+      "description": "Tool registry, definitions, execution and tool-calling",
+      "manifest": "capabilities/tools/MANIFEST.md"
+    },
+    {
+      "id": "ui",
+      "description": "Reusable UI capability mapping",
+      "manifest": "capabilities/ui/MANIFEST.md"
+    },
+    {
+      "id": "visual-ai-editing",
+      "description": "AI-assisted visual editing and runtime render",
+      "manifest": "capabilities/visual-ai-editing/MANIFEST.md"
+    },
+    {
+      "id": "visual-editing",
+      "description": "Visual editor interaction and bridge",
+      "manifest": "capabilities/visual-editing/MANIFEST.md"
+    },
+    {
+      "id": "workspace-sandbox",
+      "description": "Workspace, filesystem, sandbox and process execution",
+      "manifest": "capabilities/workspace-sandbox/MANIFEST.md"
+    }
+  ]
+}
