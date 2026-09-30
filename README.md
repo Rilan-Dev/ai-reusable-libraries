@@ -63,6 +63,26 @@ Read:
 
 Then inspect the matching `capabilities/<id>/MANIFEST.md` before changing Project A.
 
+
+### Resolve a capability closure
+
+After identifying a capability, use the machine-readable resolver to expand its known cross-capability closure:
+
+    node agent-init/resolve.mjs multi-provider
+    node agent-init/resolve.mjs agents chat
+
+The resolver separates:
+
+- **core closure** — required/bridge/protection/package relationships that should be inspected together;
+- **recommended review** — common, related and supporting capabilities that may affect completeness;
+- **optional review** — explicitly optional branches.
+
+The resolver is a navigation aid, not a substitute for reading the manifests or tracing source imports. A capability must not be declared complete merely because the resolver returned a finite closure.
+
+### Capability manifest contract
+
+`capabilities/CAPABILITY_MANIFEST.schema.json` defines the canonical machine-readable shape for future capability manifests. Existing `MANIFEST.md` files remain authoritative and are not automatically rewritten; this prevents a tooling improvement from altering the preserved extraction documentation.
+
 ### For humans
 
 The most important distinction is:
