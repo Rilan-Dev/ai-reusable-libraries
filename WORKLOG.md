@@ -45,3 +45,30 @@ Build a machine-readable per-capability closure/host-binding index from the exis
 
 - The validator intentionally does not infer source-level dependencies; manifests and extraction verification remain authoritative for implementation completeness.
 - A future phase can add structured per-capability closure metadata and deterministic host-binding records without rewriting immutable source.
+
+
+## 2026-10-01 — Machine-readable implementation index and planner
+
+### Goal
+
+Turn the capability catalog into a more actionable agent interface without rewriting immutable source or existing authoritative Markdown manifests.
+
+### Completed
+
+- Added `capabilities/IMPLEMENTATION_INDEX.json` covering all 21 catalog capabilities.
+- The index maps each capability to its authoritative manifest and records conservative implementation-area signals only; it does not invent routes, tables or dependency details.
+- Extended `verification/validate-library.mjs` to validate index coverage, IDs and manifest-path consistency against the catalog.
+- Added read-only `agent-init/plan.mjs` to expand the curated core dependency closure and print a deterministic implementation sequence.
+- Updated `AGENTS.md`, `README.md` and `agent-init/README.md` with the new index/planner workflow.
+
+### Verification
+
+- Changes were written only to agent-facing metadata/tooling and documentation.
+- Immutable trees remain `doable-source/**`, `dependency-closure/**` and `ui-reference/**`; no source/reference files were intentionally modified.
+- The metadata validator now includes the implementation-index gate, but its runtime has not yet been executed in a local checkout during this phase.
+
+### Remaining
+
+- The implementation index is conservative and does not replace source-level dependency analysis.
+- Existing Markdown manifests remain authoritative; structured sidecars are not yet generated from their full contents.
+- A future phase can add source-derived closure evidence and host-binding records, provided those records remain evidence-backed and do not replace manifest authority.
