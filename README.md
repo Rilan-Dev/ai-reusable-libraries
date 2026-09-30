@@ -234,3 +234,12 @@ node agent-init/plan.mjs agents chat
 ```
 
 The planner expands only the curated core dependency relationships and prints a standard execution sequence. It does not claim source-level completeness; manifests and import/dependency tracing remain authoritative.
+
+
+### Source-closure evidence and unresolved-import classification
+
+The source-closure tooling now has two deterministic layers. Run `node verification/validate-library.mjs`, then `node agent-init/trace.mjs`, then `node verification/validate-source-closure-report.mjs`.
+
+`agent-init/trace.mjs` records manifest-addressable seeds, scanned files, resolved local imports, unresolved imports, external package imports, and conservative unresolved-import classifications such as `relative-unresolved`, `path-alias-unresolved`, `workspace-package`, `external-package`, `dependency-closure-candidate`, and `generated/runtime`.
+
+This is evidence collection, not a claim of runtime completeness. The report deliberately remains below `runtime-closure-reviewed` until persistence, security, runtime services, UI/state and host bindings have been reviewed. Immutable source/reference trees are checked separately and must remain untouched.
