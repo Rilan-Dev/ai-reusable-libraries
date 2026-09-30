@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "generatedFor": {
+    "repository": "Rilan-Dev/doable-source",
+    "branch": "main",
+    "sourceCommit": "a6036d1fd6dca83c08ee5affa141e5c85e45f5af"
+  },
+  "purpose": "Agent-facing implementation index. References existing manifests and dependency graph without rewriting immutable source or Markdown manifests.",
+  "authority": {
+    "primary": "capabilities/*/MANIFEST.md",
+    "navigation": "capabilities/DEPENDENCY_GRAPH.json",
+    "immutable": [
+      "doable-source/**",
+      "dependency-closure/**",
+      "ui-reference/**"
+    ]
+  },
+  "capabilities": [
+    {
+      "id": "agents",
+      "manifest": "capabilities/agents/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "ai",
+        "integrations",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "ai-media-builders",
+      "manifest": "capabilities/ai-media-builders/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "integrations",
+        "ui",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "ai-security",
+      "manifest": "capabilities/ai-security/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "chat",
+      "manifest": "capabilities/chat/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "integrations",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "context-memory",
+      "manifest": "capabilities/context-memory/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "persistence",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "document-builders",
+      "manifest": "capabilities/document-builders/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "integrations",
+        "ui",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "integrations",
+      "manifest": "capabilities/integrations/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "security",
+        "integrations",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "marketplace",
+      "manifest": "capabilities/marketplace/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "integrations",
+        "ui",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "mcp",
+      "manifest": "capabilities/mcp/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "security",
+        "integrations",
+        "ui",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "mcp-tool-servers",
+      "manifest": "capabilities/mcp-tool-servers/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "integrations",
+        "hostBindings",
+        "security"
+      ]
+    },
+    {
+      "id": "multi-provider",
+      "manifest": "capabilities/multi-provider/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "ai",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "notebooklm",
+      "manifest": "capabilities/notebooklm/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "security",
+        "integrations",
+        "ui",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "platform-extensions",
+      "manifest": "capabilities/platform-extensions/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "platform-foundation",
+      "manifest": "capabilities/platform-foundation/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "ai",
+        "integrations",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "realtime-collaboration",
+      "manifest": "capabilities/realtime-collaboration/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "ai",
+        "ui",
+        "hostBindings"
+      ]
+    },
+    {
+      "id": "skills",
+      "manifest": "capabilities/skills/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "security",
+        "integrations",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "tools",
+      "manifest": "capabilities/tools/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "security",
+        "integrations",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "ui",
+      "manifest": "capabilities/ui/MANIFEST.md",
+      "signals": [
+        "ui",
+        "ai",
+        "security",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "visual-ai-editing",
+      "manifest": "capabilities/visual-ai-editing/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "visual-editing",
+      "manifest": "capabilities/visual-editing/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "ai",
+        "ui",
+        "hostBindings",
+        "verification"
+      ]
+    },
+    {
+      "id": "workspace-sandbox",
+      "manifest": "capabilities/workspace-sandbox/MANIFEST.md",
+      "signals": [
+        "runtime",
+        "persistence",
+        "security",
+        "ai",
+        "hostBindings",
+        "verification"
+      ]
+    }
+  ]
+}
