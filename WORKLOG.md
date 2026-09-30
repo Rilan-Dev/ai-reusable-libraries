@@ -31,3 +31,17 @@ Make the reusable source library easier for AI coding agents to consume after co
 ### Next candidate phase
 
 Build a machine-readable per-capability closure/host-binding index from the existing manifests and source-coverage documents, then add deterministic validation so agents can detect missing manifest fields, stale catalog entries, broken manifest paths and graph references before implementation.
+
+## 2026-10-01 — Metadata validation gate
+
+### Completed
+
+- Added `verification/validate-library.mjs`.
+- The validator checks catalog entries, discovered manifests, manifest paths, dependency-graph references, immutable-policy roots and required manifest-schema fields.
+- Updated `README.md` and `AGENTS.md` so agents can run the validator before relying on capability resolution.
+- Preserved all immutable source/reference trees.
+
+### Remaining
+
+- The validator intentionally does not infer source-level dependencies; manifests and extraction verification remain authoritative for implementation completeness.
+- A future phase can add structured per-capability closure metadata and deterministic host-binding records without rewriting immutable source.
