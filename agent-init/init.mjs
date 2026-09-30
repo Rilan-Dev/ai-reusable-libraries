@@ -20,16 +20,18 @@ console.log("=================================");
 console.log(`Agent instructions: ${agentsPath}`);
 console.log(`Immutable policy:    ${policyPath}`);
 console.log(`Capabilities:        ${catalog.capabilities.length}`);
+console.log("Closure resolver:    node agent-init/resolve.mjs <capability-id>");
 
 if (!request) {
   console.log("\nNext steps:");
   console.log("1. Inspect AGENTS.md.");
   console.log("2. Identify the requested capability.");
   console.log("3. Open its MANIFEST.md.");
-  console.log("4. Trace the complete dependency/UI/security/persistence closure.");
-  console.log("5. Map host boundaries before implementing.");
-  console.log("6. Keep immutable source unchanged.");
-  console.log("7. Verify the target project.");
+  console.log("4. Run agent-init/resolve.mjs for the known capability closure.");
+  console.log("5. Trace the complete dependency/UI/security/persistence closure.");
+  console.log("6. Map host boundaries before implementing.");
+  console.log("7. Keep immutable source unchanged.");
+  console.log("8. Verify the target project.");
   process.exit(0);
 }
 
