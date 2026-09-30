@@ -748,6 +748,23 @@ node agent-init/init.mjs "multi-provider"
 
 The initializer must remain read-only and must never modify the immutable source trees.
 
+
+### Machine-readable capability closure
+
+After a capability candidate is identified, run the read-only closure resolver when available:
+
+    node agent-init/resolve.mjs <capability-id> [<capability-id> ...]
+
+Treat its output as a bounded navigation graph:
+
+- core closure: `required`, `bridge`, `protects` and `packages` relationships;
+- recommended review: `common`, `related` and `supports` relationships;
+- optional review: explicitly optional relationships.
+
+Every returned capability still requires reading its authoritative manifest and tracing source-level dependencies. The resolver must never be used as proof of completeness.
+
+`capabilities/CAPABILITY_MANIFEST.schema.json` is the canonical machine-readable contract for future structured manifests. Existing Markdown manifests remain authoritative until deliberately migrated.
+
 ## 13. README maintenance rule
 
 Keep the root `README.md` as the human-facing entry point. When repository architecture, capability coverage, initialization workflow, verification commands or source boundaries materially change, update the README in the same change set as the relevant implementation/documentation change.
