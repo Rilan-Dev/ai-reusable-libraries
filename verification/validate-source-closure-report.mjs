@@ -20,6 +20,11 @@ for (const item of report.reports) {
   for (const key of required) if (!(key in item)) errors.push(item.capabilityId + ': missing ' + key);
   if (!allowed.has(item.evidenceLevel)) errors.push(item.capabilityId + ': invalid evidence level ' + item.evidenceLevel);
   for (const key of required.slice(2, 8)) if (key in item && !Array.isArray(item[key])) errors.push(item.capabilityId + ': ' + key + ' must be an array');
+  if ('unresolvedImportDetails' in item && !Array.isArray(item.unresolvedImportDetails)) errors.push(item.capabilityId + ': unresolvedImportDetails must be an array');
+  if ('unresolvedImportClassifications' in item && (item.unresolvedImportClassifications === null || typeof item.unresolvedImportClassifications !== 'object' || Array.isArray(item.unresolvedImportClassifications))) errors.push(item.capabilityId + ': unresolvedImportClassifications must be an object');
+  if (Array.isArray(item.unresolvedImportDetails)) for (const detail of item.unresolvedImportDetails) {
+    for (const key of ['sourceFile', 'specifier', 'classification']) if (typeof detail?.[key] !== 'string' || !detail[key]) errors.push(item.capabilityId + ': unresolved import detail missing ' + key);
+  }
 }
 if (errors.length) {
   console.error(errors.join('\n'));
