@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "description": "Paths that must remain unchanged when this library is copied into a host project.",
+  "immutable": ["doable-source/**", "dependency-closure/**", "ui-reference/**"],
+  "modifiable": ["adapters/**", "contracts/**", "verification/**", "agent-init/**"],
+  "note": "A captured UI reference is immutable reference material even though the host UI should be rebuilt/adapted."
+}
