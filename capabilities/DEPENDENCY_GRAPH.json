@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "notes": "Relationships are guidance for closure discovery; every selected manifest remains authoritative.",
+  "edges": [
+    {
+      "from": "agents",
+      "to": "chat",
+      "type": "required"
+    },
+    {
+      "from": "agents",
+      "to": "tools",
+      "type": "required"
+    },
+    {
+      "from": "agents",
+      "to": "context-memory",
+      "type": "common"
+    },
+    {
+      "from": "agents",
+      "to": "multi-provider",
+      "type": "required"
+    },
+    {
+      "from": "agents",
+      "to": "workspace-sandbox",
+      "type": "common"
+    },
+    {
+      "from": "agents",
+      "to": "skills",
+      "type": "common"
+    },
+    {
+      "from": "agents",
+      "to": "mcp",
+      "type": "optional"
+    },
+    {
+      "from": "agents",
+      "to": "integrations",
+      "type": "optional"
+    },
+    {
+      "from": "chat",
+      "to": "tools",
+      "type": "required"
+    },
+    {
+      "from": "chat",
+      "to": "context-memory",
+      "type": "common"
+    },
+    {
+      "from": "chat",
+      "to": "multi-provider",
+      "type": "required"
+    },
+    {
+      "from": "tools",
+      "to": "mcp",
+      "type": "bridge"
+    },
+    {
+      "from": "tools",
+      "to": "integrations",
+      "type": "bridge"
+    },
+    {
+      "from": "integrations",
+      "to": "mcp",
+      "type": "related"
+    },
+    {
+      "from": "mcp",
+      "to": "mcp-tool-servers",
+      "type": "related"
+    },
+    {
+      "from": "multi-provider",
+      "to": "agents",
+      "type": "related"
+    },
+    {
+      "from": "skills",
+      "to": "context-memory",
+      "type": "related"
+    },
+    {
+      "from": "workspace-sandbox",
+      "to": "visual-ai-editing",
+      "type": "related"
+    },
+    {
+      "from": "visual-ai-editing",
+      "to": "visual-editing",
+      "type": "related"
+    },
+    {
+      "from": "realtime-collaboration",
+      "to": "visual-editing",
+      "type": "related"
+    },
+    {
+      "from": "platform-foundation",
+      "to": "multi-provider",
+      "type": "supports"
+    },
+    {
+      "from": "platform-foundation",
+      "to": "agents",
+      "type": "supports"
+    },
+    {
+      "from": "platform-foundation",
+      "to": "integrations",
+      "type": "supports"
+    },
+    {
+      "from": "platform-foundation",
+      "to": "mcp",
+      "type": "supports"
+    },
+    {
+      "from": "platform-foundation",
+      "to": "workspace-sandbox",
+      "type": "supports"
+    },
+    {
+      "from": "marketplace",
+      "to": "skills",
+      "type": "packages"
+    },
+    {
+      "from": "marketplace",
+      "to": "mcp",
+      "type": "packages"
+    },
+    {
+      "from": "ai-security",
+      "to": "workspace-sandbox",
+      "type": "protects"
+    },
+    {
+      "from": "document-builders",
+      "to": "mcp-tool-servers",
+      "type": "related"
+    },
+    {
+      "from": "ai-media-builders",
+      "to": "document-builders",
+      "type": "related"
+    }
+  ]
+}
