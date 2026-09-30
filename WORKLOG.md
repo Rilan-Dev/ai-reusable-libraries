@@ -72,3 +72,29 @@ Turn the capability catalog into a more actionable agent interface without rewri
 - The implementation index is conservative and does not replace source-level dependency analysis.
 - Existing Markdown manifests remain authoritative; structured sidecars are not yet generated from their full contents.
 - A future phase can add source-derived closure evidence and host-binding records, provided those records remain evidence-backed and do not replace manifest authority.
+
+
+## 2026-10-01 — Source-closure verification and unresolved-import classification
+
+### Goal
+
+Move from a basic static import tracer to evidence-backed classification of unresolved imports while keeping the immutable extraction trees untouched.
+
+### Completed
+
+- Verified GitHub Actions run `36780274891` / job `110108486447` on commit `9d8cc8661a4d864ba9bba2c032e76865ec3bbb36` passed metadata validation, tracing, closure-report validation, report existence and immutable-tree checks.
+- Extended `agent-init/trace.mjs` to classify unresolved imports conservatively as relative unresolved, path alias unresolved, workspace package, external package, dependency-closure candidate, or generated/runtime.
+- Added per-import evidence details and classification counts to the generated closure report.
+- Extended `verification/validate-source-closure-report.mjs` to validate the new evidence fields.
+- Updated `README.md` with the source-closure evidence workflow and its limits.
+- Preserved `doable-source/**`, `dependency-closure/**` and `ui-reference/**` as immutable.
+
+### Verification state
+
+The earlier repair is verified by the supplied GitHub Actions run. The new classification changes were committed after that run, so a fresh CI run for the latest commits is still required before declaring this phase complete.
+
+### Remaining
+
+- Resolve and classify the actual unresolved-import population from a fresh generated report.
+- Review alias/workspace/dependency-closure candidates against source evidence.
+- Continue toward runtime/persistence/security/UI-state/host-binding closure evidence without upgrading static evidence to runtime-complete prematurely.
