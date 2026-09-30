@@ -778,3 +778,16 @@ Before using the library for implementation, an agent may run:
     node verification/validate-library.mjs
 
 A failure in this gate means the agent-facing catalog/manifest/graph metadata is inconsistent and must be investigated before relying on capability resolution. This gate is supplementary to immutable-source and extraction verification.
+
+
+### Machine-readable implementation index and planning
+
+- `capabilities/IMPLEMENTATION_INDEX.json` — machine-readable capability-to-manifest mapping plus implementation-area signals. It is a navigation index, not a replacement for manifests.
+- `agent-init/plan.mjs` — read-only deterministic implementation-plan generator that expands the known core graph closure and prints execution order.
+
+After candidate lookup, agents should normally run:
+
+    node agent-init/resolve.mjs <capability-id> [<capability-id> ...]
+    node agent-init/plan.mjs <capability-id> [<capability-id> ...]
+
+The plan output is bounded by the curated dependency graph. Agents must still inspect each authoritative manifest and trace source imports, persistence, security and host bindings.
