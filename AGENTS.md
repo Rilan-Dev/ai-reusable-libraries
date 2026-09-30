@@ -770,3 +770,11 @@ Every returned capability still requires reading its authoritative manifest and 
 Keep the root `README.md` as the human-facing entry point. When repository architecture, capability coverage, initialization workflow, verification commands or source boundaries materially change, update the README in the same change set as the relevant implementation/documentation change.
 
 Do not duplicate the full operational instructions between README and AGENTS.md. `AGENTS.md` is the canonical agent execution guidance; README explains the library and onboarding workflow.
+
+### Metadata validation gate
+
+Before using the library for implementation, an agent may run:
+
+    node verification/validate-library.mjs
+
+A failure in this gate means the agent-facing catalog/manifest/graph metadata is inconsistent and must be investigated before relying on capability resolution. This gate is supplementary to immutable-source and extraction verification.
