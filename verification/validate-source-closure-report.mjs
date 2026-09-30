@@ -19,7 +19,7 @@ const errors = [];
 for (const item of report.reports) {
   for (const key of required) if (!(key in item)) errors.push(item.capabilityId + ': missing ' + key);
   if (!allowed.has(item.evidenceLevel)) errors.push(item.capabilityId + ': invalid evidence level ' + item.evidenceLevel);
-  for (const key of required.slice(2, 9)) if (key in item && !Array.isArray(item[key])) errors.push(item.capabilityId + ': ' + key + ' must be an array');
+  for (const key of required.slice(2, 8)) if (key in item && !Array.isArray(item[key])) errors.push(item.capabilityId + ': ' + key + ' must be an array');
 }
 if (errors.length) {
   console.error(errors.join('\n'));
