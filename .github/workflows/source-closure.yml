@@ -21,5 +21,11 @@ jobs:
         run: node verification/validate-source-closure-report.mjs
       - name: Confirm closure report exists
         run: test -s verification/reports/source-closure-report.json
+      - name: Upload closure report
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-closure-report
+          path: verification/reports/source-closure-report.json
+          if-no-files-found: error
       - name: Confirm immutable trees are untouched by tracer
         run: git diff --exit-code -- doable-source dependency-closure ui-reference
