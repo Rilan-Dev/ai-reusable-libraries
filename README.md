@@ -220,3 +220,17 @@ Run the deterministic metadata validator from the library root:
     node verification/validate-library.mjs
 
 It checks catalog entries, manifest paths, discovered manifests, dependency-graph capability references, immutable-policy roots and the required manifest-schema fields. It does not modify source files and it does not replace the deeper extraction verifier or target-project tests.
+
+
+### Machine-readable implementation index and plan
+
+`capabilities/IMPLEMENTATION_INDEX.json` maps every catalog capability to its authoritative manifest and records which implementation areas the manifest explicitly signals (runtime, persistence, security, AI, integrations, UI, host bindings and verification). It is deliberately an index rather than invented structured source metadata.
+
+After lookup/resolution, an agent can generate a deterministic implementation starting point:
+
+```bash
+node agent-init/plan.mjs multi-provider
+node agent-init/plan.mjs agents chat
+```
+
+The planner expands only the curated core dependency relationships and prints a standard execution sequence. It does not claim source-level completeness; manifests and import/dependency tracing remain authoritative.
