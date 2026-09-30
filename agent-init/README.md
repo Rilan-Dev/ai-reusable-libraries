@@ -31,3 +31,17 @@ node agent-init/resolve.mjs agents chat
 ```
 
 The resolver is read-only and separates core, recommended and optional relationships. It does not replace manifest reading or source-level dependency tracing.
+
+
+## Implementation plan generation
+
+Use the read-only planner after capability lookup/resolution:
+
+```bash
+node agent-init/plan.mjs multi-provider
+node agent-init/plan.mjs agents chat
+```
+
+The planner reads `capabilities/IMPLEMENTATION_INDEX.json` and `capabilities/DEPENDENCY_GRAPH.json`, expands the known core closure, and prints the manifests/signals plus a deterministic implementation sequence. It never edits source or target files.
+
+The implementation index is intentionally conservative: it references authoritative Markdown manifests and records implementation-area signals rather than pretending to infer exact routes, tables or imports. Agents must still trace the actual source closure.
