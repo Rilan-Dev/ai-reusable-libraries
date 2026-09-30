@@ -17,6 +17,8 @@ jobs:
         run: node verification/validate-library.mjs
       - name: Trace all capabilities
         run: node agent-init/trace.mjs
+      - name: Validate closure report
+        run: node verification/validate-source-closure-report.mjs
       - name: Confirm closure report exists
         run: test -s verification/reports/source-closure-report.json
       - name: Confirm immutable trees are untouched by tracer
