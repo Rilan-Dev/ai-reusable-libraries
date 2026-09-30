@@ -20,3 +20,14 @@ node agent-init/init.mjs "AI coding assistant"
 ```
 
 The first argument is a natural-language feature request. The helper performs a simple local catalog match; the capability manifest remains authoritative and must be inspected before implementation.
+
+## Capability closure resolution
+
+After lookup, resolve known cross-capability dependencies before implementation:
+
+```bash
+node agent-init/resolve.mjs multi-provider
+node agent-init/resolve.mjs agents chat
+```
+
+The resolver is read-only and separates core, recommended and optional relationships. It does not replace manifest reading or source-level dependency tracing.
