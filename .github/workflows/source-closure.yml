@@ -1,0 +1,23 @@
+name: Validate source closure
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  closure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate library metadata
+        run: node verification/validate-library.mjs
+      - name: Trace all capabilities
+        run: node agent-init/trace.mjs
+      - name: Confirm closure report exists
+        run: test -s verification/reports/source-closure-report.json
+      - name: Confirm immutable trees are untouched by tracer
+        run: git diff --exit-code -- doable-source dependency-closure ui-reference
