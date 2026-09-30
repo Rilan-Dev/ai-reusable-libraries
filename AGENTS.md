@@ -718,3 +718,38 @@ When Project A needs a Doable feature:
 The goal is not to make Project A look like Doable.
 
 The goal is to make Project A **inherit the relevant capability and behavior from the preserved Doable implementation while remaining native to Project A's architecture, data model, security model and UI.**
+
+
+## 12. Machine-readable agent interface
+
+The repository also exposes machine-readable navigation and safety artifacts:
+
+- `capabilities/CATALOG.json` — capability IDs, descriptions and manifest paths.
+- `capabilities/DEPENDENCY_GRAPH.json` — known cross-capability relationships to guide closure discovery.
+- `verification/IMMUTABLE_PATHS.json` — immutable/reference boundaries for automated checks.
+- `agent-init/init.mjs` — read-only initialization and basic natural-language capability lookup.
+
+These files are navigation aids, not substitutes for reading the authoritative capability manifests and source. A lookup result is a candidate, never proof that the feature is complete.
+
+### Initialize after copying into a host
+
+Run:
+
+```bash
+node agent-init/init.mjs
+```
+
+Or provide the requested feature:
+
+```bash
+node agent-init/init.mjs "AI coding assistant"
+node agent-init/init.mjs "multi-provider"
+```
+
+The initializer must remain read-only and must never modify the immutable source trees.
+
+## 13. README maintenance rule
+
+Keep the root `README.md` as the human-facing entry point. When repository architecture, capability coverage, initialization workflow, verification commands or source boundaries materially change, update the README in the same change set as the relevant implementation/documentation change.
+
+Do not duplicate the full operational instructions between README and AGENTS.md. `AGENTS.md` is the canonical agent execution guidance; README explains the library and onboarding workflow.
