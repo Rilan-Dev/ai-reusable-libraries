@@ -375,3 +375,29 @@ The reference library is now documentation-complete enough for AI-agent navigati
 
 ### Next
 Continue the source dependency graph into integrations/tools/MCP, audit/observability and event/runtime infrastructure, while cross-checking their interaction with the already-covered AI/chat/realtime voice chains.
+
+
+## 2026-10-06 — Embed runtime and `./scripts/*` reuse expansion
+
+### Planned
+Explicitly audit Clara's `public/embed/clara.js` and the entire `scripts/*` surface so downstream AI agents do not miss browser delivery, realtime relay, ingestion, benchmarking, validation, safety, or operational implementation patterns.
+
+### Completed
+- Confirmed `public/embed/clara.js` is already part of the immutable library and is byte-identical to Clara source blob `1710bd5a54244ab5af95efa51b2a99b7233faeab`.
+- Documented why `clara.js` is a required reusable runtime boundary: embed modes, public-session bootstrap, streaming chat/NDJSON, realtime voice/media lifecycle, relay interaction, provider behavior, interruption, host-page events, headless SDK, and widget customization.
+- Added `clara-core/CLARA-EMBED-SCRIPTS-REUSE-MAP.md`, classifying all 83 Clara `public/embed/*` + `scripts/*` paths and distinguishing portable AI/runtime sources from host/deployment-only operations.
+- Added 14 additional whole-file script references from Clara without rewriting them: realtime relays for OpenAI/Gemini/ElevenLabs/Sarvam, Sarvam wire contract, phone stream, development relay, document/web ingestion, voice benchmark, benchmark matrix, model validation, agent-resolution verification, and blocked-domain safety scanning.
+- Updated `clara-core/extraction-manifest.json` from 108 to 122 immutable source entries and corrected the phone-stream source blob identity.
+- Machine cross-check of the 16 embed/script manifest entries confirms source and target Git blob IDs match for every entry.
+
+### Not done
+- The remaining scripts are intentionally not promoted wholesale into host-neutral runtime APIs. Migration, seed/demo, backup, deployment, VPS and environment-specific scripts remain classified as reference/host tooling.
+- This work does not claim an npm publication or production deployment.
+
+### Gate
+**Embed runtime: INCLUDED and verified.**
+**Reusable script references: EXPANDED and blob-verified.**
+**Manifest: 122 immutable entries.**
+
+### Next
+Continue the Clara source dependency audit for any reusable AI/platform capability not represented by the 122-entry manifest, especially integrations/tools/MCP, audit/observability, event/runtime infrastructure, and provider-specific browser hooks. Do not declare the Clara reusable library globally complete until that audit proves there are no material reusable gaps.
