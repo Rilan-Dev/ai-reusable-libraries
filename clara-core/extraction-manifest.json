@@ -5,7 +5,7 @@
   "source_ref": "feature/ai-core-from-doable-source",
   "extraction_mode": "exact-source-from-clara-platform",
   "immutable": true,
-  "status": "in_progress",
+  "status": "expanded-reusable-script-reference",
   "purpose": "Reusable Clara platform core for independent SaaS, agents and multi-tenant applications.",
   "rules": [
     "Source is extracted only from Clara-AI-Platform.",
@@ -554,6 +554,77 @@
       "source_path": "src/modules/voice-core/realtime/index.ts",
       "target_path": "clara-core/source/src/modules/voice-core/realtime/index.ts",
       "source_blob_sha": "2f7b423c4b12e1c43ea82652709abc8d3405d010"
+    },
+    {
+      "source_path": "scripts/voice-relay.mjs",
+      "target_path": "clara-core/source/scripts/voice-relay.mjs",
+      "source_blob_sha": "d7e3b4e7cf0ea0891e5d334cb1cbcbe48fd57ca5"
+    },
+    {
+      "source_path": "scripts/gemini-relay.mjs",
+      "target_path": "clara-core/source/scripts/gemini-relay.mjs",
+      "source_blob_sha": "21dede5dcd8b5d2657749368102590f0116ce116"
+    },
+    {
+      "source_path": "scripts/elevenlabs-relay.mjs",
+      "target_path": "clara-core/source/scripts/elevenlabs-relay.mjs",
+      "source_blob_sha": "9b46b637438b78986230edb33611f0f8b110b108"
+    },
+    {
+      "source_path": "scripts/sarvam-relay.mjs",
+      "target_path": "clara-core/source/scripts/sarvam-relay.mjs",
+      "source_blob_sha": "3d2b2a886c725cd7fd9b5eb7d250fd18ab9aa93f"
+    },
+    {
+      "source_path": "scripts/sarvam-tts-relay.mjs",
+      "target_path": "clara-core/source/scripts/sarvam-tts-relay.mjs",
+      "source_blob_sha": "a7b25a3f608ae0ec6540cf381225eacd7a058d21"
+    },
+    {
+      "source_path": "scripts/phone-stream.mjs",
+      "target_path": "clara-core/source/scripts/phone-stream.mjs",
+      "source_blob_sha": null
+    },
+    {
+      "source_path": "scripts/dev-relay.mjs",
+      "target_path": "clara-core/source/scripts/dev-relay.mjs",
+      "source_blob_sha": "b0f10fdcbf19065f45f6459c0ea656c8b6332650"
+    },
+    {
+      "source_path": "scripts/ingest.ts",
+      "target_path": "clara-core/source/scripts/ingest.ts",
+      "source_blob_sha": "aaaabaf098746ab2cc56d2c08d9d2a84d47fa5e7"
+    },
+    {
+      "source_path": "scripts/ingest-web.ts",
+      "target_path": "clara-core/source/scripts/ingest-web.ts",
+      "source_blob_sha": "71dcf14e0b36a3838bafd70032ee5fec9e7fa2a4"
+    },
+    {
+      "source_path": "scripts/bench-run-matrix.mjs",
+      "target_path": "clara-core/source/scripts/bench-run-matrix.mjs",
+      "source_blob_sha": "80716ef78a89e15af068a5fb32d6e83162e566ed"
+    },
+    {
+      "source_path": "scripts/voice-benchmark/run.mjs",
+      "target_path": "clara-core/source/scripts/voice-benchmark/run.mjs",
+      "source_blob_sha": "c1b353e83552c38fc59a36a1282d8e158569928e"
+    },
+    {
+      "source_path": "scripts/validate-model-config.mjs",
+      "target_path": "clara-core/source/scripts/validate-model-config.mjs",
+      "source_blob_sha": "e065dfbd1556ebd9c45ea4c2106a0cf57874a8ab"
+    },
+    {
+      "source_path": "scripts/verify-agent-resolution.ts",
+      "target_path": "clara-core/source/scripts/verify-agent-resolution.ts",
+      "source_blob_sha": "49c5e979a7d049bd046199bddc3750cf88837bb6"
+    },
+    {
+      "source_path": "scripts/scan-blocked-domains.ts",
+      "target_path": "clara-core/source/scripts/scan-blocked-domains.ts",
+      "source_blob_sha": "84596e84114f6ef055c1f1ba07093e3295cba79f"
     }
-  ]
+  ],
+  "files_count": 122
 }
