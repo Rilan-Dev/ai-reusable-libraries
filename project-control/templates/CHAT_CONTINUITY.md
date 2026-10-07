@@ -30,3 +30,10 @@ This file defines recovery procedure, not current product truth.
 
 ## Continuation test
 A fresh AI must be able to determine phase, authorization, implementation state, verification state and next action from repository state alone.
+## Agent continuity
+- Registered agents: <references>
+- Current agent owner: <agent ID / name>
+- Active handoff: <reference>
+- Latest agent events: <references>
+- Relevant active lessons: <references>
+- Pending rule proposals: <references>
