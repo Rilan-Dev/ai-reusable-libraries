@@ -34,7 +34,7 @@ PLANNED → AUTHORIZED → IN_PROGRESS → IMPLEMENTED → VERIFICATION_PENDING 
 Exceptional states: BLOCKED, CORRECTION_REQUIRED, PASS_WITH_FOLLOWUP, SUPERSEDED.
 
 ## Required control files
-PROJECT_STATE.md, CURRENT_PHASE.md, AUTHORIZATION.md, NEXT_ACTION.md, CHAT_CONTINUITY.md, WORKLOG.md, DECISIONS.md, ISSUES.md, RISKS.md, VERIFICATION_STATE.md, IMPLEMENTATION_PLAN.md, PHASES.md. ZAI_HANDOFF.md is required when a delegated implementation worker is used.
+PROJECT_STATE.md, CURRENT_PHASE.md, AUTHORIZATION.md, NEXT_ACTION.md, CHAT_CONTINUITY.md, WORKLOG.md, DECISIONS.md, ISSUES.md, RISKS.md, VERIFICATION_STATE.md, IMPLEMENTATION_PLAN.md, PHASES.md. For multi-agent projects also maintain AGENT_REGISTRY.md, AGENT_MEMORY.md, AGENT_EVENTS.md and AGENT_HANDOFF.md when active. Maintain RULE_IMPROVEMENTS.md when agents propose protocol improvements. ZAI_HANDOFF.md is required when a delegated implementation worker is used.
 
 ## Roles
 Owner/Architect defines intent, boundaries, authorization and closure. Implementer performs authorized changes. Reviewer challenges correctness, architecture, security and regressions. Verifier evaluates evidence. One AI may perform multiple roles but must identify the role it is performing.
