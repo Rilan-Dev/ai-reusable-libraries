@@ -12,3 +12,6 @@ Append entries; do not rewrite history.
 **Issues/risks:** <references>
 **Commit:** <sha or not committed>
 **Next action:** <exact next action>
+**Agent:** <agent ID / name>  
+**Agent event:** <event ID>  
+**Lessons created/consumed:** <references>
