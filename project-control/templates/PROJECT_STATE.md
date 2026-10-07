@@ -33,3 +33,8 @@ See NEXT_ACTION.md.
 
 ## Authority note
 This is a projection. Reconcile it with Git, governing instructions, decisions and evidence.
+## Agent coordination
+**Current agent owner:** <agent ID / name>  
+**Active handoff:** <handoff ID or none>  
+**Last agent event:** <event ID>  
+**Relevant lessons:** <AGENT_MEMORY references>
