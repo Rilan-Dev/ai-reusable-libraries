@@ -704,3 +704,26 @@ Do not guess, silently expand scope, or claim unverified work.
 ```
 
 That single pattern is enough for most day-to-day work.
+
+## 22. Multi-agent development
+APCP now supports a default three-agent team:
+- Forge (DEV-01): builds authorized product work.
+- Sentinel (FIX-01): diagnoses and fixes errors.
+- Shipwright (OPS-01): handles CI/CD, Vercel, Docker and deployment problems.
+
+You do not need to manually manage their internal communication. Agents use AGENT_HANDOFF.md, AGENT_EVENTS.md, AGENT_MEMORY.md and WORKLOG.md as shared memory.
+
+## 23. New plan after initialization
+Use prompts/NEW_PLAN.md when adding a new feature or implementation plan after initialization. Recover APCP state and Git, determine whether it belongs in the current or a new phase, define acceptance/verification, update authorization, and create the next authorized action. Do not implement until the changed scope is authorized.
+
+## 24. Requirement or scope change
+Use prompts/CHANGE_REQUIREMENTS.md when requirements change. Recover state and Git, classify the change, analyze impact on completed/current/future work, architecture, acceptance, verification and authorization, preserve history, update/supersede affected records, and use Superpowers brainstorming/specification/writing-plans when required.
+
+## 25. Change an existing implementation
+Use prompts/MODIFY_IMPLEMENTATION.md when existing behavior must change. Compare against the current active requirement, not only the original requirement. Preserve history, recalculate acceptance/verification, use the appropriate Superpowers workflow, and implement only authorized changes.
+
+## 26. Coordinate the three agents
+Use prompts/AGENT_ORCHESTRATION.md to coordinate Forge, Sentinel and Shipwright. Require explicit handoffs, shared-memory reads, event/lesson logging and intact authorization boundaries.
+
+## 27. Agent learning / rule improvement
+Review agent lessons for reusable APCP improvements. Do not silently edit governing rules. Record evidence-backed RULE-PROP entries and identify affected rule/prompt/template/schema. Promote only through explicit governance approval.
