@@ -444,3 +444,20 @@ Do not claim implementation unless implementation was actually authorized and pe
 Every future AI conversation must be able to recover the project by reading the repository, reconciling Git state, checking authorization, checking the current phase, checking verification evidence, and following `NEXT_ACTION.md`.
 
 Never depend on this chat, model memory, or an undocumented assumption for critical project state.
+
+### 19. Initialize the multi-agent operating model
+Create/reconcile project-local agent records using the APCP templates: AGENT_REGISTRY.md, AGENT_MEMORY.md, AGENT_HANDOFF.md when a handoff exists, AGENT_EVENTS.md and RULE_IMPROVEMENTS.md.
+
+Register the default agents as DEV-01 / Forge, FIX-01 / Sentinel and OPS-01 / Shipwright with explicit authority boundaries. Forge performs product implementation; Sentinel owns assigned error diagnosis/remediation; Shipwright owns assigned build/deployment problems.
+
+All agents read shared project memory before meaningful work and write durable lessons after meaningful failures or discoveries. Agents communicate through repository records, not assumed chat memory.
+
+### 20. Support requirements and plan evolution
+The project is not frozen at initialization. Future user messages may introduce new requirements, new plans, changed priorities, corrections, or complete scope changes. Recover current state and reconcile the change before implementation.
+
+Classify the change, assess impact, preserve historical records, update or supersede affected plans/authorizations, and use applicable Superpowers brainstorming/specification/writing-plans when material. Completed work may be deliberately modified or reopened when the new active requirement requires it.
+
+Use prompts/CHANGE_REQUIREMENTS.md, prompts/NEW_PLAN.md or prompts/MODIFY_IMPLEMENTATION.md as applicable. Do not force new work into obsolete completed scope.
+
+### 21. Rule improvement
+Agents may append evidence-backed proposals to RULE_IMPROVEMENTS.md. No agent may silently rewrite APCP governance. Promotion into the reusable APCP framework requires explicit governance approval and verification.
