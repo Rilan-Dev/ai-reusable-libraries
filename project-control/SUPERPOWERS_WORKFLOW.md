@@ -26,3 +26,13 @@ Use verification-before-completion before any claim that work is complete, fixed
 
 ## APCP rule
 Superpowers gates how engineering work is performed. APCP still decides whether the work is authorized, what phase owns it, what evidence is required and who may close the phase.
+## Agent-aware Superpowers mapping
+APCP agent identity determines who owns the work; Superpowers determines how the work is executed.
+
+- New requirement or material scope change: brainstorming → specification → writing-plans → explicit approval → implementation.
+- New implementation plan: brainstorming when needed → writing-plans → approval → TDD/implementation.
+- Existing implementation change: systematic-debugging for defects, or brainstorming/specification/writing-plans for behavioral or architectural changes → TDD/implementation.
+- Major implementation: requesting-code-review → corrective work → verification-before-completion.
+- CI/CD/deployment failure: systematic-debugging owned by Shipwright, followed by evidence-backed verification.
+
+If a requested change conflicts with current authorization, APCP reconciliation happens before Superpowers execution. Superpowers never grants authorization.
