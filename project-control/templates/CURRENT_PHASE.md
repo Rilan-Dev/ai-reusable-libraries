@@ -24,3 +24,7 @@ Do not begin the next phase unless transition is explicitly authorized.
 - Review: <status>
 - Closure authority: <reference>
 - Closure evidence: <reference>
+## Agent ownership
+**Primary agent:** <agent ID / name>  
+**Supporting agents:** <IDs / names>  
+**Handoff boundary:** <reference or none>
