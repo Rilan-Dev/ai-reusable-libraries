@@ -22,7 +22,7 @@ Unless a project explicitly defines a stricter hierarchy:
 1. Current human instruction.
 2. Repository-local governing instructions.
 3. Current Git state and committed source.
-4. Project-control state and decisions.
+4. Active project-control authorization/state and decisions.
 5. Approved specification and implementation plan.
 6. Test/build/CI/deployment evidence.
 7. Prior chat summaries and model memory.
@@ -34,7 +34,7 @@ PLANNED → AUTHORIZED → IN_PROGRESS → IMPLEMENTED → VERIFICATION_PENDING 
 Exceptional states: BLOCKED, CORRECTION_REQUIRED, PASS_WITH_FOLLOWUP, SUPERSEDED.
 
 ## Required control files
-PROJECT_STATE.md, CURRENT_PHASE.md, NEXT_ACTION.md, CHAT_CONTINUITY.md, WORKLOG.md, DECISIONS.md, ISSUES.md, RISKS.md, VERIFICATION_STATE.md, IMPLEMENTATION_PLAN.md, PHASES.md. ZAI_HANDOFF.md is required when a delegated implementation worker is used.
+PROJECT_STATE.md, CURRENT_PHASE.md, AUTHORIZATION.md, NEXT_ACTION.md, CHAT_CONTINUITY.md, WORKLOG.md, DECISIONS.md, ISSUES.md, RISKS.md, VERIFICATION_STATE.md, IMPLEMENTATION_PLAN.md, PHASES.md. ZAI_HANDOFF.md is required when a delegated implementation worker is used.
 
 ## Roles
 Owner/Architect defines intent, boundaries, authorization and closure. Implementer performs authorized changes. Reviewer challenges correctness, architecture, security and regressions. Verifier evaluates evidence. One AI may perform multiple roles but must identify the role it is performing.
@@ -43,7 +43,7 @@ Owner/Architect defines intent, boundaries, authorization and closure. Implement
 APCP governs project state and authority. Superpowers governs execution method: brainstorming, specification, planning, TDD/implementation, review and verification.
 
 ## Continuity
-A fresh AI reads repository instructions, CHAT_CONTINUITY, NEXT_ACTION, CURRENT_PHASE, PROJECT_STATE, the plan, relevant decisions/issues/risks/verification records, then recent Git history. It reconciles these with Git before changing code.
+A fresh AI reads repository instructions, CHAT_CONTINUITY, NEXT_ACTION, CURRENT_PHASE, AUTHORIZATION, PROJECT_STATE, the plan, relevant decisions/issues/risks/verification records, then recent Git history. It reconciles these with Git before changing code.
 
 ## Async rule
 Record asynchronous CI/CD as pending evidence. Continue only with independent work. Revisit pending evidence before making a decision that depends on it. Never claim a pending job passed.
