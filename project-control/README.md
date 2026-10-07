@@ -67,3 +67,18 @@ Common commands are:
 - **Recover:** use `RECOVER_PROJECT.md` when project-control, Git, or prior claims contradict each other.
 
 If you only remember one everyday command, use: **"Please proceed with the next authorized work. Read the APCP project-control state first, reconcile with Git, follow APCP + Superpowers, implement the next action, update project-control, and continue independent authorized work."**
+
+## Multi-agent development
+APCP supports a coordinated agent team with stable identities: DEV-01 / Forge for authorized product development; FIX-01 / Sentinel for error diagnosis/remediation; OPS-01 / Shipwright for CI/CD, Vercel, Docker and deployment.
+
+The repository is the agents' communication bus. Agents share durable state through AGENT_REGISTRY.md, AGENT_HANDOFF.md, AGENT_MEMORY.md, AGENT_EVENTS.md, WORKLOG.md and the existing decision/issue/risk/verification ledgers.
+
+Agents read relevant memory before work and record significant failures, remedies, failed approaches and reusable DO/DO NOT lessons afterward.
+
+## Adaptive scope
+APCP is not an initialization-only contract. New requirements, new plans, implementation changes and changed priorities must be reconciled against the current active requirement. A later authorized requirement can add to, modify, supersede, deprecate or reopen earlier scope. Completed work remains historical evidence, not immutable scope.
+
+Material changes require impact analysis and, where appropriate, Superpowers brainstorming, specification and writing-plans. Affected phases, acceptance criteria and authorization must be explicitly updated or superseded before implementation.
+
+## Rule learning
+Agents may propose improvements through RULE-PROP records. They must not silently rewrite APCP governance. Rule proposals require evidence and explicit governance approval before promotion into MASTER_AI_RULE.md, schemas, prompts or templates.
