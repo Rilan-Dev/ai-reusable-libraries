@@ -53,3 +53,17 @@ At every phase boundary ask: what requirement may still be unmet, what assumptio
 
 ## Reuse
 Copy project-control into a new repository. Start with prompts/INITIALIZE_PROJECT.md. Later conversations use prompts/CONTINUE_PROJECT.md.
+
+## Practical usage
+
+You do not need to memorize APCP. Use the practical [USAGE_GUIDE.md](./USAGE_GUIDE.md) for copy-paste action prompts.
+
+Common commands are:
+- **New project:** use [prompts/NEW_PROJECT_BOOTSTRAP.md](./prompts/NEW_PROJECT_BOOTSTRAP.md), then add the product requirements.
+- **Continue:** read `CHAT_CONTINUITY.md` and `NEXT_ACTION.md`, reconcile with Git, then continue the next authorized action.
+- **Review:** review the authorized scope, Git diff, architecture, security, reliability, and tests.
+- **Verify:** map every acceptance criterion to actual evidence in `VERIFICATION_STATE.md`.
+- **Close:** use `CLOSE_PHASE.md`; closure requires verification, scope reconciliation, and explicit closure authority.
+- **Recover:** use `RECOVER_PROJECT.md` when project-control, Git, or prior claims contradict each other.
+
+If you only remember one everyday command, use: **"Please proceed with the next authorized work. Read the APCP project-control state first, reconcile with Git, follow APCP + Superpowers, implement the next action, update project-control, and continue independent authorized work."**
