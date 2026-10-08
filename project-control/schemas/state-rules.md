@@ -33,3 +33,23 @@
 29. After completing or routing a task, an agent must select the next independent authorized task belonging to its role when one exists.
 30. AGENT_BACKLOG entries record ownership and dependency but never grant authorization or transfer role ownership.
 31. A fresh chat must be able to recover agent identity, role ownership, blockers, suggested assignments and lessons from repository state alone.
+
+
+## Adaptive continuation and prompt rules
+
+32. Current explicit requirements are continuously authoritative and may add, modify, correct, supersede, deprecate, reprioritize or reopen earlier scope.
+33. Every requirement change must be classified before affected implementation and its impact on requirements, architecture, phases, acceptance, verification, dependencies and risks must be recorded.
+34. Material scope changes require updated or superseded authorization before affected implementation.
+35. A new or changed plan, specification, prompt or agent suggestion is not authorization by itself.
+36. Existing completed implementation may be modified when the current authorized requirement requires it; historical implementation and decisions remain traceable.
+37. Reopening a completed task, checklist, verification item or phase requires a durable reason, updated acceptance/verification impact and explicit authorization; historical completion is preserved.
+38. A phase/task/checklist boundary is a durable control boundary. A fresh session may continue it only when repository state provides authorization or an explicit continuation condition.
+39. NEXT_ACTION is the current execution pointer and must be recomputed after meaningful work or material scope change; obsolete actions must not be executed.
+40. Fresh-chat continuation must be repository-first and must recover role, ownership, requirements, authorization, blockers, lessons, verification and next action without prior conversation memory.
+41. Prompt selection is state-driven: autonomous/continue for resumption, implement-next for the current action, change-requirements for changed requirements, new-plan for new workstreams, modify-implementation for existing behavior changes, orchestration for agent assignment, review/verify/closure prompts for those activities.
+42. Continuation prompts never bypass authorization, phase boundaries or role ownership.
+43. A rules-only APCP update must not mutate product implementation scope or the existing implementation plan unless explicitly requested.
+44. Adaptive prompts are control instructions; repository records remain the source of truth for actual project state.
+45. If repository state is sufficient to continue, an agent must not require the user to restate prior chat context.
+46. Stop conditions are evaluated from durable repository state and must be recorded with the exact recovery or authorization needed.
+47. Autonomous continuation must survive agent/session changes by recovering durable handoffs, backlog, lessons, ownership and NEXT_ACTION from the repository.
