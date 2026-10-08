@@ -47,3 +47,8 @@ This is a projection. Reconcile it with Git, governing instructions, decisions a
 **Current agent must continue:** <next independent authorized task or explicit stop condition>
 **Cross-agent pending work:** <references>
 **No-wait status:** <whether asynchronous work is pending and whether independent work exists>
+
+
+## Navigation requirement
+
+Before meaningful work, use `project-control/NAVIGATION.md` to locate the applicable APCP control records and prompt. A fresh agent must recover state from the repository, including role, ownership, authorization, blockers, lessons and NEXT_ACTION. Do not depend on previous chat context. Cross-agent work routes through durable handoff/backlog records and never transfers authority by itself.
