@@ -24,3 +24,8 @@
 
 ### Role boundary
 The receiving agent must operate only within its registered role and referenced active authorization. This handoff does not transfer the sender's role or grant additional authority.
+
+
+## Navigation requirement
+
+Before meaningful work, use `project-control/NAVIGATION.md` to locate the applicable APCP control records and prompt. A fresh agent must recover state from the repository, including role, ownership, authorization, blockers, lessons and NEXT_ACTION. Do not depend on previous chat context. Cross-agent work routes through durable handoff/backlog records and never transfers authority by itself.
