@@ -25,3 +25,17 @@ Preserve historical records. Do not delete completed work or old decisions. Expl
 After the impact decision, establish the updated plan and explicit authorization. Then create exactly one new `NEXT_ACTION` inside the active scope.
 
 Only after authorization may Forge/Sentinel/Shipwright implement the changed scope.
+
+
+## APCP navigation
+
+Use `project-control/NAVIGATION.md` as the durable navigation map. Select the prompt by intent rather than relying on chat memory:
+- Resume/fresh chat → `prompts/AUTONOMOUS_AGENT_WORK.md`
+- Continue → `prompts/CONTINUE_PROJECT.md`
+- Execute current authorized action → `prompts/IMPLEMENT_NEXT.md`
+- New or changed requirement → `prompts/CHANGE_REQUIREMENTS.md`
+- New feature/workstream/plan → `prompts/NEW_PLAN.md`
+- Change existing implementation → `prompts/MODIFY_IMPLEMENTATION.md`
+- Cross-agent assignment → `prompts/AGENT_ORCHESTRATION.md`
+
+For phase/task/checklist stops, recover the durable stop reason and authorization from `CHAT_CONTINUITY.md`, `CURRENT_PHASE.md`, `AUTHORIZATION.md` and `NEXT_ACTION.md`; never infer continuation from a previous conversation. For rules-only changes, do not modify product scope or `IMPLEMENTATION_PLAN.md` unless explicitly requested.
