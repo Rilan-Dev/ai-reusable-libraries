@@ -72,3 +72,17 @@ Do not wait or poll repeatedly for asynchronous checks. Use the sequence: work �
 An agent may stop only for its own genuine authorization/dependency/governance/security stop condition or when no independent authorized work remains. CI running, Vercel building, or verification pending is not by itself a stop condition.
 
 Every cross-agent handoff must state the responsible agent, authorization, base/current commit, exact action, evidence required and return information. A handoff never grants authority beyond its referenced authorization.
+
+
+## APCP navigation
+
+Use `project-control/NAVIGATION.md` as the durable navigation map. Select the prompt by intent rather than relying on chat memory:
+- Resume/fresh chat → `prompts/AUTONOMOUS_AGENT_WORK.md`
+- Continue → `prompts/CONTINUE_PROJECT.md`
+- Execute current authorized action → `prompts/IMPLEMENT_NEXT.md`
+- New or changed requirement → `prompts/CHANGE_REQUIREMENTS.md`
+- New feature/workstream/plan → `prompts/NEW_PLAN.md`
+- Change existing implementation → `prompts/MODIFY_IMPLEMENTATION.md`
+- Cross-agent assignment → `prompts/AGENT_ORCHESTRATION.md`
+
+For phase/task/checklist stops, recover the durable stop reason and authorization from `CHAT_CONTINUITY.md`, `CURRENT_PHASE.md`, `AUTHORIZATION.md` and `NEXT_ACTION.md`; never infer continuation from a previous conversation. For rules-only changes, do not modify product scope or `IMPLEMENTATION_PLAN.md` unless explicitly requested.
