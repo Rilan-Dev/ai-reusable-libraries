@@ -727,3 +727,82 @@ Use prompts/AGENT_ORCHESTRATION.md to coordinate Forge, Sentinel and Shipwright.
 
 ## 27. Agent learning / rule improvement
 Review agent lessons for reusable APCP improvements. Do not silently edit governing rules. Record evidence-backed RULE-PROP entries and identify affected rule/prompt/template/schema. Promote only through explicit governance approval.
+
+
+# 28. Autonomous multi-agent development — recommended default
+
+For your normal development sessions, use the autonomous agent-control skill and prompt rather than manually telling an agent to keep going.
+
+### Copy-paste default
+
+Use:
+
+prompts/AUTONOMOUS_AGENT_WORK.md
+
+or say:
+
+```text
+Continue this APCP project autonomously from repository state.
+
+Load the APCP autonomous-agent-control skill first.
+
+Do not take another agent's role. DEV-01 handles product development, FIX-01 handles errors, and OPS-01 handles CI/CD/deployment/infrastructure.
+
+If you encounter another-agent work, create a concrete handoff/suggested assignment and record the dependency in AGENT_BACKLOG.md. Then continue the next independent authorized task.
+
+Do not wait or poll repeatedly for GitHub Actions, Vercel, deployment, review, or verification when independent authorized work exists.
+
+Continue until no independent authorized work remains or an APCP stop condition applies.
+
+Never rely on previous chat memory; recover everything from docs/project-control and Git.
+```
+
+### What this changes
+
+You no longer need to repeatedly tell Forge:
+
+> "Don't wait for CI/Vercel."
+
+That behavior is now a durable APCP rule. The agent must route the responsibility to the correct agent and keep working.
+
+### Example
+
+If Forge encounters a failing GitHub Actions job:
+
+**Wrong:**
+
+```Forge → wait for CI → poll CI → wait → stop development
+```
+
+**Correct:**
+
+```Forge
+  ↓
+record CI failure
+  ↓
+assign OPS-01 / Shipwright
+  ↓
+record AGENT_BACKLOG item
+  ↓
+continue next authorized product task
+```
+
+The same rule applies in reverse. Shipwright must not become the product developer merely because a pipeline exposed a product defect; it routes the defect to Forge/Sentinel as appropriate.
+
+### Cross-agent assignment template
+
+```text
+To: <agent ID / name>
+Reason: <blocker/task>
+Authorization: <authorization ID>
+Base: <commit>
+Action: <exact requested work>
+Evidence required: <exact result>
+Return: <information needed by originating agent>
+```
+
+This is a suggested assignment, not authorization. The receiving agent must have compatible active authorization.
+
+### Fresh chat
+
+A new ChatGPT conversation can use prompts/AUTONOMOUS_AGENT_WORK.md. It must recover roles, current ownership, blockers, lessons and next work from the repository. No previous conversation is required.
