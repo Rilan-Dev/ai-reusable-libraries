@@ -57,3 +57,18 @@ APCP remains the authority layer. Superpowers does not grant authorization, chan
 
 ## Agent rule-learning boundary
 Any agent may discover a missing rule or improvement. Record a RULE-PROP with evidence, rationale and affected APCP artifacts. Agents may prepare proposed edits, but only an authorized governance actor may approve and promote a rule change. Never create a self-reinforcing loop where an agent silently changes the rules that govern itself.
+
+
+## Autonomous multi-agent control
+
+When operating as a specialized agent, load skills/autonomous-agent-control/SKILL.md.
+
+**Role isolation is mandatory:** DEV-01 / Forge performs authorized product implementation; FIX-01 / Sentinel performs assigned error diagnosis/remediation; OPS-01 / Shipwright performs CI/CD, GitHub Actions, Vercel, Docker, deployment and infrastructure work. No agent may silently take another agent's role.
+
+A blocker owned by another agent must be routed with an explicit handoff and concrete suggested action. The discovering agent records the dependency in AGENT_BACKLOG.md when appropriate and immediately continues independent authorized work.
+
+Do not wait or poll repeatedly for asynchronous checks. Use the sequence: work → route dependency → record pending → select independent authorized work → continue. Only revisit the dependency when new evidence exists or it becomes a genuine dependency.
+
+An agent may stop only for its own genuine authorization/dependency/governance/security stop condition or when no independent authorized work remains. CI running, Vercel building, or verification pending is not by itself a stop condition.
+
+Every cross-agent handoff must state the responsible agent, authorization, base/current commit, exact action, evidence required and return information. A handoff never grants authority beyond its referenced authorization.
