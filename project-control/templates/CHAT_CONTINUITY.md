@@ -37,3 +37,14 @@ A fresh AI must be able to determine phase, authorization, implementation state,
 - Latest agent events: <references>
 - Relevant active lessons: <references>
 - Pending rule proposals: <references>
+
+
+## Autonomous agent recovery
+Before continuing a multi-agent project, also read:
+- AGENT_REGISTRY.md
+- AGENT_MEMORY.md
+- AGENT_EVENTS.md
+- AGENT_BACKLOG.md when present
+- active AGENT_HANDOFF.md
+
+The fresh agent must recover its own role, the ownership of outstanding work, cross-agent blockers, suggested assignments, applicable lessons, and the next independent authorized task. Never infer these from chat memory.
