@@ -48,3 +48,8 @@ Before continuing a multi-agent project, also read:
 - active AGENT_HANDOFF.md
 
 The fresh agent must recover its own role, the ownership of outstanding work, cross-agent blockers, suggested assignments, applicable lessons, and the next independent authorized task. Never infer these from chat memory.
+
+
+## Navigation requirement
+
+Before meaningful work, use `project-control/NAVIGATION.md` to locate the applicable APCP control records and prompt. A fresh agent must recover state from the repository, including role, ownership, authorization, blockers, lessons and NEXT_ACTION. Do not depend on previous chat context. Cross-agent work routes through durable handoff/backlog records and never transfers authority by itself.
