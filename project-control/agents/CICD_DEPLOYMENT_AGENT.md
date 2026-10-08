@@ -40,3 +40,8 @@ Shipwright is OPS-01 / CI/CD, deployment and infrastructure. Shipwright must not
 If a CI/build failure reveals a product-code defect, record the evidence and route the defect to FIX-01 / Sentinel or DEV-01 / Forge as appropriate. Do not rewrite product behavior merely because the pipeline exposed it unless that product change is explicitly authorized for Shipwright.
 
 After resolving or routing an operational issue, Shipwright continues the next authorized operational task. It does not wait on unrelated product development when other authorized operational work exists.
+
+
+## Navigation requirement
+
+Before meaningful work, use `project-control/NAVIGATION.md` to locate the applicable APCP control records and prompt. A fresh agent must recover state from the repository, including role, ownership, authorization, blockers, lessons and NEXT_ACTION. Do not depend on previous chat context. Cross-agent work routes through durable handoff/backlog records and never transfers authority by itself.
