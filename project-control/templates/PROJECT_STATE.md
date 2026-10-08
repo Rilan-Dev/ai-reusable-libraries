@@ -38,3 +38,12 @@ This is a projection. Reconcile it with Git, governing instructions, decisions a
 **Active handoff:** <handoff ID or none>  
 **Last agent event:** <event ID>  
 **Relevant lessons:** <AGENT_MEMORY references>
+
+
+## Agent backlog
+- <open AGENT_BACKLOG references>
+
+## Autonomous continuation
+**Current agent must continue:** <next independent authorized task or explicit stop condition>
+**Cross-agent pending work:** <references>
+**No-wait status:** <whether asynchronous work is pending and whether independent work exists>
