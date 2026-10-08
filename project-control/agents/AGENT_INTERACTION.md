@@ -49,3 +49,8 @@ Use AGENT_BACKLOG.md for unresolved cross-agent work. The backlog records owners
 ### Suggested assignment
 
 Every routed task should state: responsible agent, reason, authorization, base/current commit, exact action, required evidence and return information. This makes the assignment recoverable from a fresh chat.
+
+
+## Navigation requirement
+
+Before meaningful work, use `project-control/NAVIGATION.md` to locate the applicable APCP control records and prompt. A fresh agent must recover state from the repository, including role, ownership, authorization, blockers, lessons and NEXT_ACTION. Do not depend on previous chat context. Cross-agent work routes through durable handoff/backlog records and never transfers authority by itself.
