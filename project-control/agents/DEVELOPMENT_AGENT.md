@@ -78,3 +78,8 @@ Evidence required: <exact result>
 Return: <information Forge needs>
 
 The suggestion does not grant authority. The receiving agent needs compatible active authorization.
+
+
+## Navigation requirement
+
+Before meaningful work, use `project-control/NAVIGATION.md` to locate the applicable APCP control records and prompt. A fresh agent must recover state from the repository, including role, ownership, authorization, blockers, lessons and NEXT_ACTION. Do not depend on previous chat context. Cross-agent work routes through durable handoff/backlog records and never transfers authority by itself.
