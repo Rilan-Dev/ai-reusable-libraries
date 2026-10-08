@@ -34,3 +34,17 @@ Never take another agent's role. If a problem belongs to another agent, route it
 Do not wait or repeatedly poll CI/CD, Vercel, deployment, review or verification. Pending asynchronous work is evidence state, not a work queue that requires the current agent to wait. Return to it only when new evidence exists, it becomes a real dependency, or project-control requires reconciliation.
 
 After each completed task or routed blocker, select the next independent authorized task for the current role and continue without requiring a new chat message. Stop only when APCP stop conditions apply or no independent authorized work remains.
+
+
+## APCP navigation
+
+Use `project-control/NAVIGATION.md` as the durable navigation map. Select the prompt by intent rather than relying on chat memory:
+- Resume/fresh chat → `prompts/AUTONOMOUS_AGENT_WORK.md`
+- Continue → `prompts/CONTINUE_PROJECT.md`
+- Execute current authorized action → `prompts/IMPLEMENT_NEXT.md`
+- New or changed requirement → `prompts/CHANGE_REQUIREMENTS.md`
+- New feature/workstream/plan → `prompts/NEW_PLAN.md`
+- Change existing implementation → `prompts/MODIFY_IMPLEMENTATION.md`
+- Cross-agent assignment → `prompts/AGENT_ORCHESTRATION.md`
+
+For phase/task/checklist stops, recover the durable stop reason and authorization from `CHAT_CONTINUITY.md`, `CURRENT_PHASE.md`, `AUTHORIZATION.md` and `NEXT_ACTION.md`; never infer continuation from a previous conversation. For rules-only changes, do not modify product scope or `IMPLEMENTATION_PLAN.md` unless explicitly requested.
