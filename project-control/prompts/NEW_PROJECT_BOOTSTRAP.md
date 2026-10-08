@@ -461,3 +461,17 @@ Use prompts/CHANGE_REQUIREMENTS.md, prompts/NEW_PLAN.md or prompts/MODIFY_IMPLEM
 
 ### 21. Rule improvement
 Agents may append evidence-backed proposals to RULE_IMPROVEMENTS.md. No agent may silently rewrite APCP governance. Promotion into the reusable APCP framework requires explicit governance approval and verification.
+ 
+
+### 22. Enforce autonomous role isolation and continuation
+Load the reusable skill at skills/autonomous-agent-control/SKILL.md and apply it to every multi-agent project.
+
+Register stable agent identities and non-transferable responsibilities. DEV-01 / Forge owns product implementation; FIX-01 / Sentinel owns assigned error diagnosis/remediation; OPS-01 / Shipwright owns CI/CD, GitHub Actions, Vercel, Docker, deployment and infrastructure. An agent must never silently take another agent's role.
+
+Create/reconcile AGENT_BACKLOG.md for unresolved cross-agent blockers. A blocker owned by another agent must be routed to its responsible agent with a concrete suggested assignment. The discovering agent must continue independent authorized work instead of waiting.
+
+The autonomous loop is: complete task → route blockers → record pending dependencies → select next independent authorized task → continue. Never poll repeatedly for CI, Vercel, deployment, review or verification when independent work exists. Pending evidence is not PASS.
+
+The repository must contain enough state for a fresh AI conversation to recover roles, ownership, blockers, suggested assignments, lessons and next independent action without relying on chat memory.
+
+Use prompts/AUTONOMOUS_AGENT_WORK.md as the default fresh-chat autonomous continuation prompt.
