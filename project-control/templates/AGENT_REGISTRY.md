@@ -19,3 +19,8 @@ For the default team:
 - OPS-01 / Shipwright: CI/CD/deployment/infrastructure; must route unrelated product implementation.
 
 Agent reassignment requires an explicit governance decision and historical record; agents may not self-reassign.
+
+
+## Navigation requirement
+
+Before meaningful work, use `project-control/NAVIGATION.md` to locate the applicable APCP control records and prompt. A fresh agent must recover state from the repository, including role, ownership, authorization, blockers, lessons and NEXT_ACTION. Do not depend on previous chat context. Cross-agent work routes through durable handoff/backlog records and never transfers authority by itself.
