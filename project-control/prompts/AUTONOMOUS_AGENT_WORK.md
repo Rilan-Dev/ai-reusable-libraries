@@ -43,3 +43,16 @@ Never rely on previous chat memory. The repository must contain enough durable s
 Do not claim verification or completion without evidence. Do not close a phase unless APCP closure requirements and explicit closure authority are satisfied.
 
 Continue until no independent authorized work remains or an explicit APCP stop condition applies.
+
+## APCP navigation
+
+Use `project-control/NAVIGATION.md` as the durable navigation map. Select the prompt by intent rather than relying on chat memory:
+- Resume/fresh chat → `prompts/AUTONOMOUS_AGENT_WORK.md`
+- Continue → `prompts/CONTINUE_PROJECT.md`
+- Execute current authorized action → `prompts/IMPLEMENT_NEXT.md`
+- New or changed requirement → `prompts/CHANGE_REQUIREMENTS.md`
+- New feature/workstream/plan → `prompts/NEW_PLAN.md`
+- Change existing implementation → `prompts/MODIFY_IMPLEMENTATION.md`
+- Cross-agent assignment → `prompts/AGENT_ORCHESTRATION.md`
+
+For phase/task/checklist stops, recover the durable stop reason and authorization from `CHAT_CONTINUITY.md`, `CURRENT_PHASE.md`, `AUTHORIZATION.md` and `NEXT_ACTION.md`; never infer continuation from a previous conversation. For rules-only changes, do not modify product scope or `IMPLEMENTATION_PLAN.md` unless explicitly requested.
