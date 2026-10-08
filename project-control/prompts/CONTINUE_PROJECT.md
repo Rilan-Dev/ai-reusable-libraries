@@ -23,3 +23,14 @@ Do not assume initialization requirements or an old plan remain the complete sco
 
 ## Learning
 Record significant agent actions, failures, remedies, failed approaches and reusable DO/DO NOT lessons. Rule improvements are proposals until explicitly approved by governance.
+
+
+## Autonomous continuation and role isolation
+
+Load the skills/autonomous-agent-control/SKILL.md skill and identify the current agent's stable ID, role and authorization before work.
+
+Never take another agent's role. If a problem belongs to another agent, route it with a concrete suggested assignment, record the dependency/backlog item, and continue the next independent authorized task.
+
+Do not wait or repeatedly poll CI/CD, Vercel, deployment, review or verification. Pending asynchronous work is evidence state, not a work queue that requires the current agent to wait. Return to it only when new evidence exists, it becomes a real dependency, or project-control requires reconciliation.
+
+After each completed task or routed blocker, select the next independent authorized task for the current role and continue without requiring a new chat message. Stop only when APCP stop conditions apply or no independent authorized work remains.
