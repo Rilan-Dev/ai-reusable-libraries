@@ -23,3 +23,13 @@
 21. Agent rule improvements are proposals until explicitly approved by a governance authority.
 22. An agent cannot approve its own rule-improvement proposal or use a proposal as implementation authorization.
 23. Significant error/CI/deployment incidents require durable event/lesson records before being considered fully handed back.
+
+
+24. A specialized agent must not silently assume another registered agent's role.
+25. A blocker owned by another agent is a routing event, not authorization for the discovering agent to take over.
+26. Cross-agent blockers should have durable ownership and a concrete suggested action when they affect project execution.
+27. A pending asynchronous check is not a reason to stop independent authorized work.
+28. Repeated polling/waiting for another agent or asynchronous system is prohibited when independent authorized work exists.
+29. After completing or routing a task, an agent must select the next independent authorized task belonging to its role when one exists.
+30. AGENT_BACKLOG entries record ownership and dependency but never grant authorization or transfer role ownership.
+31. A fresh chat must be able to recover agent identity, role ownership, blockers, suggested assignments and lessons from repository state alone.
