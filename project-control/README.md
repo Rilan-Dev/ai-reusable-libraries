@@ -82,3 +82,23 @@ Material changes require impact analysis and, where appropriate, Superpowers bra
 
 ## Rule learning
 Agents may propose improvements through RULE-PROP records. They must not silently rewrite APCP governance. Rule proposals require evidence and explicit governance approval before promotion into MASTER_AI_RULE.md, schemas, prompts or templates.
+
+
+## Autonomous agent control
+
+For multi-agent projects, load the reusable skills/autonomous-agent-control/SKILL.md skill. It makes role ownership explicit and prevents one agent from taking another agent's responsibilities.
+
+The default autonomous model is:
+- DEV-01 / Forge: product implementation only.
+- FIX-01 / Sentinel: assigned error diagnosis/remediation only.
+- OPS-01 / Shipwright: CI/CD, GitHub Actions, Vercel, Docker and deployment/infrastructure only.
+
+A blocker belonging to another agent is a routing event, not permission to take over that role. The discovering agent creates a handoff/backlog item with a concrete suggested assignment and continues independent authorized work.
+
+Use prompts/AUTONOMOUS_AGENT_WORK.md for fresh-chat and autonomous continuation. Multi-agent projects should maintain AGENT_BACKLOG.md as a durable cross-agent work queue.
+
+No-wait/no-polling is mandatory: pending CI/CD, deployment, review or verification must not create a wait loop when independent authorized work exists. Pending evidence remains pending and is never silently converted to PASS.
+
+## Agent-role invariant
+
+An agent owns its responsibility, not the entire project. Identity never grants authority. Authorization grants authority. Agents must never silently switch roles because another role has a blocker.
