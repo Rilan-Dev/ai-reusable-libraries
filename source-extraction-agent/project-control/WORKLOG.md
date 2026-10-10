@@ -25,3 +25,10 @@
 - Limitation: CI validates this agent package and verifier fixtures; it does not validate a target upstream extraction.
 - PR: https://github.com/Rilan-Dev/ai-reusable-libraries/pull/2 (base feature/ai-project-control-protocol; open for review).
 - Next: confirm latest head's rerun/status and inspect whether parent project-control integration should be a small link-only change.
+
+## Entry 004 — Parent APCP navigation integration
+- Inspected the existing parent `project-control/README.md`, `NAVIGATION.md`, and continuation prompt on the feature branch.
+- Added a navigation entry and a concise README pointer to the Source Extraction Agent. The existing parent project-control files were preserved; only navigation/documentation links were added.
+- No product implementation plan or authorization files were changed.
+- CI for the prior head passed; this integration changes Markdown only, so the PR workflow may rerun on the new head.
+- Next: review the PR diff and latest workflow evidence; leave the PR open for review rather than merging without a separate request.
