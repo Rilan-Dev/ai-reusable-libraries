@@ -32,3 +32,9 @@
 - No product implementation plan or authorization files were changed.
 - CI for the prior head passed; this integration changes Markdown only, so the PR workflow may rerun on the new head.
 - Next: review the PR diff and latest workflow evidence; leave the PR open for review rather than merging without a separate request.
+
+
+## 005 — 2026-10-10 — Add user and memory guidance; prepare target sync
+- Added USER_GUIDE.md and MEMORY_AND_CONTINUITY.md to the maintained agent package.
+- Opened target-specific guidance PRs for Doable, n8n and OmniRoute; each target pack is explicitly documented as guidance-only and does not claim an upstream extraction PASS.
+- The target packs currently contain the core operating docs, master prompt, user/memory guidance and repository-specific checkpoint. Specialized skill files, scripts, schemas and templates are not yet fully mirrored to targets; this remains follow-up work and must not be represented as a complete byte-for-byte package sync.
