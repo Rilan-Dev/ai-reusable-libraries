@@ -38,3 +38,10 @@
 - Added USER_GUIDE.md and MEMORY_AND_CONTINUITY.md to the maintained agent package.
 - Opened target-specific guidance PRs for Doable, n8n and OmniRoute; each target pack is explicitly documented as guidance-only and does not claim an upstream extraction PASS.
 - The target packs currently contain the core operating docs, master prompt, user/memory guidance and repository-specific checkpoint. Specialized skill files, scripts, schemas and templates are not yet fully mirrored to targets; this remains follow-up work and must not be represented as a complete byte-for-byte package sync.
+
+
+## 006 — 2026-10-10 — Complete target agent package mirror
+- Mirrored the reusable source-extraction-agent package content into PR branches for Doable, n8n and OmniRoute, including 11 stage prompts, 12 skills, four JSON schemas, four templates, examples, workflows, package scripts, verifier and tests.
+- Adapted project-control state per target instead of copying the source agent's own checkpoint; preserved existing repository-level project-control/history.
+- Added isolated package-check workflows to the target PR branches. Their latest-head results have not been confirmed in this session.
+- PRs remain open/unmerged. No upstream application source was extracted or verified by this synchronization work.
