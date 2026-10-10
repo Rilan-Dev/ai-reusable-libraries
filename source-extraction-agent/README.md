@@ -3,6 +3,7 @@
 A repository-native operating system for discovering, documenting, copying, and verifying reusable first-party source code from upstream applications without altering the captured source.
 
 ## Start here
+1. Read [USER_GUIDE.md](USER_GUIDE.md) for how to invoke prompts, separate agent roles, and persist memory across chats.
 1. Read [AGENTS.md](AGENTS.md), [EXTRACTION_RULES.md](EXTRACTION_RULES.md), and [EXTRACTION_AGENT_SPEC.md](EXTRACTION_AGENT_SPEC.md).
 2. Recover the checkpoint from [project-control/CHAT_CONTINUITY.md](project-control/CHAT_CONTINUITY.md), then read CURRENT_PHASE, NEXT_ACTION, VERIFICATION_STATE, ISSUES, RISKS, DECISIONS, and WORKLOG.
 3. Complete repository onboarding and pin the source commit and root tree before inventory work.
