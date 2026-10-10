@@ -1,0 +1,28 @@
+name: Source Extraction Agent Checks
+
+on:
+  pull_request:
+    paths:
+      - "source-extraction-agent/**"
+      - ".github/workflows/source-extraction-agent.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate agent package, schemas, and local links
+        working-directory: source-extraction-agent
+        run: npm run check
+      - name: Test immutable-source verifier against temporary Git fixtures
+        working-directory: source-extraction-agent
+        run: npm test
