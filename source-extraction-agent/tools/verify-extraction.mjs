@@ -31,7 +31,7 @@ function fail(message) {
 }
 function git(cwd, args, input) {
   const result = spawnSync("git", args, {
-    cwd, input, encoding: input === undefined ? "utf8" : undefined,
+    cwd, input, encoding: "utf8",
     maxBuffer: 64 * 1024 * 1024
   });
   if (result.error) throw result.error;
@@ -130,9 +130,6 @@ try {
     if (item.blob_sha && sourceEntry.sha !== item.blob_sha) errors.push(`Source blob SHA mismatch for ${sourceRel}: manifest ${item.blob_sha}, Git ${sourceEntry.sha}`);
     if (item.mode && sourceEntry.mode !== item.mode) errors.push(`Source mode mismatch for ${sourceRel}: manifest ${item.mode}, Git ${sourceEntry.mode}`);
     const type = item.type === "symlink" || sourceEntry.mode === "120000" ? "symlink" : "blob";
-    if (!fs.existsSync(target) && !fs.lstatSyncSafe?.(target)) {
-      // lstat is used below so broken symlinks are also detected.
-    }
     let stat;
     try { stat = fs.lstatSync(target); } catch { errors.push(`Missing extracted path: ${rel}`); continue; }
     if (type === "symlink" && !stat.isSymbolicLink()) { errors.push(`Expected symlink: ${rel}`); continue; }
