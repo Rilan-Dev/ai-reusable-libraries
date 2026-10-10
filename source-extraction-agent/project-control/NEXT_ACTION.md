@@ -12,3 +12,7 @@
 - PRs opened: Doable #1, n8n #1, OmniRoute #1.
 - The target repositories received the core operating guidance and repo-specific continuity documents without deleting existing project history.
 - Follow-up: if full package mirroring is required, sync the specialized skills, prompts, schemas, templates, tools, tests and workflows as well. Do not claim the entire package has been copied until those files are present and reconciled.
+
+
+## Update — 2026-10-10 — Target package mirror advanced
+The full reusable package content has now been mirrored into the Doable, n8n and OmniRoute PR branches: prompts, 12 specialized skills, schemas, templates, examples, workflows, package scripts, verifier, tests and target-adapted project-control records. The target PRs remain open and unmerged. Next: review each PR diff and confirm the package checks on the latest target heads when practical; do not claim checks passed without evidence. Application-source extraction remains separately gated per target.
