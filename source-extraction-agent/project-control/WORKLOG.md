@@ -16,3 +16,12 @@
 - Verification: no local `npm run check` or `npm test` execution has been observed in this session. These remain pending; do not claim PASS.
 - Upstream source extraction: not started. No immutable upstream source PASS is claimed.
 - Next: open a PR for review, enable/observe real CI or run checks in a checkout, fix any failures, then recover parent project-control and target-specific extraction state.
+
+## Entry 003 — CI verification evidence
+- GitHub Actions run: https://github.com/Rilan-Dev/ai-reusable-libraries/actions/runs/38066806961
+- Checked commit: 36f3ef8904e08a6c74c3511c2ab94e92d956d052
+- Result: SUCCESS; package-checks job completed successfully.
+- Confirmed steps: package structure/schema/local-link validation and immutable-source verifier fixture tests.
+- Limitation: CI validates this agent package and verifier fixtures; it does not validate a target upstream extraction.
+- PR: https://github.com/Rilan-Dev/ai-reusable-libraries/pull/2 (base feature/ai-project-control-protocol; open for review).
+- Next: confirm latest head's rerun/status and inspect whether parent project-control integration should be a small link-only change.
