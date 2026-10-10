@@ -1,0 +1,15 @@
+{
+  "name": "@rilan-dev/source-extraction-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prompts, skills, workflows, and integrity tooling for immutable reusable-source extraction.",
+  "type": "module",
+  "scripts": {
+    "check": "node tools/check-agent-package.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify:extraction": "node tools/verify-extraction.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
