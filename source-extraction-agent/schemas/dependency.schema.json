@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Extraction Dependency",
+  "type": "object",
+  "required": ["id", "kind", "origin", "status"],
+  "properties": {
+    "id": {"type": "string"},
+    "kind": {"enum": ["first-party", "external-package", "external-service", "database", "filesystem", "environment", "secret", "subprocess", "native", "generated", "host-adapter", "test-only", "unresolved"]},
+    "origin": {"type": "string"},
+    "target": {"type": "string"},
+    "required_by": {"type": "array", "items": {"type": "string"}},
+    "status": {"enum": ["resolved", "inventoried", "adapter-required", "unresolved", "not-applicable"]},
+    "evidence": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

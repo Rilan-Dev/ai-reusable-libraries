@@ -54,6 +54,8 @@ At every phase boundary ask: what requirement may still be unmet, what assumptio
 ## Reuse
 Copy project-control into a new repository. Start with prompts/INITIALIZE_PROJECT.md. Later conversations use prompts/CONTINUE_PROJECT.md.
 
+For reusable upstream source discovery and capture, use [Source Extraction Agent](../source-extraction-agent/README.md). It has a separate extraction lifecycle and evidence state; do not treat extraction as application implementation, and do not start host integration until immutable-source verification passes.
+
 ## Practical usage
 
 You do not need to memorize APCP. Use the practical [USAGE_GUIDE.md](./USAGE_GUIDE.md) for copy-paste action prompts.

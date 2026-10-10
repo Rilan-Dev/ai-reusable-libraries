@@ -34,6 +34,7 @@ This file is the durable navigation index for APCP. Agents must navigate from re
 | Phase closure | `prompts/CLOSE_PHASE.md` when present |
 | Governance/master behavior | `prompts/MASTER_AI_RULE.md` |
 | Adaptive all-purpose control | `prompts/ADAPTIVE_PROJECT_CONTROL.md` |
+| Reusable source extraction | `../source-extraction-agent/README.md`, then `prompts/00-session-recovery.md` and `EXTRACTION_AGENT_SPEC.md` |
 
 ## Adaptive decision tree
 
@@ -85,3 +86,8 @@ If the user explicitly asks to update APCP rules/skills/prompts without changing
 ## Fresh-chat invariant
 
 A new AI must be able to determine role, phase, authorization, requirements, implementation state, verification state, blockers, ownership and next action from the repository alone.
+
+
+## Reusable source extraction agent
+
+For extracting reusable production-grade source from an upstream repository, use `../source-extraction-agent/README.md`. Recover that folder's project-control first, then follow its source-pinning, architecture, capability discovery, business-logic/UI tracing, recursive dependency closure, second-pass reconciliation and integrity gates. This workflow is separate from application implementation and must not alter the parent project's implementation plan unless explicitly requested.
