@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Candidate Reconciliation",
+  "type": "object",
+  "required": ["source_commit", "candidates"],
+  "properties": {
+    "source_commit": {"type": "string"},
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "path_or_symbol", "disposition", "rationale"],
+        "properties": {
+          "id": {"type": "string"},
+          "path_or_symbol": {"type": "string"},
+          "disposition": {"enum": ["already-captured", "reusable-tier-1", "reusable-tier-2", "dependency-closure", "ui-reference", "host-boundary", "product-only", "not-applicable-with-evidence"]},
+          "rationale": {"type": "string"},
+          "evidence": {"type": "array", "items": {"type": "string"}},
+          "unresolved": {"type": "boolean"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
