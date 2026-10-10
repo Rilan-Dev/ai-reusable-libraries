@@ -1,8 +1,8 @@
 # Next action
 
-1. Finish publishing the source-extraction-agent package to the feature branch.
-2. Retrieve resulting commit and inspect branch files to confirm intended content is present.
-3. Run available schema/link/structure checks in a real checkout; record actual results and fix defects without touching upstream source.
-4. Integrate with parent project-control conventions only after inspecting existing files; do not replace them blindly.
-5. Implement a separate executable verifier and fixture-based tests in a follow-up task if not already present.
-6. Start target-specific onboarding only after this agent package is accessible and checkpointed.
+1. Run `npm run check` and `npm test` from source-extraction-agent in a real checkout; fix any failures.
+2. Inspect all paths on feature/source-extraction-agent and reconcile against README/package required files.
+3. Confirm the branch commit and open a PR to main for review; do not claim merge.
+4. Inspect parent project-control conventions and integrate only non-conflicting links/references.
+5. Begin target-specific onboarding from the latest real extraction checkpoint (OmniRoute, Doable, Clara or another requested target).
+6. Do not claim upstream extraction PASS until that target's pinned source and immutable copy are verified.
