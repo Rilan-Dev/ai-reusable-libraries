@@ -1,8 +1,8 @@
 # Next action
 
-1. Run `npm run check` and `npm test` from source-extraction-agent in a real checkout; fix any failures.
-2. Inspect all paths on feature/source-extraction-agent and reconcile against README/package required files.
-3. Confirm the branch commit and open a PR to main for review; do not claim merge.
-4. Inspect parent project-control conventions and integrate only non-conflicting links/references.
-5. Begin target-specific onboarding from the latest real extraction checkpoint (OmniRoute, Doable, Clara or another requested target).
-6. Do not claim upstream extraction PASS until that target's pinned source and immutable copy are verified.
+1. Review PR #2's final diff, keeping the base at `feature/ai-project-control-protocol` so unrelated parent-branch changes are excluded.
+2. Confirm the latest head's package-check workflow result after the APCP navigation links and worklog update; do not repeatedly poll while independent work remains.
+3. Address any reviewer feedback or newly observed CI failure without modifying immutable upstream source.
+4. After PR review/merge authorization, begin target-specific source extraction by recovering the target repository's latest project-control and pinned commit/tree.
+5. For OmniRoute, resume from its existing extraction branch/worklog and resolve the actual current verifier/evidence gap before any new copy.
+6. Do not claim an upstream extraction PASS until that target's pinned source, closure, reconciliation, immutable copy, and verifier are all evidenced.
