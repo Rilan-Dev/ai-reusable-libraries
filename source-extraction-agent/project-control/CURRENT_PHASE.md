@@ -1,7 +1,7 @@
 # Current phase
 
 Phase: Agent system authoring and repository integration
-Status: IN PROGRESS until all planned documents are committed and remote state is confirmed.
-Completed in this package: orchestrator specification, core prompts, focused skills, lifecycle/gate docs, templates, schemas and initial control files.
-Not yet established: automated verifier implementation against a real pinned upstream checkout; runtime test execution; final source extraction for any upstream repository.
-Exit criteria: all planned agent docs present, JSON schemas parse, links/paths resolve, project-control state is coherent, changes committed and remote branch verified.
+Status: DOCUMENTATION AND TOOLING AUTHORED; local execution and remote completeness verification still pending.
+Included: orchestrator specification, prompts, focused skills, lifecycle/gate docs, templates, schemas, project-control records, repository-specific examples, package checker, immutable-source verifier and fixture tests.
+Not yet established: test/check commands passed in a real checkout; complete branch tree reconciled; target upstream extraction verified.
+Exit criteria: run npm run check and npm test in a real checkout, inspect remote branch completeness, update worklog with actual outputs, and create a review handoff.
