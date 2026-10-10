@@ -18,3 +18,9 @@ Do not report PASS until commands and outputs are observed in a real checkout.
 - Job: package-checks
 - Evidence: https://github.com/Rilan-Dev/ai-reusable-libraries/actions/runs/38066806961
 - Scope note: this validates the agent package and verifier fixtures only; it does not prove any separate upstream extraction is complete or PASS.
+
+
+## Target mirror update — 2026-10-10
+- Doable PR #1, n8n PR #1 and OmniRoute PR #1 now include the reusable package content plus target-specific project-control records and a dedicated package-check workflow.
+- Latest target heads are recorded in the respective PRs; package checks on these latest heads are not confirmed here.
+- This state is distinct from upstream application extraction verification. No target extraction PASS is claimed.
