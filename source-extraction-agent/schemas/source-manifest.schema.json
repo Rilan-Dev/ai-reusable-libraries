@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Immutable Source Manifest",
+  "type": "object",
+  "required": ["repository", "commit", "root_tree", "files"],
+  "properties": {
+    "repository": {"type": "string", "format": "uri"},
+    "ref": {"type": "string"},
+    "commit": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+    "root_tree": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "blob_sha", "mode", "type"],
+        "properties": {
+          "path": {"type": "string"},
+          "blob_sha": {"type": "string"},
+          "mode": {"type": "string"},
+          "type": {"enum": ["blob", "symlink", "submodule"]},
+          "size": {"type": "integer", "minimum": 0}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
