@@ -18,3 +18,7 @@ Immediate next action: inspect high-risk and central architecture paths (backend
 
 ## Architecture map update
 The initial map now includes 16 candidate capability areas with pinned blob identities and test candidates. Immediate next step is to expand each candidate through actual imports/callers, schema/migrations, configuration, permissions, runtime and tests, then use evidence to classify paths. High-risk priority: auth/OAuth, safeFetch/image proxy/email sanitizer, IMAP move/sync, plugin isolation, migrations, native Electron/Android security and update watcher permissions.
+
+
+## Verification update
+Stored-manifest consistency was checked against the pinned tree and passed with zero mismatches. Next run tools/verify-inventory.mjs in a local checkout or through CI, then continue actual content/call-chain discovery and path classification. Do not confuse manifest consistency with extraction closure.
