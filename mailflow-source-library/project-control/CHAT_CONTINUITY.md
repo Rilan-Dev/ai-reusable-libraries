@@ -7,3 +7,7 @@ Initial source pin: commit e7a53760a7e4b15e0ee631533655d99dde657599; root tree 2
 Current phase: Phase 1 inventory/capability discovery. No source files copied. Exact-copy Phase 2 blocked pending capability closure, all-path disposition, license/provenance classification, independent reconciliation and authorization.
 
 Before resuming, inspect live refs, then CURRENT_PHASE, NEXT_ACTION, VERIFICATION_STATE, ISSUES, RISKS, DECISIONS and WORKLOG. Preserve history and append updates. The user requires future upstream commits to be detected and reviewed by AI-assisted workflows.
+
+
+## Update 2026-10-14
+Added a preliminary capability map and a path-disposition register for all 1,319 source blobs. Every path is explicitly still unclassified. Added a scheduled/manual source watcher workflow and an end-to-end update playbook. The workflow is not yet validated and scheduling only becomes active once the workflow lands on the default branch. Continue by reading central architecture and security paths and tracing dependency closure; do not start exact-copy phase prematurely.
