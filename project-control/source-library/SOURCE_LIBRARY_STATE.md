@@ -8,3 +8,5 @@
 - **Current source workstreams:** Doable Source, Clara Core, MailFlow.
 - **Verification status:** Global architecture docs proposed in this branch; not yet merged. Existing MailFlow inventory consistency was previously checked via API evidence; local Node verifier and watcher remain unexecuted/unverified.
 - **Safety boundary:** No new source-copy authorization is implied. MailFlow remains discovery/closure/license review only.
+
+- Current review: PR #5, https://github.com/Rilan-Dev/ai-reusable-libraries/pull/5, from `architecture/global-source-library-control` to `main`; head commit `91b734633d4b64649e1e318d5629d75c9098b591`. PR is open and mergeable; not merged.
