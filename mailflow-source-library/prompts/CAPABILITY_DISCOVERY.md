@@ -1,0 +1,3 @@
+# Capability Discovery Prompt — MailFlow
+
+For each capability record: stable ID; user-facing behavior; server/API entry points; UI entry points; source paths and blob SHAs; internal callers/dependencies; data models/migrations; configuration/secrets/permissions; external services/protocols; tests; packaging/platform scope; license/provenance; reuse status; host-adapter requirements; unresolved edges. Inspect behavior and call chains, not just README claims. Mark unsupported claims unknown. Produce a machine-readable manifest plus a human-readable dependency graph. A capability is incomplete until runtime, data, UI and test closure are mapped.

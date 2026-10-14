@@ -45,3 +45,12 @@
 - Adapted project-control state per target instead of copying the source agent's own checkpoint; preserved existing repository-level project-control/history.
 - Added isolated package-check workflows to the target PR branches. Their latest-head results have not been confirmed in this session.
 - PRs remain open/unmerged. No upstream application source was extracted or verified by this synchronization work.
+
+
+## 007 — 2026-10-14 — Begin MailFlow source-library extraction
+- Created mailflow-source-library on branch extraction/mailflow-source-library without changing or deleting existing source-extraction-agent records.
+- Pinned Rilan-Dev/mailflow main at commit e7a53760a7e4b15e0ee631533655d99dde657599 and root tree 27059315bc16155f0064dc136aae94cd5097cb02.
+- Captured a complete recursive tree inventory (1,462 entries; 1,319 blobs; not truncated), preliminary capability candidate map, and all-file UNCLASSIFIED register.
+- Added user guide, extraction/update prompts, target project-control, and scheduled/manual upstream-change watcher proposal.
+- MailFlow README declares AGPL-3.0 plus separate commercial license; CLA exists. Per-path license/provenance and dependency closure remain open.
+- No application source has been copied; no extraction PASS claimed.

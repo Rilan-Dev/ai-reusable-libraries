@@ -24,3 +24,10 @@ Do not report PASS until commands and outputs are observed in a real checkout.
 - Doable PR #1, n8n PR #1 and OmniRoute PR #1 now include the reusable package content plus target-specific project-control records and a dedicated package-check workflow.
 - Latest target heads are recorded in the respective PRs; package checks on these latest heads are not confirmed here.
 - This state is distinct from upstream application extraction verification. No target extraction PASS is claimed.
+
+
+## MailFlow library branch — 2026-10-14
+- Verified upstream commit/tree identity and complete recursive tree inventory are recorded in mailflow-source-library/source-pins/current.json and manifests/source-tree-2026-10-14.json.
+- Source library scaffolding, prompts, path candidate map and watcher workflow are present on extraction/mailflow-source-library.
+- The watcher has not been run end-to-end and is not scheduled until merged into the default branch.
+- No MailFlow source copy, closure PASS or extraction PASS is claimed.

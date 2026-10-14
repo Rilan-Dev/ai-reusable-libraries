@@ -1,0 +1,89 @@
+name: MailFlow Source Watch
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  detect-upstream-change:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Verify local source inventory consistency
+        run: node mailflow-source-library/tools/verify-inventory.mjs
+
+      - name: Check recorded baseline and latest MailFlow source pins
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASELINE="$(jq -r '.source.commit' mailflow-source-library/source-pins/current.json)"
+          BASELINE_TREE="$(jq -r '.source.tree' mailflow-source-library/source-pins/current.json)"
+          REF_JSON="$(curl -fsSL -H 'Accept: application/vnd.github+json' https://api.github.com/repos/Rilan-Dev/mailflow/git/ref/heads/main)"
+          LATEST="$(jq -r '.object.sha' <<< "$REF_JSON")"
+
+          if [[ "$LATEST" == "$BASELINE" ]]; then
+            echo "MailFlow is unchanged at $BASELINE"
+            {
+              echo "## MailFlow source watch"
+              echo "No upstream change detected."
+              echo "Recorded baseline commit: $BASELINE"
+              echo "Recorded baseline tree: $BASELINE_TREE"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          COMMIT_JSON="$(curl -fsSL -H 'Accept: application/vnd.github+json' "https://api.github.com/repos/Rilan-Dev/mailflow/git/commits/$LATEST")"
+          LATEST_TREE="$(jq -r '.tree.sha' <<< "$COMMIT_JSON")"
+          COMPARE_URL="https://github.com/Rilan-Dev/mailflow/compare/$BASELINE...$LATEST"
+          TITLE="MailFlow source update: ${LATEST:0:12}"
+          BODY="$(cat <<EOF
+          ## Upstream MailFlow update detected
+
+          The scheduled source watcher found a new upstream main commit.
+
+          - Recorded baseline commit: $BASELINE
+          - Recorded baseline tree: $BASELINE_TREE
+          - Latest commit: $LATEST
+          - Latest tree: $LATEST_TREE
+          - Compare: $COMPARE_URL
+
+          ### Required next steps
+
+          1. Start a repository-aware AI agent with `mailflow-source-library/prompts/UPSTREAM_UPDATE_REVIEW.md`.
+          2. Inspect the full commit range and changed paths, then trace capability/dependency closure.
+          3. Recheck licenses and provenance for changed/new paths.
+          4. Produce a versioned snapshot proposal and verifier evidence.
+          5. Open a reviewed PR. Do not overwrite the existing snapshot or advance the recorded baseline without verification.
+
+          This issue is a detection signal, not authorization to copy source or declare PASS.
+          EOF
+          )"
+
+          EXISTING="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title --jq '[.[] | select(.title | startswith("MailFlow source update:"))][0].number // empty')"
+          if [[ -n "$EXISTING" ]]; then
+            gh issue comment "$EXISTING" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+            echo "Updated existing tracking issue #$EXISTING"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "$BODY"
+          fi
+
+          {
+            echo "## MailFlow source watch"
+            echo "Upstream has advanced; a tracking issue was created or updated."
+            echo "Recorded baseline commit: $BASELINE"
+            echo "Latest commit: $LATEST"
+            echo "Latest tree: $LATEST_TREE"
+            echo "Compare: $COMPARE_URL"
+          } >> "$GITHUB_STEP_SUMMARY"
