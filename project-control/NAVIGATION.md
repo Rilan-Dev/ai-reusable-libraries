@@ -91,3 +91,10 @@ A new AI must be able to determine role, phase, authorization, requirements, imp
 ## Reusable source extraction agent
 
 For extracting reusable production-grade source from an upstream repository, use `../source-extraction-agent/README.md`. Recover that folder's project-control first, then follow its source-pinning, architecture, capability discovery, business-logic/UI tracing, recursive dependency closure, second-pass reconciliation and integrity gates. This workflow is separate from application implementation and must not alter the parent project's implementation plan unless explicitly requested.
+
+
+## Global source-library program
+
+For source extraction across Doable Source, Clara Core, MailFlow or a future upstream, use `../SOURCE_LIBRARY_OPERATING_MODEL.md`, `../SOURCE_LIBRARY_CATALOG.md`, `source-library/SOURCE_LIBRARY_STATE.md`, `source-library/SOURCE_LIBRARY_NEXT_ACTION.md`, `source-library/SOURCE_LIBRARY_ROADMAP.md`, and `source-library/SOURCE_LIBRARY_WORKLOG.md`.
+
+Use `../source-extraction-agent/` as the canonical reusable prompt/rule/schema/template/tool set. Do not build a separate generic extraction architecture inside each source-specific directory.
