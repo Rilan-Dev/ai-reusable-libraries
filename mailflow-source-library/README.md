@@ -30,6 +30,7 @@ The workflow at ../.github/workflows/mailflow-source-watch.yml polls upstream ma
 - source-pins/current.json: current approved upstream identity proposal.
 - manifests/source-tree-2026-10-14.json: full path, mode, object SHA and size inventory.
 - project-control/: durable progress, evidence, decisions, issues, risks and next action.
+- tools/verify-inventory.mjs: checks pin/manifest consistency, path coverage and candidate blob identities. Run with node mailflow-source-library/tools/verify-inventory.mjs.
 - prompts/: initial extraction, capability discovery, upstream update review and verification.
 - SOURCE_UPDATE_PLAYBOOK.md: human-guided and AI-assisted change capture.
 
