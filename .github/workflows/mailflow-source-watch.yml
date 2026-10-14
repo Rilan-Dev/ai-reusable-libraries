@@ -13,7 +13,16 @@ jobs:
   detect-upstream-change:
     runs-on: ubuntu-latest
     steps:
-      - name: Check approved and latest MailFlow source pins
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: Verify local source inventory consistency
+        run: node mailflow-source-library/tools/verify-inventory.mjs
+
+      - name: Check recorded baseline and latest MailFlow source pins
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
