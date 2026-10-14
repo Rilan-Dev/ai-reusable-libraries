@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "canonical_framework": "source-extraction-agent/",
+  "sources": [
+    {
+      "id": "doable-source",
+      "name": "Doable Source",
+      "library_path": "doable-source/",
+      "upstream_repository": null,
+      "upstream_ref": null,
+      "source_pin_path": "doable-source/extraction-manifest.json",
+      "status": "EXISTING_LIBRARY_PIN_REQUIRES_RECONCILIATION",
+      "watch_enabled": false,
+      "reason": "Confirm canonical upstream URL/ref/commit/tree from the full source manifest before enabling monitoring."
+    },
+    {
+      "id": "clara-core",
+      "name": "Clara Core",
+      "library_path": "clara-core/",
+      "upstream_repository": "https://github.com/Rilan-Dev/Clara-AI-Platform",
+      "upstream_ref": null,
+      "source_pin_path": "clara-core/extraction-manifest.json",
+      "status": "INCREMENTAL_EXTRACTION",
+      "watch_enabled": false,
+      "reason": "Reconcile the complete manifest and pinned source ref before enabling automated monitoring."
+    },
+    {
+      "id": "mailflow",
+      "name": "MailFlow",
+      "library_path": "mailflow-source-library/",
+      "upstream_repository": "https://github.com/Rilan-Dev/mailflow",
+      "upstream_ref": "main",
+      "source_pin_path": "mailflow-source-library/source-pins/current.json",
+      "status": "DISCOVERY_AND_CLOSURE_PENDING",
+      "watch_enabled": true,
+      "reason": "Pinned baseline is a proposed initial discovery pin; watcher only detects changes and never copies/promotes source."
+    }
+  ]
+}

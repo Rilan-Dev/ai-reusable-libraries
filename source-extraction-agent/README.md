@@ -30,3 +30,12 @@ A repository-native operating system for discovering, documenting, copying, and 
 
 ## Scope
 Designed for application platforms, AI systems, SaaS services, integrations, workflow engines, media pipelines, developer tooling, and other reusable capabilities. It does not assume all upstream code is reusable or that every repository has the same architecture.
+
+
+## Reuse across multiple source libraries
+
+This package is the canonical global extraction framework for every source in this repository and future sources. Do not fork generic prompts, agent roles, schemas, verification rules or update-capture procedures into a product-specific source folder. Source folders should contain only source-specific pins, inventories, capability evidence, licensing/provenance records, verification outputs and workstream state.
+
+For the repository-wide operating model, catalog and cross-source next action, see [SOURCE_LIBRARY_OPERATING_MODEL.md](../SOURCE_LIBRARY_OPERATING_MODEL.md), [SOURCE_LIBRARY_CATALOG.md](../SOURCE_LIBRARY_CATALOG.md), and [project-control/source-library/](../project-control/source-library/).
+
+When an upstream branch advances, follow [Prompt 11 — Generic upstream update review](prompts/11-upstream-update-review.md) and [the update-capture workflow](workflows/upstream-update-capture.md). Detection is not authorization to copy or promote a snapshot.

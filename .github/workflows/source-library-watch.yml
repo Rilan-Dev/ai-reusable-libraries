@@ -1,0 +1,66 @@
+name: Source Library Upstream Watch
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  detect-upstream-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check configured upstream refs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          REGISTRY="project-control/source-library/SOURCE_LIBRARY_CATALOG.json"
+          jq -e '.sources | type == "array"' "$REGISTRY" >/dev/null
+          while IFS= read -r SOURCE; do
+            ID="$(jq -r '.id' <<< "$SOURCE")"
+            REPO_URL="$(jq -r '.upstream_repository // empty' <<< "$SOURCE")"
+            REF="$(jq -r '.upstream_ref // empty' <<< "$SOURCE")"
+            PIN_PATH="$(jq -r '.source_pin_path // empty' <<< "$SOURCE")"
+            ENABLED="$(jq -r '.watch_enabled // false' <<< "$SOURCE")"
+            if [[ "$ENABLED" != "true" ]]; then echo "Skipping $ID: watch disabled"; continue; fi
+            if [[ -z "$REPO_URL" || -z "$REF" || -z "$PIN_PATH" || ! -f "$PIN_PATH" ]]; then echo "::error::Invalid watch configuration for $ID"; exit 1; fi
+            OWNER_REPO="${REPO_URL#https://github.com/}"; OWNER_REPO="${OWNER_REPO%/}"
+            BASELINE="$(jq -r '.source.commit // empty' "$PIN_PATH")"
+            BASELINE_TREE="$(jq -r '.source.tree // empty' "$PIN_PATH")"
+            if [[ -z "$BASELINE" || -z "$BASELINE_TREE" ]]; then echo "::error::Missing baseline commit/tree for $ID"; exit 1; fi
+            LATEST_JSON="$(curl -fsSL -H "Authorization: Bearer $GH_TOKEN" -H 'Accept: application/vnd.github+json' "https://api.github.com/repos/$OWNER_REPO/commits/$REF")"
+            LATEST="$(jq -r '.sha' <<< "$LATEST_JSON")"
+            LATEST_TREE="$(jq -r '.commit.tree.sha' <<< "$LATEST_JSON")"
+            if [[ "$LATEST" == "$BASELINE" ]]; then echo "$ID unchanged at $BASELINE"; continue; fi
+            COMPARE_URL="https://github.com/$OWNER_REPO/compare/$BASELINE...$LATEST"
+            TITLE="Source update [$ID]: ${LATEST:0:12}"
+            BODY="$(cat <<EOF
+## Upstream source update detected
+
+- Source ID: $ID
+- Upstream: $REPO_URL (ref: $REF)
+- Baseline commit/tree: $BASELINE / $BASELINE_TREE
+- Latest commit/tree: $LATEST / $LATEST_TREE
+- Compare: $COMPARE_URL
+- Source workstream: $PIN_PATH
+
+### Required next steps
+1. Recover the repository-level source-library state and the selected source's own project-control checkpoint.
+2. Follow the global `source-extraction-agent/prompts/11-upstream-update-review.md` and `source-extraction-agent/workflows/upstream-update-capture.md`.
+3. Trace changed paths to capabilities, callers, runtime, data, UI, tests and transitive dependencies.
+4. Recheck licenses, notices, CLA and provenance for changed/new paths.
+5. Prepare a versioned update proposal with actual verifier evidence and open a reviewed PR.
+
+Detection is not authorization to copy source, overwrite a snapshot, advance the baseline, merge, or declare PASS.
+EOF
+)"
+            EXISTING="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title --jq "[.[] | select(.title | startswith(\"Source update [$ID]:\"))][0].number // empty")"
+            if [[ -n "$EXISTING" ]]; then gh issue comment "$EXISTING" --repo "$GITHUB_REPOSITORY" --body "$BODY"; echo "Updated issue #$EXISTING for $ID"
+            else gh issue create --repo "$GITHUB_REPOSITORY" --title "$TITLE" --body "$BODY"; echo "Created issue for $ID"; fi
+          done < <(jq -c '.sources[]' "$REGISTRY")

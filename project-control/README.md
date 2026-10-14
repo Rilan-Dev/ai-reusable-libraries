@@ -118,3 +118,7 @@ Use `project-control/NAVIGATION.md` as the durable navigation map. Select the pr
 - Cross-agent assignment → `prompts/AGENT_ORCHESTRATION.md`
 
 For phase/task/checklist stops, recover the durable stop reason and authorization from `CHAT_CONTINUITY.md`, `CURRENT_PHASE.md`, `AUTHORIZATION.md` and `NEXT_ACTION.md`; never infer continuation from a previous conversation. For rules-only changes, do not modify product scope or `IMPLEMENTATION_PLAN.md` unless explicitly requested.
+
+## Shared source-library program
+
+This repository also maintains a cross-source source-library program. Start with [the source-library operating model](../SOURCE_LIBRARY_OPERATING_MODEL.md), [catalog](../SOURCE_LIBRARY_CATALOG.md), and [central source-library project control](source-library/README.md). The canonical extraction prompts/rules/templates live in `../source-extraction-agent/`; source-specific folders hold pins, inventories, evidence and source workstream state only.
