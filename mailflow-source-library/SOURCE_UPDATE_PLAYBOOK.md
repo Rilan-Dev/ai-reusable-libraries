@@ -6,7 +6,7 @@ Keep the library aligned with Rilan-Dev/mailflow without silently changing the b
 
 ## Automated detection
 
-The workflow at .github/workflows/mailflow-source-watch.yml runs every six hours and by manual dispatch. It reads the approved pin, queries upstream main and opens a tracking issue if a newer commit exists. It does not change the pin or copy source. Polling requires no write access to the upstream MailFlow repository.
+The workflow at .github/workflows/mailflow-source-watch.yml runs every six hours and by manual dispatch. It reads the recorded baseline, queries upstream main and opens a tracking issue if a newer commit exists. It does not change the pin or copy source. Polling requires no write access to the upstream MailFlow repository.
 
 An optional faster path is a source-side GitHub workflow that dispatches an event into this repository using a narrowly scoped token. This is optional; the scheduled watcher is the baseline.
 
@@ -21,7 +21,7 @@ An optional faster path is a source-side GitHub workflow that dispatches an even
 7. Never overwrite the previous snapshot. Create a new snapshot revision keyed by the new source pin.
 8. Recompute source blob identities and tree equality; verify paths and modes and ensure there are no unapproved modifications.
 9. Have an independent agent reconcile manifest completeness and unresolved edges.
-10. Advance current.json only in a reviewed PR after all gates pass. Close the tracking issue only after the PR is merged and the approved pin is recorded.
+10. Advance current.json only in a reviewed PR after all gates pass. Close the tracking issue only after the PR is merged and the recorded baseline is recorded.
 
 ## Never do these
 
