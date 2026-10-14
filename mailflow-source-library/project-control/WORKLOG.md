@@ -24,3 +24,10 @@
 - Added a 16-capability initial architecture map with source blob SHAs and test candidates; validated that every referenced path exists at the pinned tree.
 - Corrected the spam pipeline candidate to the actual path and rechecked blob identity.
 - All capabilities remain CANDIDATE_NOT_CLOSED; this is not dependency closure. All source paths remain unclassified and no application source has been copied.
+
+
+## 004 — 2026-10-14 — Add and cross-check inventory verifier
+- Added tools/verify-inventory.mjs to check the pin, full-tree manifest, all-file disposition register, candidate areas and architecture path/blob identities.
+- Independently ran equivalent consistency checks against the stored JSON and live pinned tree using the GitHub connector: PASS; 1,462 tree entries, 1,319 blobs, zero missing/duplicate paths or SHA/mode mismatches in the register, and zero missing architecture candidate paths.
+- The Node verifier script itself has not been executed in a local runtime. CI execution is pending workflow availability on the default branch.
+- All 1,319 dispositions remain UNCLASSIFIED; this does not pass capability closure or authorize copying.
