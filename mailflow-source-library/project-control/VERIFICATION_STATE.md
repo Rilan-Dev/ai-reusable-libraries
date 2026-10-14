@@ -15,3 +15,10 @@
 - Any extraction PASS.
 
 This is baseline identity/inventory evidence only, not full extraction verification.
+
+
+## Additional artifacts — 2026-10-14
+- Preliminary candidate map: manifests/capability-candidates-2026-10-14.json and CAPABILITY_CANDIDATES.md.
+- Complete initial per-file disposition register: manifests/path-dispositions-2026-10-14.json; all 1,319 blob entries intentionally remain UNCLASSIFIED / UNREVIEWED / UNMAPPED.
+- Change watcher: .github/workflows/mailflow-source-watch.yml authored. No end-to-end workflow run confirmed. Scheduled triggers require this workflow to be merged into the repository default branch; the current work is on extraction/mailflow-source-library.
+- No immutable application source copy, path-level license pass, dependency closure pass or extraction PASS.
