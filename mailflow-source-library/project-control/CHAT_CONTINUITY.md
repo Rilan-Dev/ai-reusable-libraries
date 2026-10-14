@@ -11,3 +11,7 @@ Before resuming, inspect live refs, then CURRENT_PHASE, NEXT_ACTION, VERIFICATIO
 
 ## Update 2026-10-14
 Added a preliminary capability map and a path-disposition register for all 1,319 source blobs. Every path is explicitly still unclassified. Added a scheduled/manual source watcher workflow and an end-to-end update playbook. The workflow is not yet validated and scheduling only becomes active once the workflow lands on the default branch. Continue by reading central architecture and security paths and tracing dependency closure; do not start exact-copy phase prematurely.
+
+
+## Architecture update — 2026-10-14
+A 16-capability initial architecture map has been added and its referenced paths verified against the pinned tree. No capability is closure-complete yet. Continue tracing actual imports/callers, data, configuration, tests and host/platform dependencies, starting with security/auth, IMAP synchronization, plugin isolation and migrations.
