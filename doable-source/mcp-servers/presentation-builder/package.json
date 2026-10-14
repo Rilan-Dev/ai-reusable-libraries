@@ -9,7 +9,7 @@
   },
   "main": "./index.mjs",
   "scripts": {
-    "start": "node index.mjs"
+    "start": "node init && node index.mjs"
   },
   "dependencies": {
     "@mcp-ui/server": "^6.1.0",
