@@ -15,3 +15,36 @@ If CI/CD is pending, continue independent authorized work; do not treat pending 
 At session end update WORKLOG and, when changed, PROJECT_STATE, CURRENT_PHASE, NEXT_ACTION, VERIFICATION_STATE and CHAT_CONTINUITY.
 
 Never claim completion without fresh evidence for the exact claim.
+## Agent-aware continuation
+Identify the active agent (DEV-01 / Forge, FIX-01 / Sentinel, or OPS-01 / Shipwright), read relevant AGENT_HANDOFF/AGENT_EVENTS/AGENT_MEMORY records, and preserve the agent authority boundary.
+
+## Adaptive scope
+Do not assume initialization requirements or an old plan remain the complete scope. Reconcile any newer requirement, plan, correction or priority change against current state and Git. If scope materially changes, use the appropriate APCP change prompt and applicable Superpowers brainstorming/specification/writing-plans workflow before affected implementation.
+
+## Learning
+Record significant agent actions, failures, remedies, failed approaches and reusable DO/DO NOT lessons. Rule improvements are proposals until explicitly approved by governance.
+
+
+## Autonomous continuation and role isolation
+
+Load the skills/autonomous-agent-control/SKILL.md skill and identify the current agent's stable ID, role and authorization before work.
+
+Never take another agent's role. If a problem belongs to another agent, route it with a concrete suggested assignment, record the dependency/backlog item, and continue the next independent authorized task.
+
+Do not wait or repeatedly poll CI/CD, Vercel, deployment, review or verification. Pending asynchronous work is evidence state, not a work queue that requires the current agent to wait. Return to it only when new evidence exists, it becomes a real dependency, or project-control requires reconciliation.
+
+After each completed task or routed blocker, select the next independent authorized task for the current role and continue without requiring a new chat message. Stop only when APCP stop conditions apply or no independent authorized work remains.
+
+
+## APCP navigation
+
+Use `project-control/NAVIGATION.md` as the durable navigation map. Select the prompt by intent rather than relying on chat memory:
+- Resume/fresh chat → `prompts/AUTONOMOUS_AGENT_WORK.md`
+- Continue → `prompts/CONTINUE_PROJECT.md`
+- Execute current authorized action → `prompts/IMPLEMENT_NEXT.md`
+- New or changed requirement → `prompts/CHANGE_REQUIREMENTS.md`
+- New feature/workstream/plan → `prompts/NEW_PLAN.md`
+- Change existing implementation → `prompts/MODIFY_IMPLEMENTATION.md`
+- Cross-agent assignment → `prompts/AGENT_ORCHESTRATION.md`
+
+For phase/task/checklist stops, recover the durable stop reason and authorization from `CHAT_CONTINUITY.md`, `CURRENT_PHASE.md`, `AUTHORIZATION.md` and `NEXT_ACTION.md`; never infer continuation from a previous conversation. For rules-only changes, do not modify product scope or `IMPLEMENTATION_PLAN.md` unless explicitly requested.

@@ -13,3 +13,7 @@
 
 ## Stop condition
 Stop at the authorized task or phase boundary. Do not begin future phases or unrelated cleanup without authorization.
+**Agent identity:** <agent ID / name>  
+**Required memory to read:** <AGENT_MEMORY references>  
+**Required event/worklog updates:** <event and worklog requirements>  
+**Rule proposal permission:** May propose improvements only; may not approve or promote APCP changes.

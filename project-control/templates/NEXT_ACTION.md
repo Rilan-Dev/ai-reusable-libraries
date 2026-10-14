@@ -12,3 +12,8 @@
 **If blocked:** <safe recovery action>
 
 Keep this file singular. Future work belongs in the plan.
+## Agent assignment
+**Owning agent:** <agent ID / name>  
+**Agent role:** <role>  
+**Handoff:** <reference or none>  
+**Required lessons to read:** <AGENT_MEMORY references>
