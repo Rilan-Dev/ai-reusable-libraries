@@ -15,3 +15,13 @@
 - Confirmed the MailFlow workstream records are present in the branch and `mailflow-source-library/prompts/` is absent; generic update prompt/workflow/report live under `source-extraction-agent/`.
 - Confirmed the registry enables upstream watching for MailFlow only; Doable and Clara monitoring remain disabled pending pin reconciliation.
 - Not yet run: local Node inventory verifier or manual GitHub Actions workflow dispatch.
+
+
+## 2026-10-14 — MailFlow extraction workspace moved to MailFlow repo
+
+- User clarified that MailFlow-specific extraction, memory, sessions and document records should live in the MailFlow repository, alongside a self-contained copy of the generic framework.
+- Added a proposed workspace in `Rilan-Dev/mailflow` PR #2: https://github.com/Rilan-Dev/mailflow/pull/2. It vendors all 63 generic framework files and places MailFlow-specific pins, inventories, project-control, verifier, memory and sessions under `extraction/`.
+- Updated this repository's machine-readable and human-readable catalog to point to MailFlow's own `extraction/` folder.
+- Disabled MailFlow monitoring in the global catalog because the current watcher assumes a source pin lives in this repository. Do not re-enable until external-repository pin support exists.
+- This branch removes the duplicated MailFlow-specific workstream folder after the MailFlow-owned workspace is established. The reusable framework remains canonical here.
+- Safety remains unchanged: 1,319 source blobs are unclassified, licensing/provenance and dependency closure are pending, and no source-copy authorization is granted.
