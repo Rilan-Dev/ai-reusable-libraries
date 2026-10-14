@@ -30,3 +30,7 @@ A repository-native operating system for discovering, documenting, copying, and 
 
 ## Scope
 Designed for application platforms, AI systems, SaaS services, integrations, workflow engines, media pipelines, developer tooling, and other reusable capabilities. It does not assume all upstream code is reusable or that every repository has the same architecture.
+
+
+## Active source library examples
+- MailFlow source library: ../mailflow-source-library/README.md. It contains the pinned baseline, complete tree inventory, user guide, extraction prompts and upstream-change update playbook.
