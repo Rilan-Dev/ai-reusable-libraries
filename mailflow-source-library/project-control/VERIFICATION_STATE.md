@@ -28,3 +28,9 @@ This is baseline identity/inventory evidence only, not full extraction verificat
 - Initial architecture map contains 16 capability candidates and references existing paths at the pinned source tree.
 - All referenced paths were checked against the complete tree inventory; missing path count is zero.
 - This only verifies candidate path existence and recorded blob identity, not behavior, dependency closure or eligibility.
+
+
+## Manifest consistency check — 2026-10-14
+- API/connector validation against the stored manifests: PASS. Source pin and tree manifest agree; 1,462 unique tree entries; all 1,319 blobs have a matching disposition record with identical SHA/mode; all candidate paths and all 16 capability source/test references exist with matching blob SHAs; zero inconsistencies found.
+- The authored Node script tools/verify-inventory.mjs has not yet been executed directly. The GitHub Actions workflow has not been run end-to-end.
+- Discovery remains incomplete: 1,319 paths unclassified, licensing unreviewed, closure unmapped. No source copy or extraction PASS.
