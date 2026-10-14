@@ -78,7 +78,7 @@ This is a starting map based on the repository tree and initial inspection of se
 ## rules-categorization: Inbox rules, sender blocks, categories and spam training
 
 - Status: CANDIDATE_NOT_CLOSED
-- Source candidates: backend/src/routes/rules.js, backend/src/services/categorizer.js, backend/src/services/spamTraining.js
+- Source candidates: backend/src/routes/rules.js, backend/src/services/categorizer.js, backend/src/services/spamPipeline.js
 - Test candidates: Not yet mapped
 - Next: inspect imports/callers, schema/migrations, config/secrets, runtime/platform boundaries, tests and path-level license/provenance.
 
