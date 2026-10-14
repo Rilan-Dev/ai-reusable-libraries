@@ -21,6 +21,10 @@ A provenance-first, continuously updateable source library for [Rilan-Dev/mailfl
 6. Only after the gate passes, copy selected source byte-for-byte into a versioned immutable snapshot and verify against the pinned Git objects.
 7. Use SOURCE_UPDATE_PLAYBOOK.md for every upstream change.
 
+## Continuous update tracking
+
+The workflow at ../.github/workflows/mailflow-source-watch.yml polls upstream main every six hours and supports manual dispatch. When a new commit is found, it opens or updates a tracking issue for AI-assisted impact review. The workflow must be merged to the repository default branch before scheduled runs become active; the workflow has not yet been end-to-end tested.
+
 ## Contents
 
 - source-pins/current.json: current approved upstream identity proposal.
