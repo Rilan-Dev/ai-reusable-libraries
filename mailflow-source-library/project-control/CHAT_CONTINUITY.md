@@ -15,3 +15,7 @@ Added a preliminary capability map and a path-disposition register for all 1,319
 
 ## Architecture update — 2026-10-14
 A 16-capability initial architecture map has been added and its referenced paths verified against the pinned tree. No capability is closure-complete yet. Continue tracing actual imports/callers, data, configuration, tests and host/platform dependencies, starting with security/auth, IMAP synchronization, plugin isolation and migrations.
+
+
+## Inventory validation update — 2026-10-14
+A connector-based check verified consistency across the pinned tree, complete tree manifest, all-file register, candidate map and architecture candidate blob SHAs: zero mismatches. The Node verifier was added but not executed directly. All 1,319 source paths remain unclassified and exact copy remains blocked.
