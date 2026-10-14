@@ -21,9 +21,9 @@
     }
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "start": "npx tsx src/cli.ts",
+    "build": "node init && tsc",
+    "dev": "node init && tsc --watch",
+    "start": "node init && npx tsx src/cli.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
