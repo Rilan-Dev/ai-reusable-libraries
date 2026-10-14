@@ -22,3 +22,9 @@ This is baseline identity/inventory evidence only, not full extraction verificat
 - Complete initial per-file disposition register: manifests/path-dispositions-2026-10-14.json; all 1,319 blob entries intentionally remain UNCLASSIFIED / UNREVIEWED / UNMAPPED.
 - Change watcher: .github/workflows/mailflow-source-watch.yml authored. No end-to-end workflow run confirmed. Scheduled triggers require this workflow to be merged into the repository default branch; the current work is on extraction/mailflow-source-library.
 - No immutable application source copy, path-level license pass, dependency closure pass or extraction PASS.
+
+
+## Architecture candidate verification
+- Initial architecture map contains 16 capability candidates and references existing paths at the pinned source tree.
+- All referenced paths were checked against the complete tree inventory; missing path count is zero.
+- This only verifies candidate path existence and recorded blob identity, not behavior, dependency closure or eligibility.
