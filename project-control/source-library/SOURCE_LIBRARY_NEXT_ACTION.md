@@ -1,8 +1,8 @@
 # Source Library Next Action
 
-1. Review the global architecture PR and confirm the root catalog, source registry, and global-vs-source-specific boundary.
-2. Verify that MailFlow's product records are present under `mailflow-source-library/` while generic extraction prompts remain canonical under `source-extraction-agent/`.
-3. Run `node mailflow-source-library/tools/verify-inventory.mjs` in a real checkout and record exact output; test the generalized upstream watcher by manual dispatch.
-4. Continue MailFlow architecture/capability tracing, license/provenance classification and dependency closure; all 1,319 file dispositions currently remain unclassified.
-5. Confirm source pins for Doable and Clara from their manifests before enabling automated monitoring for those upstreams.
-6. Do not copy MailFlow application source or promote its baseline until closure, license review, independent reconciliation and exact-copy verification gates pass.
+1. Review and merge the MailFlow workspace migration PR only when explicitly authorized: https://github.com/Rilan-Dev/mailflow/pull/2.
+2. Keep `source-extraction-agent/` as the canonical shared framework; MailFlow-specific state belongs in [MailFlow `extraction/`](https://github.com/Rilan-Dev/mailflow/tree/main/extraction/).
+3. Run `node extraction/tools/verify-inventory.mjs` from a real MailFlow checkout after PR #2 is merged and record the exact output. Structural API checks are not a substitute for running the verifier.
+4. Continue MailFlow architecture/capability tracing, licensing/provenance classification and dependency closure; all 1,319 file dispositions remain unclassified. Do not copy upstream application source or promote the pin until the required gates and explicit authorization pass.
+5. Keep MailFlow external watching disabled until the generic watcher supports reading source pins from other repositories without relying on local `library_path` files.
+6. Confirm canonical source pins for Doable and Clara before enabling monitoring for them.
