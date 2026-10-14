@@ -30,7 +30,7 @@ Resume the MailFlow source-library work. Read source-extraction-agent/README.md 
 2. If the upstream commit advances, it opens a tracking issue with old/new pins and a compare link.
 3. Start an AI agent with prompts/UPSTREAM_UPDATE_REVIEW.md.
 4. The agent lists changed paths and object IDs, reads patches and commit messages, traces related callers/tests/migrations/config/release paths, and expands the change set until dependency closure is complete.
-5. It updates a proposal manifest and impact report. It must not overwrite the current approved pin or immutable snapshot.
+5. It updates a proposal manifest and impact report. It must not overwrite the current recorded baseline or immutable snapshot.
 6. Review license/provenance changes and run verification.
 7. Open a PR advancing the library pin only after checks and independent reconciliation. Keep older snapshots and reports.
 
