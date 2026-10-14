@@ -1,0 +1,676 @@
+{
+  "schema_version": "1.0.0",
+  "source_pin": {
+    "repository": "Rilan-Dev/mailflow",
+    "commit": "e7a53760a7e4b15e0ee631533655d99dde657599",
+    "tree": "27059315bc16155f0064dc136aae94cd5097cb02"
+  },
+  "created_at": "2026-10-14",
+  "status": "PRELIMINARY_ARCHITECTURE_MAP",
+  "capabilities": [
+    {
+      "id": "mail-transport-sync",
+      "name": "IMAP/SMTP transport and account synchronization",
+      "paths": [
+        {
+          "path": "backend/src/services/imapManager.js",
+          "blob_sha": "d44ec93d9dc3f1cb47ebd7d4df319ef22863a696",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/imapError.js",
+          "blob_sha": "1720d51bdddc4f60b5c4bdadf6345e26b93ecfd3",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/accounts.js",
+          "blob_sha": "0e286f0f81b7a49e85a36c1bea1770822cd3efa5",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/send.js",
+          "blob_sha": "479af90905f9de2ebaa1c67d9c95f40bd6efd423",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/draft.js",
+          "blob_sha": "7ae5e4d69e988a417aa53573f9513b1f2e98ad29",
+          "exists": true
+        },
+        {
+          "path": "backend/package.json",
+          "blob_sha": "0b5558b852a1e56ade2ec943838e20952f8c4f42",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/services/imapManager.test.js",
+          "blob_sha": "cb7ca309d31f374688f01290d9d99eada2b77484",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/imapMoveFallback.test.js",
+          "blob_sha": "6aecc2bfbc3546b3d27463e67912f119b99dffda",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "message-ingestion-rendering",
+      "name": "Message parsing, sanitization, body storage and rendering",
+      "paths": [
+        {
+          "path": "backend/src/services/messageParser.js",
+          "blob_sha": "787f21f3a7c8aa5d501dfeb18885dc75854078a4",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/emailSanitizer.js",
+          "blob_sha": "1ae76b269880718bed8e11f2e4503e5632dddcf6",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/messageBodyStore.js",
+          "blob_sha": "44b4807914c9de3ce523d1abb50d6dd92382aa43",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/mail.js",
+          "blob_sha": "19caf1ff58be2b5242801a56389b739c431e03ea",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/components/MessagePane.jsx",
+          "blob_sha": "801d03744e603022b068d894eb6697a59aecef25",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/services/messageParser.headers.test.js",
+          "blob_sha": "8a39a45869a8a34e443c276271e1ea99a0c55776",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/emailSanitizer.test.js",
+          "blob_sha": "176521e4983516dc9b480868cdcb48f193d7e2f7",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/emailSanitizer.trackers.test.js",
+          "blob_sha": "5b9e033584a48752aa9fcb223bf4f51b347eaeb6",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "image-proxy-privacy",
+      "name": "Remote image proxy and tracking protection",
+      "paths": [
+        {
+          "path": "backend/src/services/imageProxy.js",
+          "blob_sha": "01b3e07aed00e1fab8fceb72218335b7aaeeb66b",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/safeFetch.js",
+          "blob_sha": "dd0f0973b515131c88ff9afab640d58f1720a8f1",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/mail.js",
+          "blob_sha": "19caf1ff58be2b5242801a56389b739c431e03ea",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/utils/imageProxy.js",
+          "blob_sha": "2bde1a9fab1040e309a2e49f5418cb0f8088e619",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/services/imageProxy.test.js",
+          "blob_sha": "cf7c3d90b09efa40ecb0911c15cddefc2074abec",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/utils/imageProxy.test.js",
+          "blob_sha": "a78bb3c7521da9a04878b94c5b1d7dade96aa03f",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "auth-and-identity",
+      "name": "Session auth, OAuth/OIDC, MFA and account recovery",
+      "paths": [
+        {
+          "path": "backend/src/index.js",
+          "blob_sha": "24c4a8b060d49760dc22e998673b609cbb8c57ab",
+          "exists": true
+        },
+        {
+          "path": "backend/src/middleware/auth.js",
+          "blob_sha": "e2e38cfbf8111705a04b0357d4b4be5b01f1bf09",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/auth.js",
+          "blob_sha": "35e41f494440dfdc412ad47bb463f32039c69bb5",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/oauth.js",
+          "blob_sha": "c8e6821501bbf622ca953ae2d1861753b4cc6bd5",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/oidc.js",
+          "blob_sha": "ef6ef1fd15cf5f6594f72a6e835f24be8cc236b7",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/middleware/auth.test.js",
+          "blob_sha": "a30c27148c41b4da0fdeefe68fc56203c56165ca",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/oauth.refresh.test.js",
+          "blob_sha": "6e234619dea52d2460deb6a99ad7a2b5d7cdd509",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "database-schema",
+      "name": "PostgreSQL persistence and ordered migrations",
+      "paths": [
+        {
+          "path": "backend/src/services/db.js",
+          "blob_sha": "a3527cf3d0252efb831cffadf0860ac74247bb2e",
+          "exists": true
+        },
+        {
+          "path": "backend/migrations/0001_baseline.sql",
+          "blob_sha": "bbe2b20ebe0d9f4b8f0d63d6563ed57ffa026a1a",
+          "exists": true
+        },
+        {
+          "path": "backend/migrations/0066_email_accounts_icon.sql",
+          "blob_sha": "281f462c7960225156cc01b1dc18d80f9194b21f",
+          "exists": true
+        }
+      ],
+      "tests": [],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "plugin-boundary",
+      "name": "Plugin API, activation, registry and storage boundary",
+      "paths": [
+        {
+          "path": "backend/src/plugins/README.md",
+          "blob_sha": "e5a5abb83d7bfddf766ef6af7513247db5dfa75f",
+          "exists": true
+        },
+        {
+          "path": "backend/src/plugins/api.js",
+          "blob_sha": "b22623582fe0f8ad00687d05718d12fabcca3f33",
+          "exists": true
+        },
+        {
+          "path": "backend/src/plugins/registry.js",
+          "blob_sha": "b2ad424e595344e80a69df8cd1e74769a1eefffa",
+          "exists": true
+        },
+        {
+          "path": "backend/src/plugins/activation.js",
+          "blob_sha": "2c85079fcc957b288cfbbbbf774c79d99eb5e073",
+          "exists": true
+        },
+        {
+          "path": "backend/eslint.plugins-boundary.js",
+          "blob_sha": "037c159b84a5d6f0b8556ef1647f511be28d8364",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/plugins/activation.test.js",
+          "blob_sha": "a988354e6fe5e66b7df3814c0b5841daaae7b9cf",
+          "exists": true
+        },
+        {
+          "path": "backend/src/plugins/registry.test.js",
+          "blob_sha": "53c68e4a11ad3b00f4d936006bf3914a8f8dfba4",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "frontend-app",
+      "name": "Web application shell, state and routing",
+      "paths": [
+        {
+          "path": "frontend/src/App.jsx",
+          "blob_sha": "ae2328e7c89fb3df5bb27e943a901dc4f8fc7483",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/store/index.js",
+          "blob_sha": "1309780bb7cd01891a325d76151e2bf36f7d354d",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/components/MailApp.jsx",
+          "blob_sha": "c7fdf2822f51d6e583a57b70b3df92cf0283f2b5",
+          "exists": true
+        },
+        {
+          "path": "frontend/package.json",
+          "blob_sha": "be6584aa8392ef1857d3892f225042e1239b2f03",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "frontend/src/App.render.test.js",
+          "blob_sha": "054b7e721b2cf2bdffbc36d72365ebab55cb122d",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "compose-and-send",
+      "name": "Compose, reply, forward, drafts, attachments and SMTP routing",
+      "paths": [
+        {
+          "path": "frontend/src/components/ComposeModal.jsx",
+          "blob_sha": "746d30567166aa218dd3ac42c17bd8d2d63a2f1e",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/utils/composeFromMessage.js",
+          "blob_sha": "3c01e3467b3ee1a5571d4796d09513284f0f10b2",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/send.js",
+          "blob_sha": "479af90905f9de2ebaa1c67d9c95f40bd6efd423",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/draft.js",
+          "blob_sha": "7ae5e4d69e988a417aa53573f9513b1f2e98ad29",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "frontend/src/components/ComposeModal.render.test.js",
+          "blob_sha": "bbb6132c984c0460a02d20312955083ad827ec0d",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/components/ComposeModal.replyDraft.test.js",
+          "blob_sha": "90237e74285eea041854cced670870b7ebd3197f",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "search-and-unified-inbox",
+      "name": "Cross-account search and unified inbox scope",
+      "paths": [
+        {
+          "path": "backend/src/routes/search.js",
+          "blob_sha": "292f9da119eba5f9de7dc3602c420f476afd7e0a",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/unifiedInbox.js",
+          "blob_sha": "e8ef1efe89184e8e8f66f52ff0b70e5ec35187c4",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/messageService.js",
+          "blob_sha": "62651047305aba9b88309ba39545e88069130be3",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/services/messageService.test.js",
+          "blob_sha": "a92e515e8d60fd864c2180c3529d2351f4f9a01e",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "contacts-carddav",
+      "name": "Contacts, CardDAV and vCard synchronization",
+      "paths": [
+        {
+          "path": "backend/src/routes/contacts.js",
+          "blob_sha": "c84f9c0f74335f367299449e9d67c22071d9e8da",
+          "exists": true
+        },
+        {
+          "path": "backend/src/routes/carddav.js",
+          "blob_sha": "7516d58a9b8606c04af5c20ad009a6ac369c6c7b",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/carddavClient.js",
+          "blob_sha": "7eed7e1a7abf5c10b29c50941146bc2d4c84b266",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/carddavSync.js",
+          "blob_sha": "ddbe589cb8d99ad9588c6f8fd6f3a8975b27757d",
+          "exists": true
+        },
+        {
+          "path": "backend/src/utils/vcard.js",
+          "blob_sha": "67fa3f7cafdd226469eab79da4a25f7dbcdf911e",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/components/ContactsPage.jsx",
+          "blob_sha": "55b1719c3865d57295508bd5b1d041f552bd6ab6",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/services/carddavClient.test.js",
+          "blob_sha": "1fd18141c5d22fcbadde40a89130d8392b1c3919",
+          "exists": true
+        },
+        {
+          "path": "backend/src/utils/vcard.test.js",
+          "blob_sha": "6e61586cc776ad0c6ae682093d9f291c07e1b75c",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "rules-categorization",
+      "name": "Inbox rules, sender blocks, categories and spam training",
+      "paths": [
+        {
+          "path": "backend/src/routes/rules.js",
+          "blob_sha": "c6214a7a9e8f41cd640ed3e2c2487765727c8f71",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/categorizer.js",
+          "blob_sha": "a98ab8a88f97c642d257961fd6aca33298254423",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/spamTraining.js",
+          "blob_sha": null,
+          "exists": false
+        }
+      ],
+      "tests": [],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "ai-assistant",
+      "name": "AI provider configuration, thread summarization and draft assistance",
+      "paths": [
+        {
+          "path": "backend/src/routes/ai.js",
+          "blob_sha": "8dafd6f88fca03a8dfa35c6f4b9ab28304f6569b",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/aiProvider.js",
+          "blob_sha": "dfca10363c011dac108714d6b9343459f30179a3",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/openaiCodexAuth.js",
+          "blob_sha": "d2539a2fffd6fc9efe9104a01e0de1b208fb9f29",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/aiActions.js",
+          "blob_sha": "49dfeaaee0851d51759d3d3200f3aed30fec5866",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/aiResults.js",
+          "blob_sha": "65eddd887038f035059a170da3db1d459d09d40c",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/routes/ai.test.js",
+          "blob_sha": "a05bc733f584172d0bc1f0e21d7130301ee873c5",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/aiActions.test.js",
+          "blob_sha": "c4ecde7e8af605bb8c62abd0875612bda9ca7a81",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "notifications-realtime",
+      "name": "WebSocket, push and notification actions",
+      "paths": [
+        {
+          "path": "backend/src/services/websocket.js",
+          "blob_sha": "4afeddb4a7bb60aac23313ca99d4eb163f409778",
+          "exists": true
+        },
+        {
+          "path": "backend/src/services/pushNotifications.js",
+          "blob_sha": "be663d9552e73442d1e7ed39ed7fc870abeb8450",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/hooks/useWebSocket.js",
+          "blob_sha": "04a79d11565cad0f91ff57185a9430ef010cfd94",
+          "exists": true
+        },
+        {
+          "path": "frontend/src/hooks/usePushNotifications.js",
+          "blob_sha": "2f3f675ac34b7ccd3b8721b43e7445838a09e3d5",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "backend/src/services/websocket.test.js",
+          "blob_sha": "8c9d27af76913b3904e9215b5f3b0b9334c3a173",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "electron-desktop",
+      "name": "Electron desktop shell, notifications and navigation security",
+      "paths": [
+        {
+          "path": "frontend/packages/electron/main.cjs",
+          "blob_sha": "e4a7b1f3265543756b9959b58b7195135b0b2d69",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/electron/preload.cjs",
+          "blob_sha": "c75cf421ff4d65b7567e61f268f7ee306371299b",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/electron/security.cjs",
+          "blob_sha": "0a98e4af5e047f3b54b23042ae3fecc5da0b8281",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/electron/mailApi.cjs",
+          "blob_sha": "5f5974f824079fe09212314afa71898788425045",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "frontend/packages/electron/security.test.cjs",
+          "blob_sha": "25ea9d49cd6fc6e4cc67b412c61aece5ce94da23",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/electron/mailApi.test.cjs",
+          "blob_sha": "8ac64cf79883f7e68e0c166738fd78a87ca50029",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "android-mobile",
+      "name": "Android background sync, native bridge and notification actions",
+      "paths": [
+        {
+          "path": "frontend/packages/android/app/src/main/java/sh/mailflow/app/MailFlowBackgroundSync.java",
+          "blob_sha": "517c4a15bf345bbb35da2d34f393e10e9f2d0206",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/android/app/src/main/java/sh/mailflow/app/MailFlowNativePlugin.java",
+          "blob_sha": "5136f0f2ded04ffece0641b1981dd58da6c7bf6a",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/android/app/src/main/java/sh/mailflow/app/NativeSecurity.java",
+          "blob_sha": "edd0fc10c0f7fb5ec8dd8bcc864ff28a5c31418c",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/android/app/src/main/java/sh/mailflow/app/MailFlowNotificationActionWorker.java",
+          "blob_sha": "166f33f4d0c41706973e3aa6263b06fe3b84a914",
+          "exists": true
+        }
+      ],
+      "tests": [
+        {
+          "path": "frontend/packages/android/app/src/test/java/sh/mailflow/app/NativeSecurityTest.java",
+          "blob_sha": "11097a233ee8a632cb9a4d3dc82652d6ab5feeeb",
+          "exists": true
+        },
+        {
+          "path": "frontend/packages/android/app/src/test/java/sh/mailflow/app/MailFlowNotificationActionWorkerTest.java",
+          "blob_sha": "9581d330c8f4c607df57163f724408a062c9a155",
+          "exists": true
+        }
+      ],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    },
+    {
+      "id": "deployment-and-release",
+      "name": "Docker deployment, CI and application release packaging",
+      "paths": [
+        {
+          "path": "docker-compose.yml",
+          "blob_sha": "0798667032ea6ba22f2ab188be29f8f49fcc5470",
+          "exists": true
+        },
+        {
+          "path": "backend/Dockerfile",
+          "blob_sha": "4e1a6aca68037d714015f4959af9cc01f6edaa1d",
+          "exists": true
+        },
+        {
+          "path": "frontend/Dockerfile",
+          "blob_sha": "303bd15e08c871df4c58f2768928b32e158de2aa",
+          "exists": true
+        },
+        {
+          "path": ".github/workflows/ci.yml",
+          "blob_sha": "24aef57f8bba6327cc20d026966d69da28b4f4fb",
+          "exists": true
+        },
+        {
+          "path": ".github/workflows/publish-apps.yml",
+          "blob_sha": "8ff9bf9482665b218b1e1d902d815a6524a4316f",
+          "exists": true
+        },
+        {
+          "path": ".github/workflows/publish.yml",
+          "blob_sha": "ca42f2f732bc04b0291a37da408a646e275b2807",
+          "exists": true
+        }
+      ],
+      "tests": [],
+      "closure_complete": false,
+      "license_review": "PENDING",
+      "status": "CANDIDATE_NOT_CLOSED",
+      "notes": "Initial candidate only. Trace imports/callers/data/config/runtime/UI/tests and platform dependencies before promotion."
+    }
+  ]
+}
