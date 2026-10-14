@@ -27,13 +27,16 @@
     {
       "id": "mailflow",
       "name": "MailFlow",
-      "library_path": "mailflow-source-library/",
-      "upstream_repository": "https://github.com/Rilan-Dev/mailflow",
+      "library_path": null,
+      "upstream_repository": "https://github.com/maathimself/mailflow",
       "upstream_ref": "main",
-      "source_pin_path": "mailflow-source-library/source-pins/current.json",
+      "source_pin_path": null,
       "status": "DISCOVERY_AND_CLOSURE_PENDING",
-      "watch_enabled": true,
-      "reason": "Pinned baseline is a proposed initial discovery pin; watcher only detects changes and never copies/promotes source."
+      "watch_enabled": false,
+      "reason": "MailFlow-specific pins and evidence are maintained in Rilan-Dev/mailflow under extraction/. Central watcher is disabled until it can safely read and validate external-repository pins.",
+      "workspace_repository": "https://github.com/Rilan-Dev/mailflow",
+      "workspace_path": "extraction/",
+      "framework_copy_path": "source-extraction-agent/"
     }
   ]
 }
