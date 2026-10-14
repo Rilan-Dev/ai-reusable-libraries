@@ -16,3 +16,7 @@
 
 ## Update — 2026-10-10 — Target package mirror advanced
 The full reusable package content has now been mirrored into the Doable, n8n and OmniRoute PR branches: prompts, 12 specialized skills, schemas, templates, examples, workflows, package scripts, verifier, tests and target-adapted project-control records. The target PRs remain open and unmerged. Next: review each PR diff and confirm the package checks on the latest target heads when practical; do not claim checks passed without evidence. Application-source extraction remains separately gated per target.
+
+
+## Active target — MailFlow source library (2026-10-14)
+Branch: extraction/mailflow-source-library. Read mailflow-source-library/project-control/CHAT_CONTINUITY.md and NEXT_ACTION.md. Initial pin: commit e7a53760a7e4b15e0ee631533655d99dde657599, tree 27059315bc16155f0064dc136aae94cd5097cb02. Full tree inventory exists; all 1,319 file dispositions remain unclassified. Next: inspect central backend/frontend/platform/security files, trace capability and dependency closure, review path-level licensing, and reconcile evidence. Do not copy source before the discovery gate passes. Change watcher is authored but not verified on default branch.
