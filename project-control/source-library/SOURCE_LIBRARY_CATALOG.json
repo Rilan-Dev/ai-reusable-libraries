@@ -27,13 +27,15 @@
     {
       "id": "mailflow",
       "name": "MailFlow",
-      "library_path": "mailflow-source-library/",
-      "upstream_repository": "https://github.com/Rilan-Dev/mailflow",
+      "library_path": "https://github.com/Rilan-Dev/mailflow/tree/main/extraction/",
+      "workspace_url": "https://github.com/Rilan-Dev/mailflow/tree/main/extraction/",
+      "upstream_repository": "https://github.com/maathimself/mailflow",
       "upstream_ref": "main",
-      "source_pin_path": "mailflow-source-library/source-pins/current.json",
-      "status": "DISCOVERY_AND_CLOSURE_PENDING",
-      "watch_enabled": true,
-      "reason": "Pinned baseline is a proposed initial discovery pin; watcher only detects changes and never copies/promotes source."
+      "source_pin_path": null,
+      "source_pin_url": "https://raw.githubusercontent.com/Rilan-Dev/mailflow/main/extraction/source-pins/current.json",
+      "status": "WORKSPACE_MIGRATION_PR_OPEN",
+      "watch_enabled": false,
+      "reason": "MailFlow-specific records are moving to the source repository in PR #3. Enable the URL-backed watcher after that PR is merged and the pin URL is available on main."
     }
   ]
 }

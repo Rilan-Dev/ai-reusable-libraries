@@ -1,18 +1,9 @@
 # Source Library Catalog
 
-This is the human-readable navigation view. The machine-readable registry is `project-control/source-library/sources.json`.
+The shared extraction framework is maintained in `source-extraction-agent/`. The catalog tracks source identities and status; source-specific workspaces own their manifests, memories, sessions, licensing/provenance evidence and project-control.
 
-| Source/library | Repository area | Upstream | Current state | Global method |
-|---|---|---|---|---|
-| Doable Source | `doable-source/` | Doable upstream; confirm pin from its own manifest before monitoring | Existing source library and capability catalog; use its own verification records | `source-extraction-agent/` |
-| Clara Core | `clara-core/` | Clara AI Platform | Incremental extraction; manifest currently records 108 immutable entries | `source-extraction-agent/` |
-| MailFlow | `mailflow-source-library/` | [Rilan-Dev/mailflow](https://github.com/Rilan-Dev/mailflow) | Inventory captured; 1,319 files remain unclassified; no application source copied; licensing and closure gates pending | `source-extraction-agent/` |
-| Future sources | New source-specific folder | Owner-supplied repository/ref | Add only after recording provenance and state | Same global framework |
+- **MailFlow:** source-owned workspace at https://github.com/Rilan-Dev/mailflow/tree/main/extraction/ (migration PR: https://github.com/Rilan-Dev/mailflow/pull/3); upstream under review: https://github.com/maathimself/mailflow.
+- **Clara Core:** `clara-core/`; source pin reconciliation is pending.
+- **Doable Source:** `doable-source/`; canonical upstream pin reconciliation is pending.
 
-## Important distinctions
-
-- A source library existing does not mean every capability is complete.
-- Inventory complete does not mean dependency closure complete.
-- An extraction proposal pin is not an approved immutable snapshot.
-- Doable is reference material for Clara Core, not Clara Core's upstream source.
-- MailFlow remains governed by its own AGPL-3.0/commercial-license/CLA review; do not infer redistribution rights.
+See `project-control/source-library/SOURCE_LIBRARY_CATALOG.json` for machine-readable state. Detection does not authorize copying or promoting source.
