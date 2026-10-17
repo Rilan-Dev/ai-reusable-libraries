@@ -1,17 +1,10 @@
-# Source Library Program Worklog
+# Source Library Worklog
 
-## 2026-10-14 — Global architecture clarification
+## 2026-10-14 — Move MailFlow workstream ownership to source repository
 
-- User clarified that extraction prompts, rules, agent controls, update-capture process and templates must be globally reusable for any upstream, not designed around MailFlow.
-- Established the intended boundary: `source-extraction-agent/` is the canonical engine; source-specific directories hold only source pins, inventories, evidence, source-specific license notes and workstream state.
-- Added central source-library program navigation, catalog and roadmap under this repository's `project-control/source-library/`.
-- Imported MailFlow inventory and workstream records onto the global architecture branch without importing its duplicate product-local prompts.
-- Added generic upstream-change review prompt and workflow plus a registry-driven watcher design. Watcher execution and local verifier execution are pending.
-
-## 2026-10-14 — PR opened
-
-- Opened PR #5: https://github.com/Rilan-Dev/ai-reusable-libraries/pull/5 from `architecture/global-source-library-control` to `main`.
-- Head commit: `91b734633d4b64649e1e318d5629d75c9098b591`; GitHub reports the PR mergeable and open.
-- Confirmed the MailFlow workstream records are present in the branch and `mailflow-source-library/prompts/` is absent; generic update prompt/workflow/report live under `source-extraction-agent/`.
-- Confirmed the registry enables upstream watching for MailFlow only; Doable and Clara monitoring remain disabled pending pin reconciliation.
-- Not yet run: local Node inventory verifier or manual GitHub Actions workflow dispatch.
+- User requested that MailFlow extraction documents, memories, sessions and all related project-control live in `Rilan-Dev/mailflow`.
+- Created migration PR https://github.com/Rilan-Dev/mailflow/pull/3 to vendor the shared `source-extraction-agent/` framework and move source-specific records under `extraction/`.
+- Global framework remains canonical here; source-specific evidence should no longer be duplicated here.
+- Updated the catalog design to point to MailFlow's source-owned workspace and the actual upstream `https://github.com/maathimself/mailflow`.
+- Watcher will remain disabled for MailFlow until the source workspace PR is merged and the pin URL is live on the default branch.
+- No upstream application source copied; no extraction PASS. The 1,319 upstream blobs remain unclassified and license/provenance, dependency closure and independent reconciliation are blockers.
